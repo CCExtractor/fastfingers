@@ -1,0 +1,133 @@
+stack {
+    background-color: #212121;
+}
+
+fixed {
+    background-color:yellow;
+}
+
+.card {
+    background-color: #323232;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.title {
+    color: darkgray;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.shortcut_title {
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+}
+
+.practice_box {
+
+}
+
+.key_list_box {
+
+}
+
+.key_box {
+
+}
+
+.key_letter_label {
+    border-color: #49505c;
+    border-radius: 10px;
+    border-width: 4px;
+    border-style: solid;
+    padding: 10px;
+    font-weight: 900;
+    font-size: 30px;
+    color: #63728a;
+}
+
+.key_label {
+    color: gray;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.grid {
+    padding: 35px;
+}
+
+.card_title {
+    color: white;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+.card_info {
+    color: gray;
+    font-size: 25px;
+}
+
+.card_pbar {
+
+}
+
+#myChildTop {
+    background-color: white;
+}
+
+#mybutton {
+    background-color: #112d4e;
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+}
+#myButton_red{
+    background-color: red;
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+#myButton_yellow{
+    background-color: yellow;
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+#myButton_green{
+    background-color: green;
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+#myButton_blue{
+    background-color: blue;
+    color: white;
+    font-family: DejaVu Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 15px;
+}
+
+#myButton_red:hover,
+#myButton_yellow:hover,
+#myButton_green:hover,
+#myButton_blue:hover{
+   background-color: black;
+}
