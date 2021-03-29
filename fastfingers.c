@@ -3,13 +3,15 @@
 #include "cards.h"
 #include "practice.h"
 
+GtkWidget *stack;
+GtkWidget *window;
+
+int page = FF_HOME;
+    
 static void
 activate (GtkApplication *app,
           gpointer        user_data)
 {
-  GtkWidget *window;
-  GtkWidget *stack;
-  
   ff_init_css();
 
   window = gtk_application_window_new (app);
@@ -26,12 +28,6 @@ activate (GtkApplication *app,
   gtk_stack_add_named(GTK_STACK(stack), home_page, "home");
   gtk_widget_show(home_page);
   gtk_stack_set_visible_child(GTK_STACK(stack), home_page);
-
-  GtkWidget *practice_page = ff_new_practice_page();
-  gtk_stack_add_named(GTK_STACK(stack), practice_page, "practice");
-  gtk_widget_show(practice_page);
-  //gtk_stack_set_visible_child(GTK_STACK(stack), practice_page);
-
 
   gtk_widget_show_all(window);                
   gtk_main();

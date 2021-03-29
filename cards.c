@@ -1,11 +1,21 @@
 #include "cards.h"
+#include "fflib.h"
+#include "practice.h"
 
 void handler(GtkWidget *widget, GdkEventButton *event)
 {
   GtkWidget *card = gtk_bin_get_child(GTK_BIN(widget));
   GList *children = gtk_container_get_children(GTK_CONTAINER(card));
   GtkWidget *title = g_list_nth_data(children, 1);
-  fprintf(stderr, "%s\n", gtk_label_get_text(GTK_LABEL(title)));
+  fprintf(stderr, "Debug: App card %s choosed\n", gtk_label_get_text(GTK_LABEL(title)));
+  
+  GtkWidget *practice_page = ff_new_practice_page();
+  gtk_stack_add_named(GTK_STACK(stack), practice_page, "practice");
+  gtk_widget_show(practice_page);
+  gtk_stack_set_visible_child(GTK_STACK(stack), practice_page);
+  gtk_widget_show_all(window);                
+
+  page = FF_PRACTICE;
 }
 
 GtkWidget*

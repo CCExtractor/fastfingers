@@ -1,5 +1,6 @@
 #include "practice.h"
 #include "cards.h"
+#include "fflib.h"
 
 int size;
 GtkWidget *key_label_arr[3];
@@ -58,18 +59,32 @@ ff_new_practice_page(void)
 gboolean
 on_key_press (GtkWidget *widget, GdkEventKey *event)
 {
+  if (page != FF_PRACTICE)
+    return 0;
+
   if (turn == size)
-    return -1;
-  
+    {
+      turn = 0;
+      for (int i = 0; i < size; ++i)
+	{
+	  gtk_style_context_remove_class(gtk_widget_get_style_context(key_label_arr[i]), "key_label_wrong");
+	  gtk_style_context_remove_class(gtk_widget_get_style_context(key_label_arr[i]), "key_label_correct");
+	  gtk_style_context_add_class ( gtk_widget_get_style_context (key_label_arr[i]), "key_label");
+	}
+
+      return 0;
+    }
+     
   int key = event->keyval;
   if (event->keyval >= 0x061 && event->keyval <= 0x07a)
     {
       key = event->keyval - 32;
     }
 
-  gtk_widget_reset_style(key_label_arr[turn]);
+  gtk_style_context_remove_class(gtk_widget_get_style_context(key_label_arr[turn]), "key_label");
   gtk_style_context_add_class(gtk_widget_get_style_context(key_label_arr[turn]),
 			      key == keys[turn] ? "key_label_correct" : "key_label_wrong");
   ++turn;
-  return -1;
+  
+  return 0;
 }
