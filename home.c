@@ -21,16 +21,16 @@ GtkWidget *ff_new_home_page(void)
   gtk_widget_set_halign(label_recent, GTK_ALIGN_START);
   gtk_grid_attach(GTK_GRID(grid), label_recent, 0, 0, 1, 1);
 
-  GtkWidget *card1 = attach_new_card(GTK_GRID(grid), 1, "Sketch", 23, 143, sketch);
-  GtkWidget *card2 = attach_new_card(GTK_GRID(grid), 0, "VS Code", 3, 123, vscode);
+  attach_new_card(GTK_GRID(grid), 1, "Sketch", 23, 143);
+  attach_new_card(GTK_GRID(grid), 0, "VS Code", 3, 123);
 
   GtkWidget *label_development = gtk_label_new("Development");
   gtk_style_context_add_class ( gtk_widget_get_style_context (label_development), "title");
   gtk_widget_set_halign(label_development, GTK_ALIGN_START);
   gtk_grid_attach(GTK_GRID(grid), label_development, 0, 2, 1, 1);
 
-  attach_new_card(GTK_GRID(grid), 3, "Gmail", 26, 220, gmail);
-  attach_new_card(GTK_GRID(grid), 0, "Slack", 15, 142, slack);
+  attach_new_card(GTK_GRID(grid), 3, "Gmail", 26, 220);
+  attach_new_card(GTK_GRID(grid), 0, "Slack", 15, 142);
 
   return scroll_window;
 }

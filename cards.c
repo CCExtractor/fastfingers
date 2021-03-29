@@ -1,30 +1,17 @@
 #include "cards.h"
 
-void sketch(void)
+void handler(GtkWidget *widget, GdkEventButton *event)
 {
-  fprintf(stderr, "Sketch\n");
-}
-
-void vscode(void)
-{
-  fprintf(stderr, "Vscode \n");
-}
-
-void gmail(void)
-{
-  fprintf(stderr, "Gmail \n");
-}
-
-void slack(void)
-{
-  fprintf(stderr, "Slack \n");
+  GtkWidget *card = gtk_bin_get_child(GTK_BIN(widget));
+  GList *children = gtk_container_get_children(GTK_CONTAINER(card));
+  GtkWidget *title = g_list_nth_data(children, 1);
+  fprintf(stderr, "%s\n", gtk_label_get_text(GTK_LABEL(title)));
 }
 
 GtkWidget*
 attach_new_card (GtkGrid *grid, int i_top,
 		 const char *title,
-		 int completed, int total,
-		 void (*callback_func)(void))
+		 int completed, int total)
 {
   char logo_path[64];
   char info[64];
@@ -73,7 +60,7 @@ attach_new_card (GtkGrid *grid, int i_top,
   gtk_widget_set_vexpand(card_pbar, 1);
   gtk_container_add(GTK_CONTAINER(card), card_pbar);
 
-  g_signal_connect (event_box, "button_press_event", callback_func, NULL);
+  g_signal_connect (event_box, "button_press_event", G_CALLBACK(handler), NULL);
   gtk_container_add(GTK_CONTAINER(event_box), card);
   gtk_grid_attach(grid, event_box, left, top, 1, 1);
 

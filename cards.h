@@ -3,15 +3,11 @@
 
 #include "fflib.h"
 
-void sketch(void);
-void vscode(void);
-void gmail(void);
-void slack(void);
+void handler(GtkWidget *widget, GdkEventButton *event);
 
 GtkWidget*
 attach_new_card (GtkGrid *grid, int i_top,
 		 const char *title,
-		 int completed, int total,
-		 void (*callback_func)(void));
+		 int completed, int total);
 
 #endif

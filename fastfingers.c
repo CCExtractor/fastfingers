@@ -17,7 +17,8 @@ activate (GtkApplication *app,
   gtk_window_set_default_size (GTK_WINDOW (window), 1000, 600);
   gtk_window_set_resizable (GTK_WINDOW(window), FALSE);
   g_signal_connect(window, "destroy", G_CALLBACK(gtk_main_quit), NULL);
-
+  g_signal_connect (window, "key_press_event", G_CALLBACK (on_key_press), NULL);
+    
   stack = gtk_stack_new();
   gtk_container_add (GTK_CONTAINER (window), stack);  
   
@@ -29,7 +30,7 @@ activate (GtkApplication *app,
   GtkWidget *practice_page = ff_new_practice_page();
   gtk_stack_add_named(GTK_STACK(stack), practice_page, "practice");
   gtk_widget_show(practice_page);
-  gtk_stack_set_visible_child(GTK_STACK(stack), practice_page);
+  //gtk_stack_set_visible_child(GTK_STACK(stack), practice_page);
 
 
   gtk_widget_show_all(window);                
