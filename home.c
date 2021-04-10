@@ -3,18 +3,18 @@
 
 GtkWidget *ff_new_home_page(void)
 {
-  GtkWidget *scroll_window, *viewport;
+  GtkWidget *scrolled_window, *viewport;
   
-  scroll_window = gtk_scrolled_window_new(NULL, NULL);
+  scrolled_window = gtk_scrolled_window_new();
   viewport = gtk_viewport_new(NULL, NULL);
-  gtk_container_add (GTK_CONTAINER (scroll_window), viewport);
+  gtk_scrolled_window_set_child (GTK_SCROLLED_WINDOW (scrolled_window), viewport);
   
   GtkWidget *grid = gtk_grid_new();
   gtk_widget_set_size_request(grid, 950, 550);
   gtk_style_context_add_class ( gtk_widget_get_style_context (grid), "grid");
   gtk_grid_set_column_spacing(GTK_GRID(grid), 20);
   gtk_grid_set_row_spacing(GTK_GRID(grid), 30);
-  gtk_container_add(GTK_CONTAINER (viewport), grid);
+  gtk_viewport_set_child (GTK_VIEWPORT(viewport), grid);
 
   GtkWidget *label_recent = gtk_label_new("Recent");
   gtk_style_context_add_class ( gtk_widget_get_style_context (label_recent), "title");
@@ -32,5 +32,5 @@ GtkWidget *ff_new_home_page(void)
   attach_new_card(GTK_GRID(grid), 3, "Gmail", 26, 220);
   attach_new_card(GTK_GRID(grid), 0, "Slack", 15, 142);
 
-  return scroll_window;
+  return scrolled_window;
 }
