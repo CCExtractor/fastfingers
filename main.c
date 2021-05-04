@@ -1,8 +1,15 @@
-#include <gtk/gtk.h>
+#include "ff_application.h"
 
-#include "fastfingers.h"
-
-int main (int argc, char **argv)
+int
+main (int argc, char **argv)
 {
-  return g_application_run(G_APPLICATION(fastfingers_new()), argc, argv);
+  GtkApplication *app;
+  int status;
+
+  app = gtk_application_new ("com.aliereny.fastfingers", G_APPLICATION_FLAGS_NONE);
+  g_signal_connect (app, "activate", G_CALLBACK (activate), NULL);
+  status = g_application_run (G_APPLICATION (app), argc, argv);
+  g_object_unref (app);
+
+  return status;
 }
