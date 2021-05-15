@@ -36,15 +36,6 @@ It is ready to run
 ./ff_app
 ```
 
-## Usage
-
-```python
-import foobar
-
-foobar.pluralize('word') # returns 'words'
-foobar.pluralize('goose') # returns 'geese'
-foobar.singularize('phenomena') # returns 'phenomenon'
-```
 ![](intro.gif)
 
 ## Contributing
