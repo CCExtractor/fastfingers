@@ -22,10 +22,11 @@
 	    <child>
 	      <object class="GtkImage" id="image">
 		<property name="halign">center</property>
-		<property name="height-request">125</property>
-		<property name="width-request">125</property>
+		<property name="height-request">100</property>
+		<property name="width-request">100</property>
+		<property name="margin-top">50</property>
 		<style>
-		  <class name="settings-logo"/>
+		  <class name="application-logo"/>
 		</style>
 	      </object>
 	    </child>

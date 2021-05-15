@@ -82,6 +82,9 @@ image.practice-image {
 }
 
 key {
+    color: #eceff4;
+    font-size: 20px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
     background-image: none;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     padding: 10px;
@@ -105,8 +108,10 @@ box.settings-box {
 }
 
 image.settings-logo {
+    background-color: #3b4252;
     background-image: none;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
 
 list.settings-list {
@@ -123,6 +128,13 @@ list.settings-list label {
 /* Application Page */
 viewport.application-viewport {
     background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.application-logo {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
 }
 
 box.application-box label.application-title {
