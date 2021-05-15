@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkScrolledWindow" id="application_scrolled_window">
+    <child>
+      <object class="GtkViewport" id="application_viewport">
+	<style>
+	  <class name="application-viewport"/>
+	</style>
+	<child>
+	  <object class="GtkBox" id="main_box">
+	    <property name="orientation">vertical</property>
+	    <style>
+	      <class name="application-box"/>
+	    </style>
+	    <child>
+	      <object class="FFButtonbox">
+		<property name="back-visible">True</property>
+		<property name="back-label">&lt; Home</property>
+		<property name="settings-visible">False</property>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkImage" id="image">
+		<property name="halign">center</property>
+		<property name="height-request">125</property>
+		<property name="width-request">125</property>
+		<property name="margin-top">75</property>
+		<property name="margin-bottom">50</property>
+		<style>
+		  <class name="settings-logo"/>
+		</style>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkLabel">
+		<property name="margin-start">300</property>
+		<property name="label">Recent</property>
+		<property name="hexpand">True</property>
+		<property name="halign">start</property>
+		<style>
+		  <class name="application-title"/>
+		</style>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkSeparator">
+		<property name="margin-start">300</property>
+		<property name="margin-end">300</property>
+		<property name="orientation">horizontal</property>
+		<style>
+		  <class name="application-title"/>
+		</style>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkListBox">
+		<property name="margin-start">300</property>
+		<property name="margin-end">300</property>
+		<style>
+		  <class name="application-list"/>
+		</style>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Navigation</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">2/7</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkLabel">
+		<property name="margin-start">300</property>
+		<property name="label">By Topic</property>
+		<property name="hexpand">True</property>
+		<property name="halign">start</property>
+		<style>
+		  <class name="application-title"/>
+		</style>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkSeparator">
+		<property name="margin-start">300</property>
+		<property name="margin-end">300</property>
+		<property name="orientation">horizontal</property>
+		<style>
+		  <class name="application-title"/>
+		</style>
+	      </object>
+	    </child>
+	    <child>
+	      <object class="GtkListBox" id="list_box">
+		<property name="margin-start">300</property>
+		<property name="margin-end">300</property>
+		<style>
+		  <class name="application-list"/>
+		</style>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Navigation</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">2/7</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Current Page</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">4/32</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Editing</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">5/17</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Search</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">10/20</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+		<child>
+		  <object class="GtkListBoxRow">
+		    <child>
+		      <object class="GtkBox">
+			<property name="homogeneous">True</property>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">start</property>
+			    <property name="label" translatable="yes">Windows &#38; Tabs</property>
+			  </object>
+			</child>
+			<child>
+			  <object class="GtkLabel">
+			    <property name="halign">end</property>
+			    <property name="label" translatable="yes">0/11</property>
+			  </object>
+			</child>
+		      </object>
+		    </child>
+		  </object>
+		</child>
+	      </object>
+	    </child>
+	  </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

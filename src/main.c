@@ -1,4 +1,4 @@
-#include "ff_application.h"
+#include "fastfingers.h"
 
 int
 main (int argc, char **argv)

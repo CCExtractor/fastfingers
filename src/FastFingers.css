@@ -1,0 +1,149 @@
+/* Button Box */
+button.settings-button, button.back-button{
+    background-image: none;
+    background-color: #3b4252;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+button.settings-button:hover, button.back-button:hover {
+    background-color: #434c5e;
+}
+
+button.settings-button:active, button.back-button:active {
+    background-color: #4c566a;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+/* Home Page */
+viewport.home-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+label.home-header {
+    color: #eceff4;
+    font-size: 40px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+    margin-top: 40px;
+}
+
+/* Card */
+
+card {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+card:hover {
+    background-color: #434c5e;
+}
+
+label.card-label {
+    color: #eceff4;
+    font-weight: 300;
+    font-size: 25px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+}
+
+levelbar.card-level-bar {
+    margin-top: 5px;
+}
+
+levelbar.card-level-bar block.filled {
+    background-color: #bf616a;
+    border-color: transparent;
+    border-radius: 0px;
+    color: transparent;
+}
+
+levelbar.card-level-bar block.empty {
+    background-color: #4c566a;
+    border-color: transparent;
+    border-radius: 0px;
+    color: transparent;
+}
+
+/* Practice Page */
+box.practice-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.practice-image {
+    background-color: #4c566a;
+    background-image: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+key {
+    background-image: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+key.normal{
+    background-color: #4c566a;
+}
+
+key.wrong {
+    background-color: #bf616a;
+}
+
+key.correct {
+    background-color: #9fcc78;
+}
+
+/* Settings Page */
+box.settings-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.settings-logo {
+    background-image: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+list.settings-list {
+    background-color: transparent;
+}
+
+list.settings-list label {
+    color: #d8dee9;
+    font-weight: 500;
+    font-size: 18px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+}
+
+/* Application Page */
+viewport.application-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+box.application-box label.application-title {
+    color: #eceff4;
+    font-size: 40px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+    margin-top: 40px;    
+}
+
+list.application-list {
+    background-color: transparent;
+}
+
+list.application-list label {
+    color: #d8dee9;
+    font-weight: 400;
+    font-size: 20px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+}
+
+box.application-box separator {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

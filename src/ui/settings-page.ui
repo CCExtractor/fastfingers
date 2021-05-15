@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkBox" id="main_box">
+    <property name="orientation">vertical</property>
+    <style>
+      <class name="settings-box"/>
+    </style>
+    <child>
+      <object class="FFButtonbox">
+	<property name="back-visible">True</property>
+	<property name="back-label">&lt; Home</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkImage" id="image">
+	<property name="halign">center</property>
+	<property name="height-request">125</property>
+	<property name="width-request">125</property>
+	<property name="margin-top">75</property>
+	<property name="margin-bottom">50</property>
+	<property name="resource">/org/fastfingers/FastFingers/logo/fastfingers.png</property>
+	<style>
+	  <class name="settings-logo"/>
+	</style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkListBox">
+	<property name="margin-start">300</property>
+	<property name="margin-end">300</property>
+	<style>
+	  <class name="settings-list"/>
+	</style>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Shortcuts</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Run in the background (for cheatsheet)</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">end</property>
+                    <property name="label" translatable="yes">✓</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Autostart on launch</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">end</property>
+                    <property name="label" translatable="yes">✓</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Reset Progress</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Version</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">end</property>
+                    <property name="label" translatable="yes">0.8.6</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">License</property>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkLabel">
+                    <property name="halign">end</property>
+                    <property name="label" translatable="yes">GPL</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Support</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkListBoxRow">
+	    <child>
+	      <object class="GtkBox">
+		<property name="homogeneous">True</property>
+		<child>
+		  <object class="GtkLabel">
+                    <property name="halign">start</property>
+		    <property name="label" translatable="yes">Credits</property>
+                  </object>
+                </child>
+	      </object>
+	    </child>
+	  </object>
+	</child>
+      </object>
+    </child>
+  </object>
+</interface>
