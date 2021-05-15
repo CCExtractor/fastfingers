@@ -12,6 +12,10 @@ row_activated_cb (GtkListBox    *box,
 
 void ff_application_page_init(GtkStack *stack, const char *title)
 {
+  GtkWidget *temp;
+  if (temp = gtk_stack_get_child_by_name (stack, title))
+    gtk_stack_remove (stack, temp);
+  
   GtkBuilder *application_page_builder = gtk_builder_new_from_resource ("/org/fastfingers/FastFingers/ui/application-page.ui");
   
   GObject *scrolled_window = gtk_builder_get_object (application_page_builder, "application_scrolled_window");

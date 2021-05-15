@@ -8,6 +8,10 @@ int turn;
 void
 ff_practice_page_init(GtkStack *stack, const char *title)
 {
+  GtkWidget *temp;
+  if (temp = gtk_stack_get_child_by_name (stack, "practice-page"))
+    gtk_stack_remove (stack, temp);
+  
   GtkBuilder *practice_page_builder = gtk_builder_new_from_resource("/org/fastfingers/FastFingers/ui/practice-page.ui");
 
   GObject *main_box = gtk_builder_get_object (practice_page_builder, "main_box");

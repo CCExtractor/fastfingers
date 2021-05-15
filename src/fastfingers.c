@@ -77,8 +77,7 @@ ff_switch_previous (void)
   if (!prev_page)
     return;
 
-  GtkWidget *page_widget = gtk_stack_get_child_by_name (GTK_STACK (stack), current_page->page);
-  gtk_stack_remove (GTK_STACK (stack), page_widget);
+  GtkWidget *page_widget;
   
   free(current_page);
   current_page = prev_page;

@@ -9,6 +9,7 @@
       <object class="FFButtonbox">
 	<property name="back-visible">True</property>
 	<property name="back-label">&lt; Home</property>
+	<property name="settings-visible">False</property>
       </object>
     </child>
     <child>
