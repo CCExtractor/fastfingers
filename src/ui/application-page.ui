@@ -24,8 +24,6 @@
 		<property name="halign">center</property>
 		<property name="height-request">125</property>
 		<property name="width-request">125</property>
-		<property name="margin-top">75</property>
-		<property name="margin-bottom">50</property>
 		<style>
 		  <class name="settings-logo"/>
 		</style>
@@ -107,6 +105,7 @@
 	      <object class="GtkListBox" id="list_box">
 		<property name="margin-start">300</property>
 		<property name="margin-end">300</property>
+		<property name="margin-bottom">50</property>
 		<style>
 		  <class name="application-list"/>
 		</style>
