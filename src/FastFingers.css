@@ -115,12 +115,26 @@ image.settings-logo {
 }
 
 list.settings-list {
-    background-color: transparent;
+    background-color: #3b4252;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0px 300px 100px 300px;
+}
+
+list.settings-list row {
+    background-color: #3b4252;
+    margin: 6px 15px 6px 15px;
+}
+
+list.settings-list row:hover {
+    background-color: #434c5e;
+}
+
+list.settings-list row:selected {
+    background-color: #4c566a;
 }
 
 list.settings-list label {
-    color: #d8dee9;
-    font-weight: 500;
+    color: white;
     font-size: 18px;
     text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
 }

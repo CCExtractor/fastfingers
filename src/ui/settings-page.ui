@@ -27,8 +27,6 @@
     </child>
     <child>
       <object class="GtkListBox">
-	<property name="margin-start">300</property>
-	<property name="margin-end">300</property>
 	<style>
 	  <class name="settings-list"/>
 	</style>
@@ -40,28 +38,13 @@
 		<child>
 		  <object class="GtkLabel">
                     <property name="halign">start</property>
-		    <property name="label" translatable="yes">Shortcuts</property>
+		    <property name="label" translatable="yes">Shortcut</property>
                   </object>
-                </child>
-	      </object>
-	    </child>
-	  </object>
-	</child>
-	<child>
-	  <object class="GtkListBoxRow">
-	    <child>
-	      <object class="GtkBox">
-		<property name="homogeneous">True</property>
+		</child>
 		<child>
-		  <object class="GtkLabel">
-                    <property name="halign">start</property>
-		    <property name="label" translatable="yes">Run in the background (for cheatsheet)</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
+		    <object class="GtkLabel">
                     <property name="halign">end</property>
-                    <property name="label" translatable="yes">✓</property>
+		    <property name="label" translatable="yes">CTRL + F + F</property>
                   </object>
                 </child>
 	      </object>
