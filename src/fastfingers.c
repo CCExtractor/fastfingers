@@ -20,9 +20,6 @@ activate (GtkApplication *app,
   window = gtk_builder_get_object (ffb_app, "ff_window");
   gtk_window_set_application (GTK_WINDOW(window), app);
 
-  GObject *window_event_controller_key = gtk_builder_get_object (ffb_app, "ev_ctrl_key");
-  g_signal_connect (window_event_controller_key, "key_pressed", G_CALLBACK(on_key_press), NULL);
-  
   stack = gtk_builder_get_object (ffb_app, "ff_stack");
 
   ff_home_page_init(GTK_STACK(stack));

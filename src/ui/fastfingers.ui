@@ -21,7 +21,8 @@
       </object>
     </child>
     <child>
-      <object class="GtkEventControllerKey" id="ev_ctrl_key">
+      <object class="GtkEventControllerKey">
+	<signal name="key_pressed" handler="key_pressed_cb"/>
       </object>
     </child>
     <style>

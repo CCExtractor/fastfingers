@@ -55,11 +55,11 @@ ff_practice_page_init(GtkStack *stack, const char *title)
 }
 
 gboolean
-on_key_press (GtkEventControllerKey *controller,
-	      guint keyval,
-	      guint keycode,
-	      GdkModifierType state,
-	      gpointer user_data)
+key_pressed_cb (GtkEventControllerKey *controller,
+		guint keyval,
+		guint keycode,
+		GdkModifierType state,
+		gpointer user_data)
 {
   if (strcmp(ff_get_current_page (), "practice-page"))
     return 0;

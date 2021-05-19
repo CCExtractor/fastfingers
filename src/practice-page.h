@@ -16,11 +16,11 @@ key_add(GtkBox *parent_box,
 	const char *key_description,  const char *key_letter);
   
 gboolean
-on_key_press (GtkEventControllerKey *controller,
-	      guint keyval,
-	      guint keycode,
-	      GdkModifierType state,
-	      gpointer user_data);
+key_pressed_cb (GtkEventControllerKey *controller,
+		guint keyval,
+		guint keycode,
+		GdkModifierType state,
+		gpointer user_data);
 
 G_END_DECLS
 

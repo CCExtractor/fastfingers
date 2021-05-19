@@ -27,11 +27,13 @@
     </child>
     <child>
       <object class="GtkListBox">
+	<signal name="row-activated" handler="settings_row_activated_cb"/>
 	<style>
 	  <class name="settings-list"/>
 	</style>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">shortcut</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -53,6 +55,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">autostart</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -74,6 +77,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">reset_progress</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -89,6 +93,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">version</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -110,6 +115,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">license</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -131,6 +137,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">support</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -146,6 +153,7 @@
 	</child>
 	<child>
 	  <object class="GtkListBoxRow">
+	    <property name="name">credits</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>

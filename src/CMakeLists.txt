@@ -10,6 +10,8 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 find_package(PkgConfig REQUIRED QUIET)
 # Checking the presence of GTK 4
 pkg_search_module(GTK REQUIRED gtk4)
+# Fetching gmodule-export-2.0
+pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
 # Checking the presence of glib-compile-resources command and fetching it
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
@@ -47,6 +49,8 @@ list(APPEND ff_sources
 # Creation of the application executable
 add_executable(ff_app main.c ${ff_sources})
 # Adding the GTK's include directories to the application's library
-target_include_directories(ff_app PUBLIC ${GTK_INCLUDE_DIRS})
+target_include_directories(ff_app PUBLIC ${GTK_INCLUDE_DIRS} ${GM_EXPORT_INCLUDE_DIRS})
 # Linking the application executable and the libraries
-target_link_libraries(ff_app ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES})
+target_link_libraries(ff_app ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
+# Adding necessary compile flags
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--export-dynamic")

@@ -55,6 +55,7 @@
 	      <object class="GtkListBox">
 		<property name="margin-start">300</property>
 		<property name="margin-end">300</property>
+		<signal name="row-activated" handler="application_row_activated_cb"/>
 		<style>
 		  <class name="application-list"/>
 		</style>
@@ -104,6 +105,7 @@
 	    </child>
 	    <child>
 	      <object class="GtkListBox" id="list_box">
+		<signal name="row-activated" handler="application_row_activated_cb"/>
 		<property name="margin-start">300</property>
 		<property name="margin-end">300</property>
 		<property name="margin-bottom">50</property>
