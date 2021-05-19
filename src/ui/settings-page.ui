@@ -19,7 +19,7 @@
 	<property name="width-request">100</property>
 	<property name="margin-top">75</property>
 	<property name="margin-bottom">50</property>
-	<property name="resource">/org/fastfingers/FastFingers/logo/fastfingers.png</property>
+	<property name="resource">/org/ccextractor/FastFingers/logo/fastfingers.png</property>
 	<style>
 	  <class name="settings-logo"/>
 	</style>

@@ -16,7 +16,7 @@ activate (GtkApplication *app,
 {
   ff_init_css();
 
-  GtkBuilder *ffb_app = gtk_builder_new_from_resource ("/org/fastfingers/FastFingers/ui/fastfingers.ui");
+  GtkBuilder *ffb_app = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/fastfingers.ui");
   window = gtk_builder_get_object (ffb_app, "ff_window");
   gtk_window_set_application (GTK_WINDOW(window), app);
 
@@ -39,7 +39,7 @@ ff_init_css (void)
 					      GTK_STYLE_PROVIDER (provider),
 					      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-  gtk_css_provider_load_from_resource(provider, "/org/fastfingers/FastFingers/FastFingers.css");
+  gtk_css_provider_load_from_resource(provider, "/org/ccextractor/FastFingers/FastFingers.css");
 
   g_object_unref (provider);
 }

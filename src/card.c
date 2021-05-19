@@ -149,7 +149,7 @@ ff_card_class_init (FFCardClass *klass)
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/fastfingers/FastFingers/ui/card.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/ccextractor/FastFingers/ui/card.ui");
   gtk_widget_class_set_css_name (widget_class, "card");
   gtk_widget_class_bind_template_child (widget_class, FFCard, image);
   gtk_widget_class_bind_template_child (widget_class, FFCard, label);

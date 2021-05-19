@@ -104,7 +104,7 @@ ff_key_class_init (FFKeyClass *klass)
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
   gtk_widget_class_set_layout_manager_type (widget_class, GTK_TYPE_BIN_LAYOUT);
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/fastfingers/FastFingers/ui/key.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/ccextractor/FastFingers/ui/key.ui");
   gtk_widget_class_set_css_name (widget_class, "key");
   gtk_widget_class_bind_template_child (widget_class, FFKey, label);
 }

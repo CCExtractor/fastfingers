@@ -20,7 +20,7 @@ void ff_application_page_init(GtkStack *stack, const char *title)
 
   _title = title;
     
-  GtkBuilder *application_page_builder = gtk_builder_new_from_resource ("/org/fastfingers/FastFingers/ui/application-page.ui");
+  GtkBuilder *application_page_builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/application-page.ui");
   
   GObject *scrolled_window = gtk_builder_get_object (application_page_builder, "application_scrolled_window");
   GObject *main_box = gtk_builder_get_object (application_page_builder, "main_box");

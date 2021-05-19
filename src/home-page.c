@@ -2,7 +2,7 @@
 
 void ff_home_page_init(GtkStack *stack)
 {
-  GtkBuilder *home_builder = gtk_builder_new_from_resource ("/org/fastfingers/FastFingers/ui/home-page.ui");
+  GtkBuilder *home_builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/home-page.ui");
   GObject *scrolled_window = gtk_builder_get_object (home_builder, "home_scrolled_window");
   GObject *viewport = gtk_builder_get_object (home_builder, "home_viewport");
   GObject *main_box = gtk_builder_get_object (home_builder, "main_box");

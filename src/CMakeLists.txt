@@ -16,7 +16,7 @@ pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
 set(GRESOURCE_C   ff_gresources.c)
-set(GRESOURCE_XML org.fastfingers.FastFingers.gresource.xml)
+set(GRESOURCE_XML org.ccextractorFastFingers.gresource.xml)
 # Defining how to compile the GResources and the dependencies
 file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* FastFingers.css)
 add_custom_command(

@@ -10,7 +10,7 @@ ff_logo_path_gen (const char *title)
       return NULL;
     }
   
-  sprintf(logo_path, "/org/fastfingers/FastFingers/logo/");
+  sprintf(logo_path, "/org/ccextractor/FastFingers/logo/");
   char *cptr = logo_path + strlen(logo_path);
   while (*title)
     {

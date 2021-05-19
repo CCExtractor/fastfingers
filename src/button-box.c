@@ -163,7 +163,7 @@ ff_buttonbox_class_init (FFButtonboxClass *klass)
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
-  gtk_widget_class_set_template_from_resource (widget_class, "/org/fastfingers/FastFingers/ui/button-box.ui");
+  gtk_widget_class_set_template_from_resource (widget_class, "/org/ccextractor/FastFingers/ui/button-box.ui");
   gtk_widget_class_set_css_name (widget_class, "buttonbox");
   gtk_widget_class_bind_template_child (widget_class, FFButtonbox, back);
   gtk_widget_class_bind_template_child (widget_class, FFButtonbox, settings);
