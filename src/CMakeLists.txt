@@ -2,9 +2,6 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(FastFingers LANGUAGES C)
-# Initializing other CMake modules
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-include (GSettings)
 # Declaring the C standards
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_EXTENSIONS OFF)

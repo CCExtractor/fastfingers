@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/org/fastfingers/FastFingers">
+  <gresource prefix="/org/ccextractor/FastFingers">
     <file preprocess="xml-stripblanks">ui/card.ui</file>
     <file preprocess="xml-stripblanks">ui/fastfingers.ui</file>
     <file preprocess="xml-stripblanks">ui/home-page.ui</file>
