@@ -34,6 +34,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">shortcut</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -56,6 +57,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">autostart</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -66,9 +68,8 @@
                   </object>
                 </child>
                 <child>
-                  <object class="GtkLabel">
+                  <object class="GtkLabel" id="autostart_label">
                     <property name="halign">end</property>
-                    <property name="label" translatable="yes">✓</property>
                   </object>
                 </child>
 	      </object>
@@ -78,6 +79,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">reset_progress</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -94,6 +96,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">version</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -116,6 +119,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">license</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -138,6 +142,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">support</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
@@ -154,6 +159,7 @@
 	<child>
 	  <object class="GtkListBoxRow">
 	    <property name="name">credits</property>
+	    <property name="selectable">False</property>
 	    <child>
 	      <object class="GtkBox">
 		<property name="homogeneous">True</property>
