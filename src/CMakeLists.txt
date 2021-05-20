@@ -2,6 +2,9 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(FastFingers LANGUAGES C)
+# Initializing other CMake modules
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+include (GSettings)
 # Declaring the C standards
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_EXTENSIONS OFF)
@@ -17,8 +20,9 @@ find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
 set(GRESOURCE_C   ff_gresources.c)
 set(GRESOURCE_XML org.ccextractorFastFingers.gresource.xml)
-# Defining how to compile the GResources and the dependencies
+# Defining GResources dependencies
 file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* FastFingers.css)
+# Defining how to compile the GResources
 add_custom_command(
   OUTPUT ${GRESOURCE_C}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -32,6 +36,7 @@ add_custom_command(
   DEPENDS
   ${GRESOURCE_DEPENDENCIES}
   )
+
 # Listing sources to link with the executable
 list(APPEND ff_sources
   fastfingers.c
