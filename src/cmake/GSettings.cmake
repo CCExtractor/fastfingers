@@ -1,5 +1,3 @@
-# Defining GSettings file
-file(GLOB GSETTINGS_FILE ${CMAKE_SOURCE_DIR}/data/org.ccextractor.FastFingers.gschema.xml)
 # Getting the glib directory location
 execute_process(
   COMMAND pkg-config glib-2.0 --variable prefix
@@ -7,6 +5,9 @@ execute_process(
   OUTPUT_STRIP_TRAILING_WHITESPACE
   )
 set(GSETTINGS_DIR "${_glib_prefix}/share/glib-2.0/schemas/" CACHE INTERNAL "")
+# Moving GSettings file to glib schemas directory
+file(COPY ${CMAKE_SOURCE_DIR}/../data/org.ccextractor.FastFingers.gschema.xml
+  DESTINATION ${GSETTINGS_DIR})
 # Getting the schema compiler path
 execute_process(
   COMMAND pkg-config gio-2.0 --variable glib_compile_schemas

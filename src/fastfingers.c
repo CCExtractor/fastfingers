@@ -21,7 +21,9 @@ activate (GtkApplication *app,
   gtk_window_set_application (GTK_WINDOW(window), app);
 
   stack = gtk_builder_get_object (ffb_app, "ff_stack");
-
+  
+  GSettings *settings = g_settings_new ("org.ccextractor.FastFingers");
+  
   ff_home_page_init(GTK_STACK(stack));
   ff_settings_page_init(GTK_STACK(stack));
 
