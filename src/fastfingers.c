@@ -19,6 +19,7 @@ activate (GtkApplication *app,
   GtkBuilder *ffb_app = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/fastfingers.ui");
   window = gtk_builder_get_object (ffb_app, "ff_window");
   gtk_window_set_application (GTK_WINDOW(window), app);
+  printf("%s\n", gtk_window_get_title (GTK_WINDOW(window)));
 
   stack = gtk_builder_get_object (ffb_app, "ff_stack");
   
