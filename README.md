@@ -39,7 +39,7 @@ It is ready to run
 ./ff_app
 ```
 
-![](intro.gif)
+https://youtu.be/6ckgOJjpszU
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
