@@ -16,7 +16,7 @@ Download the source code and move to the source directory
 
 ```bash
 git clone https://github.com/aliereny/fastfingers.git
-cd fastfingers
+cd fastfingers/src
 ```
 Create the build directory and move to it
 
