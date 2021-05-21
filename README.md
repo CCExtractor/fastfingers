@@ -5,10 +5,13 @@ FastFingers is an open-source application that helps its users to remove the hab
 ## Dependencies
 **GTK 4**   
   * **Arch:** gtk4
-  * **Debian/Ubuntu:** libgtk-4-1, libgtk-4-dev (for development)
-  * **Fedora:** gtk4, gtk4-devel (for development)
+  * **Debian/Ubuntu:** libgtk-4-1, libgtk-4-dev 
+  * **Fedora:** gtk4, gtk4-devel
 
+**CMake**   
+  * **Arch, Debian/Ubuntu, Fedora:** CMake
 
+A C compiler and build tool, such as GCC and GNU Make or Ninja.
 
 ## Installation
 
@@ -44,4 +47,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please make sure to update tests as appropriate.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[GPL-2.0 License](https://github.com/CCExtractor/fastfingers/blob/main/LICENSE)
