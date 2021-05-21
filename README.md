@@ -28,8 +28,8 @@ cd build
 Generate the binary files by CMake CLI
 
 ```bash
-cmake ..
-cmake --build .
+sudo cmake ..
+sudo cmake --build .
 ```
 It is ready to run
 ```bash
