@@ -51,6 +51,8 @@ list(APPEND ff_sources
   application-page.c
   practice-page.c
   settings-page.c
+  credits-page.c
+  reset-progress-page.c
   key.c
   ${GRESOURCE_C}
   cJSON.c

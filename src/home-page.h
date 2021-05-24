@@ -1,6 +1,6 @@
 #pragma once
-#ifndef FF_HOME
-#define FF_HOME
+#ifndef _FF_HOME
+#define _FF_HOME
 
 #include "ff-utils.h"
 #include "card.h"

@@ -114,6 +114,16 @@ image.settings-logo {
     padding: 10px;
 }
 
+label.settings-key {
+    background-color: #2E3440;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 7px 0px 7px;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: #000;
+    border-radius: 8px;
+}
+
 list.settings-list {
     background-color: #3b4252;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
@@ -172,4 +182,120 @@ list.application-list label {
 box.application-box separator {
     margin-top: 5px;
     margin-bottom: 5px;
+}
+
+/* Credits Page */
+viewport.credits-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+label.credits-header {
+    color: #81A1C1;
+    font-size: 60px;
+    font-weight: 500;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+    margin-top: 30px;
+}
+
+label.credits-title {
+    color: #88C0D0;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+}
+
+list.credits-list {
+    background-color: #3b4252;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0px 300px 100px 300px;
+}
+
+list.credits-list row {
+    background-color: #3b4252;
+    margin: 6px 15px 6px 15px;
+}
+
+list.credits-list row:hover {
+    background-color: #3b4252;
+}
+
+list.credits-list row:selected {
+    background-color: #3b4252;
+}
+
+list.credits-list label {
+    color: #ECEFF4;
+    font-size: 18px;
+}
+
+/* Reset Progress Page */
+box.reset-progress-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+box.reset-progress-container {
+    margin: 0px 300px 0px 300px;
+    padding: 20px;
+    background-color: #3b4252;
+}
+
+label.reset-progress-header {
+    color: #BF616A;
+    font-size: 60px;
+    font-weight: 500;
+    text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
+    margin-top: 30px;
+}
+
+label.reset-progress-message {
+    color: #ECEFF4;
+    font-size: 25px;
+}
+
+label.reset-progress-info {
+    color: #ECEFF4;
+    font-size: 20px;
+}
+
+box.reset-progress-buttonbox {
+    margin: 0px 300px 0px 300px;
+}
+
+button.reset-progress-cancel {
+    background-image: none;
+    background-color: #D08770;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+button.reset-progress-cancel:hover {
+    background-color: #e8a18b;
+}
+
+button.reset-progress-cancel:active {
+    background-color: #f7bdab;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+button.reset-progress-proceed {
+    background-image: none;
+    background-color: #BF616A;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+button.reset-progress-proceed:hover {
+    background-color: #d47981;
+}
+
+button.reset-progress-proceed:active {
+    background-color: #f299a0;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
 }

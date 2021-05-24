@@ -26,24 +26,30 @@ settings_row_activated_cb (GtkListBox    *box,
     }
   else if (!strcmp (row_name, "reset_progress"))
     {
-      // To-do: make a reset progress pop-up screen
-      // To-do: reset progress
+      ff_reset_progress_page_init (GTK_STACK (stack));
+      ff_switch_page ("Reset-Progress");
     }
   else if (!strcmp (row_name, "version"))
     {
-      // To-do: open github link at browser
+      gtk_show_uri (GTK_WINDOW (window),
+		    "https://github.com/CCExtractor/fastfingers/blob/main/NEWS",
+		    GDK_CURRENT_TIME);
     }
   else if (!strcmp (row_name, "license"))
     {
-      // To-do: open github link at browser
+      gtk_show_uri (GTK_WINDOW (window),
+		    "https://github.com/CCExtractor/fastfingers/blob/main/LICENSE",
+		    GDK_CURRENT_TIME);
     }
   else if (!strcmp (row_name, "support"))
     {
-      // To-do: open github link at browser
+      gtk_show_uri (GTK_WINDOW (window),
+		    "https://github.com/CCExtractor/fastfingers/issues",
+		    GDK_CURRENT_TIME);
     }
   else if (!strcmp (row_name, "credits"))
     {
-      // To-do 
+      ff_switch_page ("Credits");
     }
   else
     {
@@ -62,7 +68,7 @@ void ff_settings_page_init(GtkStack *stack)
   GObject *autostart_label = gtk_builder_get_object (settings_page_builder, "autostart_label");
   
   gboolean current_state = g_settings_get_boolean (settings, "autostart");
-  gtk_label_set_text (GTK_LABEL (autostart_label), current_state ? "Y" : "N");
+  gtk_label_set_text (GTK_LABEL (autostart_label), current_state ? "Enabled" : "Disabled");
   
   gtk_stack_add_named(stack, GTK_WIDGET (main_box), "Settings");
 }

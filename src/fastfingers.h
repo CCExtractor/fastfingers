@@ -7,6 +7,8 @@
 #include "practice-page.h"
 #include "ff-utils.h"
 #include "settings-page.h"
+#include "credits-page.h"
+#include "reset-progress-page.h"
 
 G_BEGIN_DECLS
 
