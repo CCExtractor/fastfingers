@@ -3,12 +3,14 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(
   FastFingers
-  VERSION 0.5.21
+  VERSION 0.6.11
   LANGUAGES C
   )
 # Initializing other CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-include (GSettings)
+include(GSettings)
+include(Icons)
+include(Desktop)
 # Declaring the C standards
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_EXTENSIONS OFF)
@@ -71,34 +73,7 @@ add_custom_command (
   POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fastfingers> "/usr/bin/"
   )
-set(_d_version ${CMAKE_PROJECT_VERSION})
-configure_file(
-  "${CMAKE_SOURCE_DIR}/../data/org.ccextractor.FastFingers.desktop.in"
-  "/usr/share/applications/org.ccextractor.FastFingers.desktop"
-  @ONLY)
-
-list(APPEND HICOLOR_PX 16 32 48 64 128)
-foreach (PX IN LISTS HICOLOR_PX)
-  add_custom_command (
-    TARGET fastfingers
-    COMMAND
-    ${CMAKE_COMMAND} -E copy
-    "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/fastfingers.png"
-    "/usr/share/icons/hicolor/${PX}x${PX}/apps/"
-    )
-endforeach()
-execute_process(COMMAND gtk-update-icon-cache -t -f /usr/share/icons/hicolor/)
-
-list(APPEND HICONTRAST_PX 16 22 24 32 48 256)
-foreach (PX IN LISTS HICONTRAST_PX)
-  add_custom_command (
-    TARGET fastfingers
-    COMMAND
-    ${CMAKE_COMMAND} -E copy
-    "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/fastfingers.png"
-    "/usr/share/icons/HighContrast/${PX}x${PX}/apps/"
-    )
-endforeach()
-execute_process(COMMAND gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/)
-
-
+# Installing other files
+add_schema(fastfingers)
+add_icons(fastfingers)
+add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})

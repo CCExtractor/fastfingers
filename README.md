@@ -31,7 +31,7 @@ cd build
 Generate the binary files by CMake CLI
 
 ```bash
-sudo cmake ..
+cmake ..
 sudo cmake --build .
 ```
 It is ready to run
