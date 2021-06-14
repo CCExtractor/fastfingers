@@ -14,20 +14,19 @@ macro(add_schema GSETTINGS_TARGET)
     OUTPUT_STRIP_TRAILING_WHITESPACE
     )
   set(glib_schema_compiler ${_glib_compile_schemas} CACHE INTERNAL "")
-  # Compiling the GSetting file
+  # Moving GSettings file to glib schemas directory
   add_custom_command(
     TARGET ${GSETTINGS_TARGET}
-    POST_BUILD
-    COMMAND ${glib_schema_compiler} ${GSETTINGS_DIR}
-    )
-  # Moving GSettings file to glib schemas directory in post-build
-  add_custom_command(
-    TARGET ${GSETTINGS_TARGET}
-    POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy
     "${CMAKE_SOURCE_DIR}/../data/org.ccextractor.FastFingers.gschema.xml"
     "${GSETTINGS_DIR}"
     )
+  # Compiling the GSetting file
+  add_custom_command(
+    TARGET ${GSETTINGS_TARGET}
+    COMMAND ${glib_schema_compiler} ${GSETTINGS_DIR}
+    )
+
   # Installing the GSetting file
   install(
     FILES ${GSETTINGS_FILE}
