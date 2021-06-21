@@ -6,9 +6,13 @@
 #include <stdio.h>
 #include <string.h>
 #include <gtk/gtk.h>
+#include "cJSON.h"
 
 G_BEGIN_DECLS
 
+char *
+ff_simplify_title (const char *title);
+  
 char *
 ff_logo_path_gen (const char *title);
 

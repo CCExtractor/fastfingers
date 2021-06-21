@@ -1,6 +1,6 @@
 #pragma once
-#ifndef FF_CARDS
-#define FF_CARDS
+#ifndef _FF_CARD
+#define _FF_CARD
 
 #include "ff-utils.h"
 #include "application-page.h"

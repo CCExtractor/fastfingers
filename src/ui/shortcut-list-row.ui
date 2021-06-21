@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <template class="FFShortcutListRow" parent="GtkListBoxRow">
+    <child>
+      <object class="GtkBox" id="box">
+	<property name="homogeneous">True</property>
+	<child>
+	  <object class="GtkLabel" id="left_label">
+	    <property name="halign">start</property>
+	  </object>
+	</child>
+	<child>
+	  <object class="GtkLabel" id="right_label">
+	    <property name="halign">end</property>
+	  </object>
+	</child>
+      </object>
+    </child>
+  </template>
+</interface>

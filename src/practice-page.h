@@ -9,7 +9,7 @@
 G_BEGIN_DECLS
 
 void
-ff_practice_page_init(GtkStack *stack, const char *title);
+ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category);
 
 static GtkWidget *
 key_add(GtkBox *parent_box,

@@ -33,6 +33,9 @@ void ff_home_page_init(GtkStack *stack)
   GtkWidget *sketch = ff_card_new("Sketch", 0.04);
   gtk_box_append(GTK_BOX(hcont), sketch);
   
+  GtkWidget *firefox = ff_card_new("Firefox", 0.04);
+  gtk_box_append(GTK_BOX(hcont), firefox);
+  
   GtkWidget *rfiller = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
   gtk_widget_set_hexpand(rfiller, TRUE);
   gtk_box_append(GTK_BOX(hcont), rfiller);

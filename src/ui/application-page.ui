@@ -32,45 +32,6 @@
 	    </child>
 	    <child>
 	      <object class="GtkLabel">
-		<property name="label">Recent</property>
-		<property name="hexpand">True</property>
-		<property name="halign">center</property>
-		<style>
-		  <class name="application-title"/>
-		</style>
-	      </object>
-	    </child>
-	    <child>
-	      <object class="GtkListBox">
-		<signal name="row-activated" handler="application_row_activated_cb"/>
-		<style>
-		  <class name="application-list"/>
-		</style>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Navigation</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">2/7</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-	      </object>
-	    </child>
-	    <child>
-	      <object class="GtkLabel">
 		<property name="label">By Topic</property>
 		<property name="hexpand">True</property>
 		<property name="halign">center</property>
@@ -80,117 +41,11 @@
 	      </object>
 	    </child>
 	    <child>
-	      <object class="GtkListBox" id="list_box">
-		<signal name="row-activated" handler="application_row_activated_cb"/>
+	      <object class="GtkListBox" id="list_topic">
 		<property name="margin-bottom">50</property>
 		<style>
 		  <class name="application-list"/>
 		</style>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Navigation</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">2/7</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Current Page</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">4/32</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Editing</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">5/17</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Search</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">10/20</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkListBoxRow">
-		    <child>
-		      <object class="GtkBox">
-			<property name="homogeneous">True</property>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">start</property>
-			    <property name="label" translatable="yes">Windows &#38; Tabs</property>
-			  </object>
-			</child>
-			<child>
-			  <object class="GtkLabel">
-			    <property name="halign">end</property>
-			    <property name="label" translatable="yes">0/11</property>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
 	      </object>
 	    </child>
 	  </object>

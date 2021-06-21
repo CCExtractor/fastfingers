@@ -15,13 +15,17 @@
     <child>
       <object class="GtkImage" id="image">
 	<property name="halign">center</property>
-	<property name="height-request">125</property>
-	<property name="width-request">125</property>
-	<property name="margin-top">150</property>
-	<property name="margin-bottom">50</property>
+	<property name="height-request">100</property>
+	<property name="width-request">100</property>
+	<property name="margin-top">50</property>
 	<style>
 	  <class name="practice-image"/>
 	</style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel" id="shortcut_title">
+	<property name="halign">center</property>
       </object>
     </child>
     <child>

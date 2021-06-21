@@ -11,11 +11,13 @@
     <file preprocess="xml-stripblanks">ui/reset-progress-page.ui</file>
     <file preprocess="xml-stripblanks">ui/button-box.ui</file>
     <file preprocess="xml-stripblanks">ui/key.ui</file>
+    <file preprocess="xml-stripblanks">ui/shortcut-list-row.ui</file>
     <file>FastFingers.css</file>
     <file>logo/fastfingers.png</file>
     <file>logo/gmail.png</file>
     <file>logo/sketch.png</file>
     <file>logo/slack.png</file>
     <file>logo/vscode.png</file>
+    <file>logo/firefox.png</file>
   </gresource>
 </gresources>

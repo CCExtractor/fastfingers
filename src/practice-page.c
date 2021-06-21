@@ -6,7 +6,7 @@ int keys[3] = { 0xffe1, 0xffe3, 0x041};
 int turn;
 
 void
-ff_practice_page_init(GtkStack *stack, const char *title)
+ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category)
 {
   GtkWidget *temp;
   if (temp = gtk_stack_get_child_by_name (stack, "practice-page"))
@@ -19,7 +19,9 @@ ff_practice_page_init(GtkStack *stack, const char *title)
   GObject *buttonbox = gtk_builder_get_object (practice_page_builder, "buttonbox");
   GObject *back_button = gtk_builder_get_object (practice_page_builder, "back_button");
   GObject *key_box = gtk_builder_get_object (practice_page_builder, "key_box");
+  GObject *shortcut_title = gtk_builder_get_object (practice_page_builder, "shortcut_title");
 
+  char *title = g_strdup(cJSON_GetObjectItem(app, "title")->valuestring);
   char button_label[64];
   sprintf (button_label, "< %s", title);
   
@@ -33,6 +35,8 @@ ff_practice_page_init(GtkStack *stack, const char *title)
       free(logo_path);
     }
 
+  free(title);
+
   GtkWidget *lfiller = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
   gtk_widget_set_hexpand(lfiller, TRUE);
   gtk_box_append(GTK_BOX(key_box), lfiller);
@@ -45,7 +49,7 @@ ff_practice_page_init(GtkStack *stack, const char *title)
   gtk_box_append (GTK_BOX (key_box), key3);
 
   for (int i = 0; i < 3; ++i)
-    gtk_style_context_add_class (gtk_widget_get_style_context (key_arr[i]), "normal");
+    gtk_style_context_add_class (gtk_widget_get_style_context (key_arr[i]), "test");
 
   GtkWidget *rfiller = gtk_box_new(GTK_ORIENTATION_HORIZONTAL, 10);
   gtk_widget_set_hexpand(rfiller, TRUE);
@@ -64,6 +68,7 @@ key_pressed_cb (GtkEventControllerKey *controller,
   if (strcmp(ff_get_current_page (), "practice-page"))
     return 0;
 
+  fprintf (stderr, "0x%04x\n", keyval);
   if (turn == size)
     {
       turn = 0;
@@ -71,7 +76,7 @@ key_pressed_cb (GtkEventControllerKey *controller,
 	{
 	  gtk_style_context_remove_class(gtk_widget_get_style_context(key_arr[i]), "wrong");
 	  gtk_style_context_remove_class(gtk_widget_get_style_context(key_arr[i]), "correct");
-	  gtk_style_context_add_class (gtk_widget_get_style_context (key_arr[i]), "normal");
+	  gtk_style_context_add_class (gtk_widget_get_style_context (key_arr[i]), "test");
 	}
       return 0;
     }
@@ -82,7 +87,7 @@ key_pressed_cb (GtkEventControllerKey *controller,
       key = keyval - 32;
     }
 
-  gtk_style_context_remove_class(gtk_widget_get_style_context(key_arr[turn]), "normal");
+  gtk_style_context_remove_class(gtk_widget_get_style_context(key_arr[turn]), "test");
   gtk_style_context_add_class(gtk_widget_get_style_context(key_arr[turn]),
 			      key == keys[turn] ? "correct" : "wrong");
   ++turn;
