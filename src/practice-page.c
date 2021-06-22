@@ -10,6 +10,33 @@ typedef struct key_container{
   int *array;
 } key_container;
 
+int ff_sort_shortcuts (cJSON *app)
+{
+  cJSON *group = cJSON_GetObjectItem(app, "group");
+
+  for (int i = 0; i < cJSON_GetArraySize (group); ++i)
+    {
+      cJSON *category = cJSON_GetArrayItem (group, i);
+      cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+      for (int i = 0; i < cJSON_GetArraySize (shortcuts) - 1; ++i)
+	{
+	  for (int j = 0; j < cJSON_GetArraySize (shortcuts) - i - 1; ++j)
+	    {
+	      cJSON *sc_l = cJSON_GetArrayItem (shortcuts, j);
+	      cJSON *sc_r = cJSON_GetArrayItem (shortcuts, j + 1);
+	      if (cJSON_GetObjectItemCaseSensitive(sc_l, "learned")->valueint
+		  > cJSON_GetObjectItemCaseSensitive(sc_r, "learned")->valueint)
+		{
+		  cJSON *tmp = sc_l;
+		  cJSON_ReplaceItemViaPointer(shortcuts, sc_l, sc_r);
+		  cJSON_ReplaceItemViaPointer(shortcuts, sc_r, tmp);
+		}
+	    }
+	}
+    
+    }
+}
+
 key_container *ff_get_key_container (cJSON *app, const char *category)
 {
   key_container *kc = malloc (sizeof (key_container));
@@ -21,7 +48,7 @@ key_container *ff_get_key_container (cJSON *app, const char *category)
     }
 
   cJSON *group = cJSON_GetObjectItem(app, "group");
-  CJSON *category = NULL;
+  cJSON *category = NULL;
 
   for (int i = 0; i < cJSON_GetArraySize (group); ++i)
     {
@@ -36,6 +63,19 @@ key_container *ff_get_key_container (cJSON *app, const char *category)
       fprintf (stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
       return NULL;
     }
+
+  cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive (category, "shortcuts");
+
+  ff_sort_shortcuts (cJSON *app);
+
+  cJSON *shortcut = cJSON_GetArrayItem (shortcuts, 0);
+  // If all keys are learned, return first element but put it to the back
+  if (cJSON_GetObjectItemCaseSensitive(shortcut, "learned")->valueint == 1)
+    {
+      
+    }
+
+  // Use first element
   
 }
 
