@@ -5,6 +5,40 @@ GtkWidget *key_arr[3];
 int keys[3] = { 0xffe1, 0xffe3, 0x041};
 int turn;
 
+typedef struct key_container{
+  size_t size;
+  int *array;
+} key_container;
+
+key_container *ff_get_key_container (cJSON *app, const char *category)
+{
+  key_container *kc = malloc (sizeof (key_container));
+
+  if (!kc)
+    {
+      fprintf (stderr, "FF-ERROR: Couldn't allocate memory for key container!\n");
+      return NULL;
+    }
+
+  cJSON *group = cJSON_GetObjectItem(app, "group");
+  CJSON *category = NULL;
+
+  for (int i = 0; i < cJSON_GetArraySize (group); ++i)
+    {
+      cJSON *tmp = cJSON_GetArrayItem (group, i);
+      cJSON *title = cJSON_GetObjectItemCaseSensitive(category, "title");
+      if (!strcmp (title, category))
+	category = tmp;
+    }
+
+  if (!category)
+    {
+      fprintf (stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
+      return NULL;
+    }
+  
+}
+
 void
 ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category)
 {

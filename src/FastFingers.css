@@ -84,6 +84,7 @@ image.practice-image {
 key {
     background-color: white;
     color: black;
+    border-color: black;
     border-style: solid;
     border-width: 3px;
     border-radius: 9px;
@@ -103,11 +104,11 @@ key.test {
 }
 
 key.wrong {
-
+    background-color: red;
 }
 
 key.correct {
-
+    background-color: green;
 }
 
 /* Settings Page */
