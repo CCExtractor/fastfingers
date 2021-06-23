@@ -80,3 +80,4 @@ add_schema(fastfingers)
 add_icons(fastfingers)
 add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
 add_data(fastfingers)
+

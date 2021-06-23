@@ -6,6 +6,9 @@
 #include "ff-utils.h"
 #include "fastfingers.h"
 
+#include <wordexp.h>
+#include <unistd.h>
+
 G_BEGIN_DECLS
 
 void ff_settings_page_init(GtkStack *stack);

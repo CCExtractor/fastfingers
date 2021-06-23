@@ -1,4 +1,4 @@
-# Installing .desktop file to the system
+# Installing JSON files to system
 macro(add_data DATA_TARGET)
   add_custom_command(
     TARGET ${DATA_TARGET}

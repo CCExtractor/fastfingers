@@ -7,10 +7,11 @@ int turn;
 
 typedef struct key_container{
   size_t size;
-  int *array;
+  int *key_arr;
+  char *str_arr;
 } key_container;
 
-int ff_sort_shortcuts (cJSON *app)
+void ff_sort_shortcuts (cJSON *app)
 {
   cJSON *group = cJSON_GetObjectItem(app, "group");
 
@@ -37,7 +38,7 @@ int ff_sort_shortcuts (cJSON *app)
     }
 }
 
-key_container *ff_get_key_container (cJSON *app, const char *category)
+key_container *ff_get_key_container (cJSON *app, const char *row_title)
 {
   key_container *kc = malloc (sizeof (key_container));
 
@@ -54,7 +55,7 @@ key_container *ff_get_key_container (cJSON *app, const char *category)
     {
       cJSON *tmp = cJSON_GetArrayItem (group, i);
       cJSON *title = cJSON_GetObjectItemCaseSensitive(category, "title");
-      if (!strcmp (title, category))
+      if (!strcmp (title->valuestring, row_title))
 	category = tmp;
     }
 
@@ -66,16 +67,24 @@ key_container *ff_get_key_container (cJSON *app, const char *category)
 
   cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive (category, "shortcuts");
 
-  ff_sort_shortcuts (cJSON *app);
+  ff_sort_shortcuts (app);
 
   cJSON *shortcut = cJSON_GetArrayItem (shortcuts, 0);
-  // If all keys are learned, return first element but put it to the back
-  if (cJSON_GetObjectItemCaseSensitive(shortcut, "learned")->valueint == 1)
-    {
-      
-    }
 
-  // Use first element
+  // If all shortcuts are learned, return a random one
+  if (cJSON_GetObjectItemCaseSensitive(shortcut, "learned")->valueint == 1)
+      shortcut = cJSON_GetArrayItem (shortcuts, rand () % cJSON_GetArraySize (shortcuts));
+  // else: continue using the first shortcut
+
+  cJSON *keys = cJSON_GetObjectItemCaseSensitive (shortcut, "keys");
+  // If there are more than one key strokes for one shortcut
+  if (cJSON_IsArray(cJSON_GetArrayItem (keys, 0)))
+    // Select the first one (just temporary)
+    keys = cJSON_GetArrayItem (keys, 0);
+  
+  kc->size = cJSON_GetArraySize (keys);
+  kc->key_arr;
+  kc->str_arr;
   
 }
 

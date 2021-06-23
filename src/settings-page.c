@@ -1,12 +1,67 @@
 #include "settings-page.h"
 
-GSettings *settings;
+void ff_configure_autostart (int state)
+{
+  wordexp_t p;
+  wordexp("~/.config/autostart/org.ccextractor.FastFingers.desktop", &p, 0);
+  char **w = p.we_wordv;
+  if (state)
+    {
+      FILE *source = fopen("/usr/share/applications/org.ccextractor.FastFingers.desktop", "r");
+    
+      if(!source)
+	{
+	  fprintf(stderr, "FF-ERROR: Couldn't read desktop file at /usr/share\n");
+	  return;
+	}
+
+      FILE *target = fopen(w[0], "w");
+    
+      if(!target)
+	{
+	  fprintf (stderr, "FF-ERROR: Couldn't create desktop file at ~/.config/autostart\n");
+	  fclose (source);
+	  wordfree (&p);
+	  return;
+	}
+
+      char ch;
+      while ((ch = fgetc (source)) != EOF)
+	fputc(ch, target);
+
+      fclose(source);        
+      fclose(target);
+    }
+  else
+    {
+      int ret = remove (w[0]);
+      if (ret)
+	fprintf (stderr, "FF-ERROR: Couldn't remove desktop file at ~/.config/autostart\n");
+    }
+  wordfree (&p);
+}
+
+void ff_check_autostart_state (int state)
+{
+  wordexp_t p;
+  wordexp("~/.config/autostart/org.ccextractor.FastFingers.desktop", &p, 0);
+  char **w = p.we_wordv;
+
+  int exists = !access (w[0], F_OK);
+  if (exists && !state)
+    ff_configure_autostart (0);
+  else if (!exists && state)
+    ff_configure_autostart (1);
+  
+  wordfree (&p);
+}
 
 void
 settings_row_activated_cb (GtkListBox    *box,
 			   GtkListBoxRow *row,
 			   gpointer       user_data)
 {
+  GSettings *settings = (GSettings *)user_data;
   const char *row_name = gtk_widget_get_name ( GTK_WIDGET (row));
 
   if (!strcmp (row_name, "shortcut"))
@@ -22,7 +77,7 @@ settings_row_activated_cb (GtkListBox    *box,
       // To-do: make it really starting auto
       g_settings_set_boolean (settings, "autostart", new_state);
       gtk_label_set_text (GTK_LABEL (icon), new_state ? "Enabled" : "Disabled");
-	
+      ff_configure_autostart (new_state);
     }
   else if (!strcmp (row_name, "reset_progress"))
     {
@@ -59,16 +114,19 @@ settings_row_activated_cb (GtkListBox    *box,
 
 void ff_settings_page_init(GtkStack *stack)
 {
-  settings = g_settings_new ("org.ccextractor.FastFingers");
+  GSettings *settings = g_settings_new ("org.ccextractor.FastFingers");
   
   GtkBuilder *settings_page_builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/settings-page.ui");
   
   GObject *main_box = gtk_builder_get_object (settings_page_builder, "main_box");
-
   GObject *autostart_label = gtk_builder_get_object (settings_page_builder, "autostart_label");
+  GObject *list = gtk_builder_get_object (settings_page_builder, "list");
   
   gboolean current_state = g_settings_get_boolean (settings, "autostart");
   gtk_label_set_text (GTK_LABEL (autostart_label), current_state ? "Enabled" : "Disabled");
+  ff_check_autostart_state (current_state);
+
+  g_signal_connect (GTK_WIDGET (list), "row-activated", G_CALLBACK (settings_row_activated_cb), settings);
   
   gtk_stack_add_named(stack, GTK_WIDGET (main_box), "Settings");
 }

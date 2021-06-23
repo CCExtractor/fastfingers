@@ -8,3 +8,6 @@ Exec=fastfingers
 Icon=fastfingers
 Terminal=false
 Categories=Education
+X-GNOME-Autostart-enabled=true
+Hidden=false
+NoDisplay=false
