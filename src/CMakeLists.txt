@@ -22,6 +22,7 @@ find_package(PkgConfig REQUIRED QUIET)
 pkg_search_module(GTK REQUIRED gtk4)
 # Fetching gmodule-export-2.0
 pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
+pkg_search_module (X11 x11)
 # Checking the presence of glib-compile-resources command and fetching it
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
