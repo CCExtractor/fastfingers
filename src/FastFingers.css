@@ -100,7 +100,6 @@ key.test {
     background-color: transparent;
     border-style: dashed;
     border-color: rgba(255, 255, 255, 0.2);
-    background-repeat: 10;
 }
 
 key.wrong {
