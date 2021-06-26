@@ -11,14 +11,14 @@
 
 G_BEGIN_DECLS
 
+void
+ff_init_css (void);
+  
 char *
 ff_simplify_title (const char *title);
   
 char *
 ff_logo_path_gen (const char *title);
-
-extern GObject *stack;
-extern GObject *window;
 
 G_END_DECLS
 

@@ -33,20 +33,6 @@ activate (GtkApplication *app,
   gtk_widget_show(GTK_WIDGET(window));
 }
 
-static void
-ff_init_css (void)
-{
-  GtkCssProvider *provider = gtk_css_provider_new ();
-  GdkDisplay *display = gdk_display_get_default ();
-  gtk_style_context_add_provider_for_display (display,
-					      GTK_STYLE_PROVIDER (provider),
-					      GTK_STYLE_PROVIDER_PRIORITY_APPLICATION);
-
-  gtk_css_provider_load_from_resource(provider, "/org/ccextractor/FastFingers/FastFingers.css");
-
-  g_object_unref (provider);
-}
-
 void
 ff_switch_page (const char *page_name)
 {
@@ -100,4 +86,15 @@ const char*
 ff_get_current_page (void)
 {
   return current_page->page;
+}
+
+GtkWidget *ff_get_stack (void)
+{
+  return (GtkWidget *)stack;
+}
+
+
+GtkWidget *ff_get_window (void)
+{
+  return (GtkWidget *)window;
 }

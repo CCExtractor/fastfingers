@@ -186,6 +186,8 @@ card_click_cb (GtkGestureClick *gesture,
   GtkWidget *title = gtk_widget_get_next_sibling(head);
   const char *title_str = gtk_label_get_text(GTK_LABEL(title));
   fprintf(stderr, "Debug: App card %s choosed\n", title_str);
+
+  GtkWidget *stack = ff_get_stack ();
   
   ff_application_page_init (GTK_STACK(stack), title_str);
   ff_switch_page (title_str);

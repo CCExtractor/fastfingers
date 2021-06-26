@@ -12,6 +12,7 @@
     <file preprocess="xml-stripblanks">ui/button-box.ui</file>
     <file preprocess="xml-stripblanks">ui/key.ui</file>
     <file preprocess="xml-stripblanks">ui/shortcut-list-row.ui</file>
+    <file preprocess="xml-stripblanks">ui/cheatsheet.ui</file>
     <file>FastFingers.css</file>
     <file>logo/fastfingers.png</file>
     <file>logo/gmail.png</file>

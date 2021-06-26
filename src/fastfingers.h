@@ -16,9 +16,6 @@ void
 activate (GtkApplication *app,
           gpointer        user_data);
 
-static void
-ff_init_css (void);
-
 void
 ff_switch_page (const char *page);
 
@@ -31,6 +28,10 @@ ff_get_previous_page (void);
 const char*
 ff_get_current_page (void);
 
+GtkWidget *ff_get_stack (void);
+
+GtkWidget *ff_get_window (void);
+  
 G_END_DECLS
 
 #endif
