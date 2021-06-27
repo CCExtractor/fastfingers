@@ -15,8 +15,6 @@ G_DEFINE_TYPE (FFCard, ff_card, GTK_TYPE_EVENT_BOX);
 static void
 ff_card_dispose (GObject *object)
 {
-  FFCard *self = FF_CARD (object);
-
   G_OBJECT_CLASS (ff_card_parent_class)->dispose (object);
 }
 
@@ -158,6 +156,22 @@ ff_card_class_init (FFCardClass *klass)
 }
 
 static void
+card_click_cb (FFCard    *card,
+	       GdkEvent  *event,
+	       gpointer   user_data)
+{
+  GList *children = gtk_container_get_children (GTK_CONTAINER (card->box));
+  GtkWidget *title = (GtkWidget *)(g_list_nth (children, 1)->data);
+  const char *title_str = gtk_label_get_text(GTK_LABEL(title));
+  fprintf(stderr, "Debug: App card %s choosed\n", title_str);
+
+  GtkWidget *stack = ff_get_stack ();
+  
+  ff_application_page_init (GTK_STACK(stack), title_str);
+  ff_switch_page (title_str);
+}
+
+static void
 ff_card_init (FFCard *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
@@ -174,19 +188,4 @@ ff_card_new (const gchar *title, double progress)
 			NULL);
 }
 
-static void
-card_click_cb (FFCard    *card,
-	       GdkEvent  *event,
-	       gpointer   user_data)
-{
-  GList *children = gtk_container_get_children (GTK_CONTAINER (card->box));
-  GtkWidget *head = (GtkWidget *)(g_list_nth (children, 0)->data);
-  GtkWidget *title = (GtkWidget *)(g_list_nth (children, 1)->data);
-  const char *title_str = gtk_label_get_text(GTK_LABEL(title));
-  fprintf(stderr, "Debug: App card %s choosed\n", title_str);
 
-  GtkWidget *stack = ff_get_stack ();
-  
-  ff_application_page_init (GTK_STACK(stack), title_str);
-  ff_switch_page (title_str);
-}

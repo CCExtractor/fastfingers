@@ -13,8 +13,6 @@ G_DEFINE_TYPE (FFButtonbox, ff_buttonbox, GTK_TYPE_BOX);
 static void
 ff_buttonbox_dispose (GObject *object)
 {
-  FFButtonbox *self = FF_BUTTONBOX (object);
-
   G_OBJECT_CLASS (ff_buttonbox_parent_class)->dispose (object);
 }
 

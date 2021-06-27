@@ -83,16 +83,17 @@ key_container *ff_get_key_container (cJSON *app, const char *row_title)
     keys = cJSON_GetArrayItem (keys, 0);
   
   kc->size = cJSON_GetArraySize (keys);
-  kc->key_arr;
-  kc->str_arr;
+
+  ////////
   
+  return kc;
 }
 
 void
 ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category)
 {
-  GtkWidget *temp;
-  if (temp = gtk_stack_get_child_by_name (stack, "practice-page"))
+  GtkWidget *temp = gtk_stack_get_child_by_name (stack, "practice-page");
+  if (temp)
     gtk_container_remove (GTK_CONTAINER (stack), temp);
 
   GtkBuilder *practice_page_builder = gtk_builder_new_from_resource("/org/ccextractor/FastFingers/ui/practice-page.ui");
@@ -100,9 +101,7 @@ ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category)
   GObject *main_box = gtk_builder_get_object (practice_page_builder, "main_box");
   GObject *image = gtk_builder_get_object (practice_page_builder, "image");
   GObject *buttonbox = gtk_builder_get_object (practice_page_builder, "buttonbox");
-  GObject *back_button = gtk_builder_get_object (practice_page_builder, "back_button");
   GObject *key_box = gtk_builder_get_object (practice_page_builder, "key_box");
-  GObject *shortcut_title = gtk_builder_get_object (practice_page_builder, "shortcut_title");
 
   char *title = g_strdup(cJSON_GetObjectItem(app, "title")->valuestring);
   char button_label[64];

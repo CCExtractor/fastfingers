@@ -47,14 +47,13 @@ cJSON *ff_get_application(const char *name)
 
 void ff_application_page_init(GtkStack *stack, const char *title)
 {
-  GtkWidget *temp;
-  if (temp = gtk_stack_get_child_by_name (stack, title))
+  GtkWidget *temp = gtk_stack_get_child_by_name (stack, title);
+  if (temp)
     gtk_container_remove (GTK_CONTAINER (stack), temp);
     
   GtkBuilder *application_page_builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/application-page.ui");
   
   GObject *scrolled_window = gtk_builder_get_object (application_page_builder, "application_scrolled_window");
-  GObject *main_box = gtk_builder_get_object (application_page_builder, "main_box");
   GObject *image = gtk_builder_get_object (application_page_builder, "image");
   GObject *list_topic = gtk_builder_get_object (application_page_builder, "list_topic");
 
