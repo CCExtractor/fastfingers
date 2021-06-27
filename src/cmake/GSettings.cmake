@@ -17,6 +17,7 @@ macro(add_schema GSETTINGS_TARGET)
   # Moving GSettings file to glib schemas directory
   add_custom_command(
     TARGET ${GSETTINGS_TARGET}
+    VERBATIM
     COMMAND ${CMAKE_COMMAND} -E copy
     "${CMAKE_SOURCE_DIR}/../data/org.ccextractor.FastFingers.gschema.xml"
     "${GSETTINGS_DIR}"
@@ -24,6 +25,7 @@ macro(add_schema GSETTINGS_TARGET)
   # Compiling the GSetting file
   add_custom_command(
     TARGET ${GSETTINGS_TARGET}
+    VERBATIM
     COMMAND ${glib_schema_compiler} ${GSETTINGS_DIR}
     )
 

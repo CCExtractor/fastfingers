@@ -8,6 +8,7 @@ macro(add_desktop DESKTOP_TARGET VERSION)
   add_custom_command(
     TARGET ${DESKTOP_TARGET}
     POST_BUILD
+    VERBATIM
     COMMAND ${CMAKE_COMMAND} -E copy
     "${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop"
     "/usr/share/applications/"

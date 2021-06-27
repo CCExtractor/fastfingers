@@ -2,6 +2,7 @@
 macro(add_data DATA_TARGET)
   add_custom_command(
     TARGET ${DATA_TARGET}
+    VERBATIM
     POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     "${CMAKE_SOURCE_DIR}/../data/applications"

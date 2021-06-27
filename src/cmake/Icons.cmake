@@ -6,6 +6,7 @@ macro(add_icons ICONS_TARGET)
     add_custom_command (
       TARGET ${ICONS_TARGET}
       POST_BUILD
+      VERBATIM
       COMMAND
       ${CMAKE_COMMAND} -E copy
       "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/fastfingers.png"
@@ -16,6 +17,7 @@ macro(add_icons ICONS_TARGET)
   add_custom_command(
     TARGET fastfingers
     POST_BUILD
+    VERBATIM
     COMMAND gtk-update-icon-cache -t -f /usr/share/icons/hicolor/
     )
   # Installing highcontrast icons
@@ -24,6 +26,7 @@ macro(add_icons ICONS_TARGET)
     add_custom_command (
       TARGET fastfingers
       POST_BUILD
+      VERBATIM
       COMMAND
       ${CMAKE_COMMAND} -E copy
       "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/fastfingers.png"

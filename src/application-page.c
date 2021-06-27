@@ -15,9 +15,12 @@ application_row_activated_cb (GtkListBox    *box,
 cJSON *ff_get_application(const char *name)
 {
   cJSON *app = NULL;
-  char filepath[128];
+  char filepath[128], *data;
+  long len, result;
+  FILE *app_file;
+  
   sprintf(filepath, "/usr/share/fastfingers/applications/%s.json", name);
-  FILE *app_file = fopen(filepath ,"rb");
+  app_file = fopen(filepath ,"rb");
 
   if (!app_file)
     {
@@ -26,17 +29,17 @@ cJSON *ff_get_application(const char *name)
     }
   
   fseek(app_file, 0, SEEK_END);
-  long len = ftell(app_file);
+  len = ftell(app_file);
   fseek(app_file, 0, SEEK_SET);
 
-  char *data = (char*)malloc(len + 1);
+  data = (char*)malloc(len + 1);
   if (!data)
     {
       fprintf (stderr, "FF-ERROR: Couldn't allocate memory space!\n");
       goto out;
     }
   
-  int result = fread(data, 1, len, app_file);
+  result = fread(data, 1, len, app_file);
   if (result != len)
     {
       fprintf (stderr, "FF-ERROR: Reading error occured!\n");
