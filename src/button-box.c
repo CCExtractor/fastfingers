@@ -6,6 +6,9 @@ struct _FFButtonbox
 
   GtkButton *back;
   GtkButton *settings;
+
+  gboolean back_visible;
+  gboolean settings_visible;
 };
 
 G_DEFINE_TYPE (FFButtonbox, ff_buttonbox, GTK_TYPE_BOX);
@@ -38,7 +41,7 @@ ff_buttonbox_get_backbutton_visible (FFButtonbox *buttonbox)
 {
   g_return_val_if_fail (FF_IS_BUTTONBOX (buttonbox), -1);
 
-  return gtk_widget_get_visible (GTK_WIDGET (buttonbox->back));
+  return buttonbox->back_visible;
 }
 
 void
@@ -47,6 +50,7 @@ ff_buttonbox_set_backbutton_visible (FFButtonbox *buttonbox,
 {
   g_return_if_fail (FF_IS_BUTTONBOX (buttonbox));
 
+  buttonbox->back_visible = visible;
   gtk_widget_set_visible (GTK_WIDGET (buttonbox->back), visible);
 }
 
@@ -55,7 +59,7 @@ ff_buttonbox_get_settings_visible (FFButtonbox *buttonbox)
 {
   g_return_val_if_fail (FF_IS_BUTTONBOX (buttonbox), -1);
 
-  return gtk_widget_get_visible (GTK_WIDGET (buttonbox->settings));
+  return buttonbox->settings_visible;
 }
 
 void
@@ -64,6 +68,7 @@ ff_buttonbox_set_settings_visible (FFButtonbox *buttonbox,
 {
   g_return_if_fail (FF_IS_BUTTONBOX (buttonbox));
 
+  buttonbox->settings_visible = visible;
   gtk_widget_set_visible (GTK_WIDGET (buttonbox->settings), visible);
 }
 
@@ -169,8 +174,8 @@ ff_buttonbox_class_init (FFButtonboxClass *klass)
 
 void
 back_click_cb (GtkWidget *widget,
-		   GdkEvent  *event,
-		   gpointer   user_data)
+	       GdkEvent  *event,
+	       gpointer   user_data)
 {
   ff_switch_previous ();
 }
@@ -183,14 +188,31 @@ settings_click_cb (GtkWidget *widget,
   ff_switch_page ("Settings");
 }
 
+void
+back_show_cb (GtkWidget *widget,
+	      FFButtonbox *buttonbox)
+{
+  if (!ff_buttonbox_get_backbutton_visible (buttonbox))
+    gtk_widget_set_visible (widget, FALSE);
+}
 
+void
+settings_show_cb (GtkWidget *widget,
+		  FFButtonbox *buttonbox)
+{
+  if (!ff_buttonbox_get_settings_visible (buttonbox))
+    gtk_widget_set_visible (widget, FALSE);
+}
+	       
 static void
 ff_buttonbox_init (FFButtonbox *self)
 {
   gtk_widget_init_template (GTK_WIDGET (self));
 
   g_signal_connect (GTK_BUTTON (self->back), "clicked", G_CALLBACK (back_click_cb), NULL);
+  g_signal_connect (GTK_BUTTON (self->back), "show", G_CALLBACK (back_show_cb), self);
   g_signal_connect (GTK_BUTTON (self->settings), "clicked", G_CALLBACK (settings_click_cb), NULL);
+  g_signal_connect (GTK_BUTTON (self->settings), "show", G_CALLBACK (settings_show_cb), self);
 }
 
 GtkWidget*

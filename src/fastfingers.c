@@ -25,13 +25,13 @@ activate (GtkApplication *app,
   g_signal_connect (G_OBJECT (window), "key_press_event", G_CALLBACK (key_pressed_cb), NULL);
 
   stack = gtk_builder_get_object (ffb_app, "ff_stack");
-
+  
+  gtk_widget_show_all(GTK_WIDGET(window));
+  
   ff_home_page_init(GTK_STACK(stack));
   ff_settings_page_init(GTK_STACK(stack));
   ff_credits_page_init (GTK_STACK (stack));
   ff_switch_page("Home");
-  
-  gtk_widget_show_all(GTK_WIDGET(window));
 }
 
 void

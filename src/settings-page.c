@@ -70,9 +70,9 @@ settings_row_activated_cb (GtkListBox    *box,
     }
   else if (!strcmp (row_name, "autostart"))
     {
-      GtkWidget *row_box = gtk_list_box_row_get_header (row);
+      GtkWidget *row_box = gtk_bin_get_child (GTK_BIN (row));
       GList *children = gtk_container_get_children (GTK_CONTAINER (row_box));
-      GtkWidget *icon = (GtkWidget *)g_list_last (children);
+      GtkWidget *icon = (GtkWidget *) g_list_last (children)->data;
 
       gboolean new_state = !g_settings_get_boolean (settings, "autostart");
       // To-do: make it really starting auto
