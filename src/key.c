@@ -10,8 +10,6 @@ G_DEFINE_TYPE (FFKey, ff_key, GTK_TYPE_LABEL);
 static void
 ff_key_dispose (GObject *object)
 {
-  FFKey *self = FF_KEY (object);
-
   G_OBJECT_CLASS (ff_key_parent_class)->dispose (object);
 }
 

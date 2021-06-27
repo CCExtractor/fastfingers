@@ -14,8 +14,6 @@ G_DEFINE_TYPE (FFShortcutListRow, ff_shortcut_list_row, GTK_TYPE_LIST_BOX_ROW);
 static void
 ff_shortcut_list_row_dispose (GObject *object)
 {
-  FFShortcutListRow *self = FF_SHORTCUT_LIST_ROW (object);
-
   G_OBJECT_CLASS (ff_shortcut_list_row_parent_class)->dispose (object);
 }
 

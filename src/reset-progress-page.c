@@ -4,8 +4,8 @@ GtkWidget *message, *info, *button_box;
 
 void ff_reset_progress_page_init(GtkStack *stack)
 {
-  GtkWidget *temp;
-  if (temp = gtk_stack_get_child_by_name (stack, "Reset-Progress"))
+  GtkWidget *temp = gtk_stack_get_child_by_name (stack, "Reset-Progress");
+  if (temp)
     gtk_container_remove (GTK_CONTAINER(stack), temp);
   
   GtkBuilder *reset_progress_builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/reset-progress-page.ui");
