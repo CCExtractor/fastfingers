@@ -54,3 +54,4 @@ dkms.conf
 # emacs autosave files
 *.*~
 src/build
+gtk4/build
