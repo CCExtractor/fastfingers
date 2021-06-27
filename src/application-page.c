@@ -15,7 +15,7 @@ application_row_activated_cb (GtkListBox    *box,
 cJSON *ff_get_application(const char *name)
 {
   cJSON *app = NULL;
-  char filepath[128], *data;
+  char filepath[128], *data = NULL;
   long len, result;
   FILE *app_file;
   

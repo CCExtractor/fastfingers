@@ -10,12 +10,21 @@ typedef struct _page {
 
 page *current_page = NULL;
 
+static void ff_init_custom_widgets (void)
+{
+  ff_buttonbox_get_type(); 
+  ff_key_get_type(); 
+  ff_card_get_type();
+  ff_shortcut_list_row_get_type();
+}
+
 void
 activate (GtkApplication *app,
           gpointer        user_data)
 {
-  ff_init_css();
-
+  ff_init_css ();
+  ff_init_custom_widgets ();
+  
   srand (time (NULL));
   
   GtkBuilder *ffb_app = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/fastfingers.ui");

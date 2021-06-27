@@ -3,6 +3,7 @@
 #define _FF_HOME
 
 #include "ff-utils.h"
+#include "fastfingers.h"
 #include "card.h"
 #include "settings-page.h"
 #include "button-box.h"

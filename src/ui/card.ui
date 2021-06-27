@@ -26,7 +26,6 @@
 	</child>
 	<child>
 	  <object class="GtkLevelBar" id="level_bar">
-	    <property name="hexpand">True</property>
 	  </object>
 	</child>
       </object>

@@ -10,8 +10,15 @@
 	  <object class="GtkBox" id="main_box">
             <property name="orientation">vertical</property>
 	    <child>
+	      <object class="FFButtonbox">
+		<property name="back-visible">False</property>
+		<property name="settings-visible">True</property>
+	      </object>
+	    </child>
+	    <child>
 	      <object class="GtkBox" id="home_container">
 		<property name="orientation">vertical</property>
+		<property name="halign">center</property>
 		<property name="spacing">20</property>
 		<style>
 		  <class name="home-container"/>

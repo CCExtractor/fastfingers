@@ -44,6 +44,10 @@ card:hover {
     background-color: #434c5e;
 }
 
+image.card-image {
+    margin: 10px;
+}
+
 label.card-label {
     color: #eceff4;
     font-weight: 300;
@@ -51,19 +55,27 @@ label.card-label {
     text-shadow: 2px 2px 3px  rgba(0, 0, 0, 0.16);
 }
 
-levelbar.card-level-bar {
-    margin-top: 5px;
+levelbar {
+    margin: 10px;
+    color:transparent;
+    background-image: none;
+    border-radius: 0px;
+    border-color: transparent;
 }
 
-levelbar.card-level-bar block.filled {
+levelbar block.filled {
+    background-image: none;
     background-color: #bf616a;
+    border: none;
     border-color: transparent;
     border-radius: 0px;
     color: transparent;
 }
 
-levelbar.card-level-bar block.empty {
+levelbar block.empty {
+    background-image: none;
     background-color: #4c566a;
+    border: none;
     border-color: transparent;
     border-radius: 0px;
     color: transparent;

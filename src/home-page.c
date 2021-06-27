@@ -6,12 +6,7 @@ void ff_home_page_init(GtkStack *stack)
   GObject *scrolled_window = gtk_builder_get_object (home_builder, "home_scrolled_window");
   GObject *main_box = gtk_builder_get_object (home_builder, "main_box");
   GObject *container = gtk_builder_get_object (home_builder, "home_container");
-
-  FFButtonbox *buttonbox = (FFButtonbox *)ff_buttonbox_new ();
-  ff_buttonbox_set_backbutton_visible (buttonbox, FALSE);
-  ff_buttonbox_set_settings_visible (buttonbox, TRUE);
-  gtk_box_pack_start (GTK_BOX(main_box), GTK_WIDGET (buttonbox), FALSE, FALSE, 0);
-
+  
   GtkWidget *recent = gtk_label_new("Recent");
   gtk_style_context_add_class (gtk_widget_get_style_context (recent), "home-header");
   gtk_box_pack_start (GTK_BOX(container), recent, FALSE, FALSE, 0);
