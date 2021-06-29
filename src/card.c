@@ -8,6 +8,8 @@ struct _FFCard
   GtkImage *image;
   GtkLabel *label;
   GtkLevelBar *level_bar;
+
+  int size;
 };
 
 G_DEFINE_TYPE (FFCard, ff_card, GTK_TYPE_EVENT_BOX);
@@ -30,6 +32,9 @@ void
 ff_card_set_title (FFCard *card,
 		   const gchar* title)
 {
+  int raw_width, raw_height, new_width, new_height;
+  char *logo_path;
+  GdkPixbuf *raw_pixbuf, *scaled_pixbuf;
   g_return_if_fail (FF_IS_CARD (card));
 
   if (!strcmp(title, ff_card_get_title(card)))
@@ -37,12 +42,29 @@ ff_card_set_title (FFCard *card,
   
   gtk_label_set_text(card->label, title);
   
-  char *logo_path = ff_logo_path_gen(title);
+  logo_path = ff_logo_path_gen(title);
 
   if (logo_path)
     {
-      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_resource (logo_path, NULL);
-      gtk_image_set_from_pixbuf (FF_CARD(card)->image, pixbuf)
+      raw_pixbuf = gdk_pixbuf_new_from_resource (logo_path, NULL);
+
+      raw_width = gdk_pixbuf_get_width (raw_pixbuf);
+      raw_height = gdk_pixbuf_get_height (raw_pixbuf);
+      
+      if (raw_width > raw_height)
+	{
+	  new_width = card->size;
+	  new_height = card->size * new_width / raw_width;
+	}
+      else
+	{
+	  new_height = card->size;
+	  new_width = card->size * new_height / raw_height;
+	}
+
+      scaled_pixbuf = gdk_pixbuf_scale_simple (raw_pixbuf, new_width, new_height, GDK_INTERP_BILINEAR);
+      gtk_image_set_from_pixbuf (FF_CARD(card)->image, scaled_pixbuf);
+      
       free(logo_path);
     }
 }
@@ -64,11 +86,29 @@ ff_card_set_progress (FFCard *card,
   gtk_level_bar_set_value (card->level_bar, progress);
 }
 
+double
+ff_card_get_size (FFCard *card)
+{
+  g_return_val_if_fail (FF_IS_CARD (card), -1);
+
+  return card->size;
+}
+
+void
+ff_card_set_size (FFCard *card,
+		  int size)
+{
+  g_return_if_fail (FF_IS_CARD (card));
+
+  card->size = size;
+}
+
 enum
   {
     PROP_0,
     PROP_TITLE,
     PROP_PROGRESS,
+    PROP_SIZE,
     LAST_PROP
   };
 
@@ -89,6 +129,9 @@ ff_card_set_property (GObject *object,
       break;
     case PROP_PROGRESS:
       ff_card_set_progress (card, g_value_get_double (value));
+      break;
+    case PROP_SIZE:
+      ff_card_set_size (card, g_value_get_int (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -111,6 +154,9 @@ ff_card_get_property (GObject *object,
       break;
     case PROP_PROGRESS:
       g_value_set_double (value, ff_card_get_progress (card));
+      break;
+    case PROP_SIZE:
+      g_value_set_int (value, ff_card_get_size (card));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, prop_id, pspec);
@@ -145,6 +191,16 @@ ff_card_class_init (FFCardClass *klass)
 			 1,
 			 0,
 			 G_PARAM_READWRITE|G_PARAM_STATIC_STRINGS);
+
+  
+  props[PROP_SIZE] =
+    g_param_spec_int ("size",
+		      "Size",
+		      "Size of one side of the card image in pixels",
+		      0,
+		      150,
+		      65,
+		      G_PARAM_READWRITE|G_PARAM_STATIC_STRINGS);
 
   g_object_class_install_properties (object_class, LAST_PROP, props);
 
