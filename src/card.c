@@ -41,7 +41,8 @@ ff_card_set_title (FFCard *card,
 
   if (logo_path)
     {
-      gtk_image_set_from_resource(FF_CARD(card)->image, logo_path);
+      GdkPixbuf *pixbuf = gdk_pixbuf_new_from_resource (logo_path, NULL);
+      gtk_image_set_from_pixbuf (FF_CARD(card)->image, pixbuf)
       free(logo_path);
     }
 }

@@ -5,6 +5,7 @@
 #include "ff-utils.h"
 #include "application-page.h"
 #include "fastfingers.h"
+#include <gdk-pixbuf/gdk-pixbuf.h>
 
 G_BEGIN_DECLS
 
