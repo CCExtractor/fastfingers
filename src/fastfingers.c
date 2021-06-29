@@ -47,7 +47,7 @@ void
 ff_switch_page (const char *page_name)
 {
   GtkWidget *page_widget = gtk_stack_get_child_by_name (GTK_STACK (stack), page_name);
-  gtk_widget_show(page_widget);
+  gtk_widget_show_all (page_widget);
   gtk_stack_set_visible_child_name (GTK_STACK (stack), page_name);
 
   page *new_page = malloc (sizeof (page));
@@ -74,12 +74,11 @@ ff_switch_previous (void)
     return;
 
   GtkWidget *page_widget;
-  
   free(current_page);
   current_page = prev_page;
 
   page_widget = gtk_stack_get_child_by_name (GTK_STACK (stack), current_page->page);
-  gtk_widget_show(page_widget);
+  gtk_widget_show_all (page_widget);
   gtk_stack_set_visible_child_name (GTK_STACK (stack), current_page->page);
 }
 

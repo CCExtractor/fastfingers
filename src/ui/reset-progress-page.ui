@@ -59,22 +59,20 @@
 	      <class name="reset-progress-buttonbox"/>
 	    </style>
 	    <child>
-	      <object class="GtkButton">
+	      <object class="GtkButton" id="no_btn">
 		<property name="label" translatable="yes">Cancel</property>
 		<property name="halign">end</property>
 		<property name="margin-end">20</property>
-		<signal name="clicked" handler="no_clicked_cb"/>
 		<style>
 		  <class name="reset-progress-cancel"/>
 		</style>
 	      </object>
 	    </child>
 	    <child>
-	      <object class="GtkButton">
+	      <object class="GtkButton" id="yes_btn">
 		<property name="label" translatable="yes">Yes, reset</property>
 		<property name="halign">start</property>
 		<property name="margin-start">20</property>
-		<signal name="clicked" handler="yes_clicked_cb"/>
 		<style>
 		  <class name="reset-progress-proceed"/>
 		</style>
