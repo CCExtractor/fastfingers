@@ -63,16 +63,13 @@ levelbar {
     border-color: transparent;
 }
 
-levelbar block.filled {
+levelbar>* {
     background-image: none;
-    background-color: #bf616a;
-    border: none;
-    border-color: transparent;
-    border-radius: 0px;
-    color: transparent;
+    background-color: transparent;
+
 }
 
-levelbar block.empty {
+levelbar trough block.empty {
     background-image: none;
     background-color: #4c566a;
     border: none;
