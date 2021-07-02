@@ -64,12 +64,22 @@ list(APPEND FASTFINGERS_SOURCES
   ${GRESOURCE_C}
   )
 
+list(APPEND CHEATSHEET_SOURCES
+  cheatsheet.c
+  ff-utils.c
+  cJSON.c
+  ${GRESOURCE_C}
+  )
 # Creation of the application executable
 add_executable(fastfingers ${FASTFINGERS_SOURCES})
+add_executable(cheatsheet ${CHEATSHEET_SOURCES})
 # Adding the GTK's include directories to the application's library
 target_include_directories(fastfingers PUBLIC ${GTK_INCLUDE_DIRS} ${GM_EXPORT_INCLUDE_DIRS})
+target_include_directories(cheatsheet PUBLIC ${GTK_INCLUDE_DIRS} ${GM_EXPORT_INCLUDE_DIRS})
 # Linking the application executable and the libraries
 target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
+target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
+
 # Adding necessary compile flags
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall")
 # Installing the binary to the system
