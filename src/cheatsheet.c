@@ -30,8 +30,6 @@ activate (GtkApplication* app,
   
   window = (GtkWidget *)gtk_builder_get_object (builder, "window");
   gtk_window_set_title (GTK_WINDOW (window), "FastFingers Cheatsheet");
-  gtk_window_set_decorated (GTK_WINDOW (window), FALSE);
-  gtk_window_set_default_size (GTK_WINDOW (window), 200, 200);
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER_ALWAYS);
 
   GtkWidget *entry = gtk_search_entry_new ();
