@@ -1,7 +1,9 @@
 #include <gio/gio.h>
 
-#include <X11/Xlib.h>
-#include <X11/Xatom.h>
+#ifdef _X11_FOUND
+  #include <X11/Xlib.h>
+  #include <X11/Xatom.h>
+#endif
 
 #include <stdlib.h>
 #include <stdio.h>
