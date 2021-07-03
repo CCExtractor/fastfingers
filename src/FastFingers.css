@@ -383,3 +383,7 @@ entry {
     font-size: 20px;
     color: #2e3440;
 }
+
+label.shortcut-title {
+    padding-right: 50px;
+}

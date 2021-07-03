@@ -269,39 +269,39 @@
 	    "shortcuts": [
 		{
 		    "title": "Close Tab",
-		    "keys": [["Ctrl", "W"], ["Ctrl", "F4"]],
+		    "keys": [["Control", "W"], ["Control", "F4"]],
 		    "learned": 0,
 		    "note": "Except for Pinned Tabs"
 		},
 		{
 		    "title": "Close Window",
-		    "keys": [["Ctrl", "Shift", "W"], [""]],
+		    "keys": [["Control", "Shift", "W"], [""]],
 		    "learned": 0
 		},
 		{
 		    "title": "Cycle through Tabs in Recently Used Order",
-		    "keys": ["Ctrl", "Tab"],
+		    "keys": ["Control", "Tab"],
 		    "learned": 0,
 		    "note": "If enabled in Preferences"
 		},
 		{
 		    "title": "Quit",
-		    "keys": ["Ctrl", "Q"],
+		    "keys": ["Control", "Q"],
 		    "learned": 0
 		},
 		{
 		    "title": "Go one Tab to the Left",
-		    "keys": ["Ctrl", "Page_Up"],
+		    "keys": ["Control", "Page_Up"],
 		    "learned": 0
 		},
 		{
 		    "title": "Go one Tab to the Right",
-		    "keys": ["Ctrl", "Page_Down"],
+		    "keys": ["Control", "Page_Down"],
 		    "learned": 0
 		},
 		{
 		    "title": "Go to Tab 1 to 8",
-		    "keys": ["Ctrl", "Page_Down"],
+		    "keys": ["Control", "Page_Down"],
 		    "learned": 0
 		},
 		{
@@ -311,44 +311,44 @@
 		},
 		{
 		    "title": "Move Tab Left",
-		    "keys": ["Ctrl", "Shift", "Page_Up"],
+		    "keys": ["Control", "Shift", "Page_Up"],
 		    "learned": 0
 		},
 		{
 		    "title": "Move Tab Right",
-		    "keys": ["Ctrl", "Shift", "Page_Down"],
+		    "keys": ["Control", "Shift", "Page_Down"],
 		    "learned": 0
 		},
 		{
 		    "title": "Move Tab to start",
-		    "keys": ["Ctrl", "Shift", "Home"],
+		    "keys": ["Control", "Shift", "Home"],
 		    "learned": 0,
 		    "note": "Requires the currently selected tab to be \"in focus\" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar."
 		},
 		{
 		    "title": "Move Tab to end",
-		    "keys": ["Ctrl", "Shift", "End"],
+		    "keys": ["Control", "Shift", "End"],
 		    "learned": 0,
 		    "note": "Requires the currently selected tab to be \"in focus\" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar."
 		},
 		{
 		    "title": "Mute/Unmute Audio",
-		    "keys": ["Ctrl", "M"],
+		    "keys": ["Control", "M"],
 		    "learned": 0
 		},
 		{
 		    "title": "New Tab",
-		    "keys": ["Ctrl", "T"],
+		    "keys": ["Control", "T"],
 		    "learned": 0
 		},
 		{
 		    "title": "New Window",
-		    "keys": ["Ctrl", "N"],
+		    "keys": ["Control", "N"],
 		    "learned": 0
 		},
 		{
 		    "title": "New Private Window",
-		    "keys": ["Ctrl", "Shift", "P"],
+		    "keys": ["Control", "Shift", "P"],
 		    "learned": 0
 		},
 		{
@@ -371,13 +371,13 @@
 		},
 		{
 		    "title": "Open Search in New Background Tab",
-		    "keys": ["Ctrl", "Enter"],
+		    "keys": ["Control", "Enter"],
 		    "learned": 0,
 		    "note": "From the Search field on the New Tab page.\nNote: The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
 		},
 		{
 		    "title": "Open Search in New Foreground Tab",
-		    "keys": ["Ctrl", "Shift", "Enter"],
+		    "keys": ["Control", "Shift", "Enter"],
 		    "learned": 0,
 		    "note": "From the Search field on the New Tab page.\nNote: The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
 		},
@@ -388,23 +388,23 @@
 		},
 		{
 		    "title": "Open Focused Bookmark in New Foreground Tab",
-		    "keys": ["Ctrl", "Enter"],
+		    "keys": ["Control", "Enter"],
 		    "learned": 0
 		},
 		{
 		    "title": "Open Focused Bookmark in New Background Tab",
-		    "keys": ["Ctrl", "Shift", "Enter"],
+		    "keys": ["Control", "Shift", "Enter"],
 		    "learned": 0
 		},
 		{
 		    "title": "Open Focused Link in New Background Tab",
-		    "keys": ["Ctrl", "Enter"],
+		    "keys": ["Control", "Enter"],
 		    "learned": 0,
 		    "note": "The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
 		},
 		{
 		    "title": "Open Focused Link in New Foreground Tab",
-		    "keys": ["Ctrl", "Shift", "Enter"],
+		    "keys": ["Control", "Shift", "Enter"],
 		    "learned": 0,
 		    "note": "The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
 		},
@@ -415,23 +415,23 @@
 		},
 		{
 		    "title": "Show All Tabs",
-		    "keys": ["Ctrl", "Shift", "Tab"],
+		    "keys": ["Control", "Shift", "Tab"],
 		    "learned": 0,
-		    "note": "If the setting Ctrl+Tab cycles through tabs in recently used order is enabled in Preferences"
+		    "note": "If the setting Control+Tab cycles through tabs in recently used order is enabled in Preferences"
 		},
 		{
 		    "title": "Undo Close Tab",
-		    "keys": ["Ctrl", "Shift", "T"],
+		    "keys": ["Control", "Shift", "T"],
 		    "learned": 0
 		},
 		{
 		    "title": "Undo Close Window",
-		    "keys": ["Ctrl", "Shift", "N"],
+		    "keys": ["Control", "Shift", "N"],
 		    "learned": 0
 		},
 		{
 		    "title": "Moves the URL left or right (if cursor is in the address bar)",
-		    "keys": ["Ctrl", "Shift", "X"],
+		    "keys": ["Control", "Shift", "X"],
 		    "learned": 0
 		}
 	    ]
@@ -441,17 +441,17 @@
 	    "shortcuts": [
 		{
 		    "title": "History sidebar",
-		    "keys": ["Ctrl", "H"],
+		    "keys": ["Control", "H"],
 		    "learned": 0
 		},
 		{
 		    "title": "Library window (History)",
-		    "keys": ["Ctrl", "Shift", "H"],
+		    "keys": ["Control", "Shift", "H"],
 		    "learned": 0
 		},
 		{
 		    "title": "Clear Recent History",
-		    "keys": ["Ctrl", "Shift", "Del"],
+		    "keys": ["Control", "Shift", "Del"],
 		    "learned": 0
 		}
 	    ]
@@ -461,22 +461,22 @@
 	    "shortcuts": [
 		{
 		    "title": "Bookmark This Page",
-		    "keys": ["Ctrl", "D"],
+		    "keys": ["Control", "D"],
 		    "learned": 0
 		},
 		{
 		    "title": "Bookmarks sidebar",
-		    "keys": ["Ctrl", "B"],
+		    "keys": ["Control", "B"],
 		    "learned": 0
 		},
 		{
 		    "title": "Show/hide the Bookmarks toolbar",
-		    "keys": ["Ctrl", "Shift", "B"],
+		    "keys": ["Control", "Shift", "B"],
 		    "learned": 0
 		},
 		{
 		    "title": "Show All Bookmarks (Library Window)",
-		    "keys": ["Ctrl", "Shift", "O"],
+		    "keys": ["Control", "Shift", "O"],
 		    "learned": 0
 		},
 		{
@@ -492,32 +492,32 @@
 	    "shortcuts": [
 		{
 		    "title": "Downloads",
-		    "keys": ["Ctrl", "Shift", "Y"],
+		    "keys": ["Control", "Shift", "Y"],
 		    "learned": 0
 		},
 		{
 		    "title": "Add-ons",
-		    "keys": ["Ctrl", "Shift", "A"],
+		    "keys": ["Control", "Shift", "A"],
 		    "learned": 0
 		},
 		{
 		    "title": "Toggle Developer Tools",
-		    "keys": [["F12"], ["Ctrl", "Shift", "I"]],
+		    "keys": [["F12"], ["Control", "Shift", "I"]],
 		    "learned": 0
 		},
 		{
 		    "title": "Web Console",
-		    "keys": ["Ctrl", "Shift", "K"],
+		    "keys": ["Control", "Shift", "K"],
 		    "learned": 0
 		},
 		{
 		    "title": "Inspector",
-		    "keys": ["Ctrl", "Shift", "C"],
+		    "keys": ["Control", "Shift", "C"],
 		    "learned": 0
 		},
 		{
 		    "title": "Take a screenshot",
-		    "keys": ["Ctrl", "Shift", "S"],
+		    "keys": ["Control", "Shift", "S"],
 		    "learned": 0
 		},
 		{
@@ -532,12 +532,12 @@
 		},
 		{
 		    "title": "Network",
-		    "keys": ["Ctrl", "Shift", "E"],
+		    "keys": ["Control", "Shift", "E"],
 		    "learned": 0
 		},
 		{
 		    "title": "Responsive Design View",
-		    "keys": ["Ctrl", "Shift", "M"],
+		    "keys": ["Control", "Shift", "M"],
 		    "learned": 0
 		},
 		{
@@ -547,17 +547,17 @@
 		},
 		{
 		    "title": "Page Source",
-		    "keys": ["Ctrl", "U"],
+		    "keys": ["Control", "U"],
 		    "learned": 0
 		},
 		{
 		    "title": "Browser Console",
-		    "keys": ["Ctrl", "Shift", "J"],
+		    "keys": ["Control", "Shift", "J"],
 		    "learned": 0
 		},
 		{
 		    "title": "Page Info",
-		    "keys": ["Ctrl", "I"],
+		    "keys": ["Control", "I"],
 		    "learned": 0
 		}
 	    ]
@@ -577,17 +577,17 @@
 		},
 		{
 		    "title": "Zoom in",
-		    "keys": ["Ctrl", "+"],
+		    "keys": ["Control", "+"],
 		    "learned": 0
 		},
 		{
 		    "title": "Zoom out",
-		    "keys": ["Ctrl", "-"],
+		    "keys": ["Control", "-"],
 		    "learned": 0
 		},
 		{
 		    "title": "Automatic Zoom",
-		    "keys": ["Ctrl", "0"],
+		    "keys": ["Control", "0"],
 		    "learned": 0
 		},
 		{
@@ -602,7 +602,7 @@
 		},
 		{
 		    "title": "Switch to Presentation Mode",
-		    "keys": ["Ctrl", "Alt", "P"],
+		    "keys": ["Control", "Alt", "P"],
 		    "learned": 0
 		},
 		{
@@ -617,7 +617,7 @@
 		},
 		{
 		    "title": "Focus the Page Number input box",
-		    "keys": ["Ctrl", "Alt", "G"],
+		    "keys": ["Control", "Alt", "G"],
 		    "learned": 0
 		}
 	    ]
@@ -627,7 +627,7 @@
 	    "shortcuts": [
 		{
 		    "title": "Complete .com Address",
-		    "keys": ["Ctrl", "Enter"],
+		    "keys": ["Control", "Enter"],
 		    "learned": 0
 		},
 		{
@@ -647,7 +647,7 @@
 		},
 		{
 		    "title": "Toggle Reader Mode",
-		    "keys": ["Ctrl", "Alt", "R"],
+		    "keys": ["Control", "Alt", "R"],
 		    "learned": 0
 		},
 		{
@@ -657,12 +657,12 @@
 		},
 		{
 		    "title": "Focus Address Bar",
-		    "keys": [["F6"], ["Alt", "D"], ["Ctrl", "L"]],
+		    "keys": [["F6"], ["Alt", "D"], ["Control", "L"]],
 		    "learned": 0
 		},
 		{
 		    "title": "Focus Search Field in Library",
-		    "keys": [["F6"], ["Ctrl", "F"]],
+		    "keys": [["F6"], ["Control", "F"]],
 		    "learned": 0
 		},
 		{
@@ -712,12 +712,12 @@
 		},
 		{
 		    "title": "Mute audio",
-		    "keys": ["Ctrl", "Left"],
+		    "keys": ["Control", "Left"],
 		    "learned": 0
 		},
 		{
 		    "title": "Unmute audio",
-		    "keys": ["Ctrl", "Left"],
+		    "keys": ["Control", "Left"],
 		    "learned": 0
 		},
 		{
@@ -727,7 +727,7 @@
 		},
 		{
 		    "title": "Seek back 10 %",
-		    "keys": ["Ctrl", "Left"],
+		    "keys": ["Control", "Left"],
 		    "learned": 0
 		},
 		{
@@ -737,7 +737,7 @@
 		},
 		{
 		    "title": "Seek forward 10 %",
-		    "keys": ["Ctrl", "Right"],
+		    "keys": ["Control", "Right"],
 		    "learned": 0
 		},
 		{

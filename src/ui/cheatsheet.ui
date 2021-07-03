@@ -4,8 +4,9 @@
   <requires lib="gtk+" version="3.6"/>
   <object class="GtkWindow" id="window">
     <property name="can-focus">False</property>
-    <property name="default-width">320</property>
-    <property name="default-height">500</property>
+    <property name="default-width">500</property>
+    <property name="default-height">600</property>
+    <property name="resizable">FALSE</property>
     <child>
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
@@ -20,7 +21,9 @@
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
-                <property name="spacing">5</property>
+                <property name="spacing">10</property>
+		<property name="margin-top">10</property>
+		<property name="margin-bottom">10</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>

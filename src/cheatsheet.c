@@ -94,7 +94,8 @@ GtkWidget *new_shortcut_box (void)
 {
   GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_widget_set_margin_left (box, 30);
-  gtk_widget_set_margin_right (box, 30);
+  gtk_widget_set_margin_right (box, 30);  
+  gtk_widget_set_hexpand (box, 1);
   gtk_box_set_homogeneous (GTK_BOX (box), 0);
   return box;
 }
@@ -102,8 +103,12 @@ GtkWidget *new_shortcut_box (void)
 GtkWidget *add_shortcut_title (GtkWidget *hbox, const char *shortcut_title)
 {
   GtkWidget *shortcut_label = new_label_with_class (shortcut_title, "shortcut-title");
+  gtk_label_set_line_wrap_mode (GTK_LABEL (shortcut_label), PANGO_WRAP_WORD_CHAR);
+  gtk_label_set_justify (GTK_LABEL (shortcut_label), GTK_JUSTIFY_FILL);
+  gtk_label_set_max_width_chars (GTK_LABEL (shortcut_label), 50);
   gtk_widget_set_halign (shortcut_label, GTK_ALIGN_START);
   gtk_widget_set_hexpand (shortcut_label, 1);
+  gtk_label_set_line_wrap (GTK_LABEL (shortcut_label), 1);
   gtk_box_pack_start (GTK_BOX (hbox), shortcut_label, FALSE, TRUE, 0);
   return shortcut_label;
 }
@@ -112,22 +117,42 @@ char *format_key (const char *str)
 {
   int len = strlen (str);
 
-  char *ret = malloc (len + 1);
-  if (!ret)
-    return (char *)str;
+  char *ret = NULL;
 
   if (len == 1)
+    ret = g_strdup_printf ("%c", toupper(*str));
+
+  else if (!strcmp (str, "Control"))
+    ret = g_strdup ("Ctrl");
+
+  else if (!strcmp (str, "BackSpace"))
+    ret = g_strdup ("⌫");
+
+  else if (!strcmp (str, "Delete"))
+    ret = g_strdup ("Del");
+
+  else if (!strcmp (str, "Right"))
+    ret = g_strdup ("→");
+  
+  else if (!strcmp (str, "Left"))
+    ret = g_strdup ("←");
+  
+  else if (!strcmp (str, "Up"))
+    ret = g_strdup ("↑");
+  
+  else if (!strcmp (str, "Down"))
+    ret = g_strdup ("↓");
+  
+  else if (!strcmp (str, "Page_Up") || !strcmp (str, "Page_Down"))
     {
-      for (int i = 0; i < len + 1; ++i)
-	ret[i] = toupper(str[i]);
-      return ret;
+      int idx = strchr (str, '_') - str;
+      ret = g_strdup (str);
+      ret[idx] = ' ';
     }
 
-  memcpy (ret, str, len + 1);
-  for (int i = 0; i < len + 1; ++i)
-    if ('_' == str[i])
-      ret[i] = ' ';
-     
+  else
+    ret = g_strdup (str);
+  
   return ret;
 }
 
@@ -151,7 +176,7 @@ update (GtkWidget *parent)
       GtkWidget *former_box = (GtkWidget *)(g_list_last (children)->data);
       gtk_container_remove (GTK_CONTAINER (parent), former_box);
 
-      GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
+      GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 5);
       gtk_box_pack_start (GTK_BOX (parent), vbox, FALSE, TRUE, 0);
       
       cJSON *app = ff_get_application (normalized);
@@ -183,8 +208,8 @@ update (GtkWidget *parent)
 		{
 		  cJSON *key = cJSON_GetArrayItem (keys, k);
 		  char *key_str = format_key (key->valuestring);
-		  
 		  GtkWidget *key_label = new_label_with_class (key_str, "shortcut-key");
+		  free (key_str);
 		  gtk_box_pack_start (GTK_BOX (hbox), key_label, FALSE, TRUE, 0);
 		}
 	      
