@@ -149,7 +149,7 @@ list.settings-list {
 
 list.settings-list row {
     background-color: #3b4252;
-    margin: 6px 15px 6px 15px;
+    padding: 10px 15px 10px 15px;
 }
 
 list.settings-list row:hover {

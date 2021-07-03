@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(
   FastFingers
-  VERSION 0.6.27
+  VERSION 0.7.3
   LANGUAGES C
   )
 # Initializing other CMake modules
