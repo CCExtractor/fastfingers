@@ -95,6 +95,7 @@ GtkWidget *new_shortcut_box (void)
   GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
   gtk_widget_set_margin_left (box, 30);
   gtk_widget_set_margin_right (box, 30);
+  gtk_box_set_homogeneous (GTK_BOX (box), 0);
   return box;
 }
 
@@ -103,7 +104,7 @@ GtkWidget *add_shortcut_title (GtkWidget *hbox, const char *shortcut_title)
   GtkWidget *shortcut_label = new_label_with_class (shortcut_title, "shortcut-title");
   gtk_widget_set_halign (shortcut_label, GTK_ALIGN_START);
   gtk_widget_set_hexpand (shortcut_label, 1);
-  gtk_box_pack_start (GTK_BOX (hbox), shortcut_label, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (hbox), shortcut_label, FALSE, TRUE, 0);
   return shortcut_label;
 }
 
@@ -128,7 +129,7 @@ update (GtkWidget *parent)
       gtk_container_remove (GTK_CONTAINER (parent), former_box);
 
       GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 0);
-      gtk_box_pack_start (GTK_BOX (parent), vbox, TRUE, TRUE, 0);
+      gtk_box_pack_start (GTK_BOX (parent), vbox, FALSE, TRUE, 0);
       
       cJSON *app = ff_get_application (normalized);
       cJSON *group = cJSON_GetObjectItem(app, "group");
@@ -140,7 +141,7 @@ update (GtkWidget *parent)
 	  cJSON *category_title = cJSON_GetObjectItemCaseSensitive(category, "title");
 	  GtkWidget *category_label = new_label_with_class (category_title->valuestring,
 							    "category-title");
-	  gtk_box_pack_start (GTK_BOX (vbox), category_label, TRUE, TRUE, 0);
+	  gtk_box_pack_start (GTK_BOX (vbox), category_label, FALSE, TRUE, 0);
 
 	  cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
 	  for (int j = 0; j < cJSON_GetArraySize (shortcuts); ++j)
@@ -159,10 +160,10 @@ update (GtkWidget *parent)
 		{
 		  cJSON *key = cJSON_GetArrayItem (keys, k);
 		  GtkWidget *key_label = new_label_with_class (key->valuestring, "shortcut-key");
-		  gtk_box_pack_start (GTK_BOX (hbox), key_label, TRUE, TRUE, 0);
+		  gtk_box_pack_start (GTK_BOX (hbox), key_label, FALSE, TRUE, 0);
 		}
 	      
-	      gtk_box_pack_start (GTK_BOX (vbox), hbox, TRUE, TRUE, 0);
+	      gtk_box_pack_start (GTK_BOX (vbox), hbox, FALSE, TRUE, 0);
 	    }
 
 	}
