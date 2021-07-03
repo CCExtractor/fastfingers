@@ -32,41 +32,14 @@ void
 ff_card_set_title (FFCard *card,
 		   const gchar* title)
 {
-  int raw_width, raw_height, new_width, new_height;
-  char *logo_path;
-  GdkPixbuf *raw_pixbuf, *scaled_pixbuf;
   g_return_if_fail (FF_IS_CARD (card));
 
   if (!strcmp(title, ff_card_get_title(card)))
     return;
   
   gtk_label_set_text(card->label, title);
-  
-  logo_path = ff_logo_path_gen(title);
 
-  if (logo_path)
-    {
-      raw_pixbuf = gdk_pixbuf_new_from_resource (logo_path, NULL);
-
-      raw_width = gdk_pixbuf_get_width (raw_pixbuf);
-      raw_height = gdk_pixbuf_get_height (raw_pixbuf);
-      
-      if (raw_width > raw_height)
-	{
-	  new_width = card->size;
-	  new_height = card->size * new_width / raw_width;
-	}
-      else
-	{
-	  new_height = card->size;
-	  new_width = card->size * new_height / raw_height;
-	}
-
-      scaled_pixbuf = gdk_pixbuf_scale_simple (raw_pixbuf, new_width, new_height, GDK_INTERP_BILINEAR);
-      gtk_image_set_from_pixbuf (FF_CARD(card)->image, scaled_pixbuf);
-      
-      free(logo_path);
-    }
+  set_scaled_image (card->image, title, card->size);
 }
 
 double

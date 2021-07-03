@@ -326,42 +326,48 @@ button.reset-progress-proceed:active {
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
 }
 
-/* Cheatscreen */
-box.main-box {
-    background-image: linear-gradient(to bottom, #eceff4, #d8dee9);
+/* Cheatsheet */
+.cheatsheet-window {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
 }
 
-label.app-title {
-    font-weight: 400;
-    font-size: 55px;
+label.category-title {
     color: #5e81ac;
-}
-
-button.quit-button {
-    background-image: none;
-    background-color: #5e81ac;
-    border: none;
-    border-radius: 5px;
-    border-color: transparent;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    color: #eceff4;
-    font-weight: 500;
     font-size: 25px;
+    font-weight: 600;
 }
 
-button.quit-button:hover{
-    background-color: #5178a8;
-    border: none;
-    border-radius: 5px;
-    border-color: transparent;
+label.shortcut-title {
+    color: white;
+    padding-right: 50px;
 }
 
-button.quit-button:active {
-    background-color: #4873a8;
-    border: none;
-    border-radius: 5px;
-    border-color: transparent;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+label.cheatsheet-title {
+    color: #bf616a;
+    font-size: 30px;
+}
+
+label.shortcut-title {
+    color: white;
+    padding-right: 50px;
+}
+
+label.cheatsheet-title {
+    color: #bf616a;
+}
+
+label.shortcut-key {
+    background-color: #2E3440;
+}
+
+label.shortcut-key {
+    background-color: #2E3440;
+    color: white;
+    padding: 0px 7px 0px 7px;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: #000;
+    border-radius: 8px;
 }
 
 searchbar.top-searchbar {
@@ -382,8 +388,4 @@ entry {
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     font-size: 20px;
     color: #2e3440;
-}
-
-label.shortcut-title {
-    padding-right: 50px;
 }

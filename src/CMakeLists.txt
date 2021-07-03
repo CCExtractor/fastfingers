@@ -90,7 +90,7 @@ target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${G
 target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
 
 # Adding necessary compile flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall -g")
 # Installing the binary to the system
 add_custom_command (
   TARGET fastfingers

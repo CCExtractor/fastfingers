@@ -92,11 +92,10 @@ GtkWidget *new_label_with_class (const char *text, const char *class)
 
 GtkWidget *new_shortcut_box (void)
 {
-  GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 5);
+  GtkWidget *box = gtk_box_new (GTK_ORIENTATION_HORIZONTAL, 2);
   gtk_widget_set_margin_left (box, 30);
   gtk_widget_set_margin_right (box, 30);  
   gtk_widget_set_hexpand (box, 1);
-  gtk_box_set_homogeneous (GTK_BOX (box), 0);
   return box;
 }
 
@@ -176,12 +175,22 @@ update (GtkWidget *parent)
       GtkWidget *former_box = (GtkWidget *)(g_list_last (children)->data);
       gtk_container_remove (GTK_CONTAINER (parent), former_box);
 
+      GtkWidget *header = (GtkWidget *)(g_list_nth_data (children, 0));
+      GList *header_children = gtk_container_get_children (GTK_CONTAINER (header));
+      GtkImage *logo = (GtkImage *)(g_list_nth_data (header_children, 0));
+      set_scaled_image (logo, normalized, 25);
+
+      GtkLabel *app_label = (GtkLabel *)(g_list_nth_data (header_children, 1));
+      char *app_title = g_strdup (normalized);
+      app_title[0] = toupper (app_title[0]);
+      gtk_label_set_text (app_label, app_title);
+      free (app_title);
+      
       GtkWidget *vbox = gtk_box_new (GTK_ORIENTATION_VERTICAL, 5);
       gtk_box_pack_start (GTK_BOX (parent), vbox, FALSE, TRUE, 0);
       
       cJSON *app = ff_get_application (normalized);
       cJSON *group = cJSON_GetObjectItem(app, "group");
-
      
       for (int i = 0; i < cJSON_GetArraySize (group); ++i)
 	{
@@ -209,6 +218,8 @@ update (GtkWidget *parent)
 		  cJSON *key = cJSON_GetArrayItem (keys, k);
 		  char *key_str = format_key (key->valuestring);
 		  GtkWidget *key_label = new_label_with_class (key_str, "shortcut-key");
+
+		  gtk_widget_set_valign (key_label, GTK_ALIGN_CENTER);
 		  free (key_str);
 		  gtk_box_pack_start (GTK_BOX (hbox), key_label, FALSE, TRUE, 0);
 		}

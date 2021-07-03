@@ -7,6 +7,9 @@
     <property name="default-width">500</property>
     <property name="default-height">600</property>
     <property name="resizable">FALSE</property>
+    <style>
+      <class name="cheatsheet-window"/>
+    </style>
     <child>
       <object class="GtkScrolledWindow">
         <property name="visible">True</property>
@@ -31,14 +34,14 @@
                     <property name="halign">center</property>
                     <property name="margin-left">15</property>
                     <property name="margin-right">15</property>
-                    <property name="spacing">5</property>
+                    <property name="spacing">10</property>
                     <child>
                       <object class="GtkImage">
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
-                        <property name="halign">center</property>
-                        <property name="hexpand">False</property>
                         <property name="stock">gtk-dialog-error</property>
+                        <property name="height-request">32</property>
+			<property name="width-request">32</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -51,7 +54,10 @@
                         <property name="visible">True</property>
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
-                        <property name="label" translatable="yes">No supported application found</property>
+                        <property name="label" translatable="yes">No app found</property>
+			<style>
+			  <class name="cheatsheet-title"/>
+			</style>
                       </object>
                       <packing>
                         <property name="expand">False</property>

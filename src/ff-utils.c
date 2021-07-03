@@ -145,3 +145,38 @@ cJSON *ff_get_application(const char *name)
   
   return app;
 }
+
+void set_scaled_image (GtkImage  *image,
+		       const char *title,
+		       int         size)
+{
+  int raw_width, raw_height, new_width, new_height;
+  char *logo_path;
+  GdkPixbuf *raw_pixbuf, *scaled_pixbuf;
+  
+  logo_path = ff_logo_path_gen(title);
+
+  if (!logo_path)
+    return;
+    
+  raw_pixbuf = gdk_pixbuf_new_from_resource (logo_path, NULL);
+
+  raw_width = gdk_pixbuf_get_width (raw_pixbuf);
+  raw_height = gdk_pixbuf_get_height (raw_pixbuf);
+
+  if (raw_width > raw_height)
+    {
+      new_width = size;
+      new_height = raw_height * ((double) new_width / raw_width);
+    }
+  else
+    {
+      new_height = size;
+      new_width = raw_width * ((double) new_height / raw_height);
+    }
+
+  scaled_pixbuf = gdk_pixbuf_scale_simple (raw_pixbuf, new_width, new_height, GDK_INTERP_BILINEAR);
+  gtk_image_set_from_pixbuf (image, scaled_pixbuf);
+      
+  free(logo_path);
+}

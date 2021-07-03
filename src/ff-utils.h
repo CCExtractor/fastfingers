@@ -29,6 +29,10 @@ gboolean ff_resize_image(GtkWidget *widget,
 
 cJSON *ff_get_application(const char *name);
 
+void set_scaled_image (GtkImage  *image,
+		       const char *title,
+		       int         size);
+
 G_END_DECLS
 
 #endif
