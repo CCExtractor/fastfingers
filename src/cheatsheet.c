@@ -108,6 +108,29 @@ GtkWidget *add_shortcut_title (GtkWidget *hbox, const char *shortcut_title)
   return shortcut_label;
 }
 
+char *format_key (const char *str)
+{
+  int len = strlen (str);
+
+  char *ret = malloc (len + 1);
+  if (!ret)
+    return (char *)str;
+
+  if (len == 1)
+    {
+      for (int i = 0; i < len + 1; ++i)
+	ret[i] = toupper(str[i]);
+      return ret;
+    }
+
+  memcpy (ret, str, len + 1);
+  for (int i = 0; i < len + 1; ++i)
+    if ('_' == str[i])
+      ret[i] = ' ';
+     
+  return ret;
+}
+
 gboolean
 update (GtkWidget *parent)
 {
@@ -159,7 +182,9 @@ update (GtkWidget *parent)
 	      for (int k = 0; k < cJSON_GetArraySize (keys); ++k)
 		{
 		  cJSON *key = cJSON_GetArrayItem (keys, k);
-		  GtkWidget *key_label = new_label_with_class (key->valuestring, "shortcut-key");
+		  char *key_str = format_key (key->valuestring);
+		  
+		  GtkWidget *key_label = new_label_with_class (key_str, "shortcut-key");
 		  gtk_box_pack_start (GTK_BOX (hbox), key_label, FALSE, TRUE, 0);
 		}
 	      
