@@ -27,6 +27,8 @@ gboolean ff_resize_image(GtkWidget *widget,
 			 GdkRectangle *allocation,
 			 gpointer user_data);
 
+cJSON *ff_get_application(const char *name);
+
 G_END_DECLS
 
 #endif

@@ -1,14 +1,8 @@
-#include <gio/gio.h>
+#include "active-window.h"
 
 #ifdef _X11_FOUND
   #include <X11/Xlib.h>
   #include <X11/Xatom.h>
-#endif
-
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <time.h>
 
 int check_status(int status, unsigned long window)
 {
@@ -68,6 +62,8 @@ char *get_active_from_xorg (void)
   
   return (char *)prop;
 }
+
+#endif
 
 char *get_active_from_gnome_shell (void)
 {

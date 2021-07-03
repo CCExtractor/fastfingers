@@ -12,59 +12,6 @@ application_row_activated_cb (GtkListBox    *box,
   ff_switch_page ("practice-page");
 }
 
-cJSON *ff_get_application(const char *name)
-{
-  cJSON *app = NULL;
-  char filepath[128], *data = NULL;
-  long len, result;
-  FILE *app_file;
-  
-  sprintf(filepath, "/usr/share/fastfingers/applications/%s.json", name);
-  app_file = fopen(filepath ,"rb");
-
-  if (!app_file)
-    {
-      fprintf (stderr, "FF-ERROR: Couldn't open file %s\n", filepath);
-      goto out;
-    }
-  
-  fseek(app_file, 0, SEEK_END);
-  len = ftell(app_file);
-  fseek(app_file, 0, SEEK_SET);
-
-  data = (char*)malloc(len + 1);
-  if (!data)
-    {
-      fprintf (stderr, "FF-ERROR: Couldn't allocate memory space!\n");
-      goto out;
-    }
-  
-  result = fread(data, 1, len, app_file);
-  if (result != len)
-    {
-      fprintf (stderr, "FF-ERROR: Reading error occured!\n");
-      goto out;
-    }
-  
-  data[len] = '\0';
-
-  app = cJSON_Parse(data);
-
-  if (!app)
-    {
-      fprintf(stderr, "Error before: [%s]\n", cJSON_GetErrorPtr());
-      goto out;
-    }
-
- out:
-  if (app_file)
-    fclose (app_file);
-  if (data)
-    free (data);
-  
-  return app;
-}
-
 void ff_application_page_init(GtkStack *stack, const char *title)
 {
   GtkWidget *temp = gtk_stack_get_child_by_name (stack, title);
@@ -86,8 +33,6 @@ void ff_application_page_init(GtkStack *stack, const char *title)
     }
 
   char *name = ff_simplify_title (title);
-  char path[128];
-  sprintf (path, "/usr/share/applications/%s.json", name);
 
   cJSON *app = ff_get_application (name);
   cJSON *group = cJSON_GetObjectItem(app, "group");
@@ -99,9 +44,9 @@ void ff_application_page_init(GtkStack *stack, const char *title)
       cJSON *title = cJSON_GetObjectItemCaseSensitive(category, "title");
       cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
       int learned = 0;
-      for (int i = 0; i < cJSON_GetArraySize (shortcuts); ++i)
+      for (int j = 0; j < cJSON_GetArraySize (shortcuts); ++j)
 	{
-	  cJSON *shortcut = cJSON_GetArrayItem (shortcuts, i);
+	  cJSON *shortcut = cJSON_GetArrayItem (shortcuts, j);
 	  cJSON *learn_stat = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
 	  learned += learn_stat->valueint;
 	}

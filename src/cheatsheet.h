@@ -4,5 +4,7 @@
  
 #include <gtk/gtk.h>
 #include "ff-utils.h"
+#include "active-window.h"
+#include "cJSON.h"
 
 #endif

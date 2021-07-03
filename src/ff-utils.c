@@ -92,3 +92,56 @@ gboolean ff_resize_image(GtkWidget *widget,
 
    return FALSE;
 }
+
+cJSON *ff_get_application(const char *name)
+{
+  cJSON *app = NULL;
+  char filepath[128], *data = NULL;
+  long len, result;
+  FILE *app_file;
+  
+  sprintf(filepath, "/usr/share/fastfingers/applications/%s.json", name);
+  app_file = fopen(filepath ,"rb");
+
+  if (!app_file)
+    {
+      fprintf (stderr, "FF-ERROR: Couldn't open file %s\n", filepath);
+      goto out;
+    }
+  
+  fseek(app_file, 0, SEEK_END);
+  len = ftell(app_file);
+  fseek(app_file, 0, SEEK_SET);
+
+  data = (char*)malloc(len + 1);
+  if (!data)
+    {
+      fprintf (stderr, "FF-ERROR: Couldn't allocate memory space!\n");
+      goto out;
+    }
+  
+  result = fread(data, 1, len, app_file);
+  if (result != len)
+    {
+      fprintf (stderr, "FF-ERROR: Reading error occured!\n");
+      goto out;
+    }
+  
+  data[len] = '\0';
+
+  app = cJSON_Parse(data);
+
+  if (!app)
+    {
+      fprintf(stderr, "Error before: [%s]\n", cJSON_GetErrorPtr());
+      goto out;
+    }
+
+ out:
+  if (app_file)
+    fclose (app_file);
+  if (data)
+    free (data);
+  
+  return app;
+}
