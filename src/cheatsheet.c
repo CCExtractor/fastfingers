@@ -1,16 +1,5 @@
 #include "cheatsheet.h"
 
-/*
-  static void
-  search_changed_cb (GtkSearchEntry *entry,
-  gpointer       *userdata)
-  {
-  const char *text;
-  text = gtk_entry_get_text (GTK_ENTRY (entry));
-  printf ("%s\n", text);
-  }
-*/
-
 char *
 get_active_window (void)
 {
