@@ -73,7 +73,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkSearchEntry">
+                  <object class="GtkSearchEntry" id="entry">
                     <property name="visible">True</property>
                     <property name="can-focus">True</property>
                     <property name="margin-left">30</property>

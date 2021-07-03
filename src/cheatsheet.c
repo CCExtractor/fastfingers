@@ -236,6 +236,73 @@ update (GtkWidget *parent)
   return 1;
 }
 
+int strstric (const char *str1, const char *str2)
+{
+  int ret;
+  char *src = g_strdup(str1);
+  char *phrase = g_strdup(str2);
+
+  for (int i = 0; i < strlen (src); ++i)
+    src[i] = tolower (src[i]);
+  for (int i = 0; i < strlen (phrase); ++i)
+    phrase[i] = tolower (phrase[i]);
+
+  ret = !!strstr (src, phrase);
+
+  g_free (src);
+  g_free (phrase);
+
+  return ret;
+}
+
+void
+changed_cb (GtkEditable *editable,
+	    GtkWidget   *main_box)
+{
+  const char *text = gtk_entry_get_text (GTK_ENTRY (editable));
+  
+  GList *main_box_children = gtk_container_get_children (GTK_CONTAINER (main_box));
+  GtkWidget *vbox = (GtkWidget *)(g_list_nth_data (main_box_children, 2));
+  
+  GList *children = gtk_container_get_children (GTK_CONTAINER (vbox));
+
+  int len = g_list_length (children);
+
+  if (!len)
+    return;
+  
+  GtkWidget *last_title = (GtkWidget *)g_list_nth_data (children, 0);
+  int found = 0;
+  
+  for (int i = 1; i < len; ++i)
+    {
+      GtkWidget *widget = (GtkWidget *)g_list_nth_data (children, i);
+
+      if (GTK_IS_BOX (widget))
+	{
+	  GList *hbox_children = gtk_container_get_children (GTK_CONTAINER (widget));
+	  GtkLabel *label = (GtkLabel *)(g_list_nth_data (hbox_children, 0));
+	  if (strstric (gtk_label_get_text (label), text))
+	    {
+	      found = 1;
+	      gtk_widget_set_visible (widget, 1);
+	    }
+	  else
+	    gtk_widget_set_visible (widget, 0);
+	}
+      
+      if (GTK_IS_LABEL (widget) || i == len - 1)
+	{
+	  if (!found)
+	    gtk_widget_set_visible (last_title, 0);
+	  else
+	    gtk_widget_set_visible (last_title, 1);
+	  last_title = widget;
+	  found = 0;
+	}
+    }
+}
+
 static void
 activate (GtkApplication* app,
           gpointer        user_data)
@@ -243,30 +310,18 @@ activate (GtkApplication* app,
   ff_init_css ();
 
   GtkBuilder *builder = gtk_builder_new_from_resource ("/org/ccextractor/FastFingers/ui/cheatsheet.ui");
-  //  window = gtk_application_window_new (app);
-  
+
   GtkWidget *window = (GtkWidget *)gtk_builder_get_object (builder, "window");
   GtkWidget *main_box = (GtkWidget *)gtk_builder_get_object (builder, "main-box");
   gtk_window_set_title (GTK_WINDOW (window), "FastFingers Cheatsheet");
   gtk_window_set_position (GTK_WINDOW (window), GTK_WIN_POS_CENTER_ALWAYS);
 
-  GtkWidget *entry = gtk_search_entry_new ();
-  gtk_widget_set_halign (entry, GTK_ALIGN_CENTER);
-
   g_signal_connect(G_OBJECT(window), 
 		   "delete-event", G_CALLBACK(delete_event_cb), NULL);
       
-  /*
-    GtkWidget *searchbar = (GtkWidget *)gtk_builder_get_object (builder, "searchbar");
-    gtk_search_bar_connect_entry (GTK_SEARCH_BAR (searchbar), GTK_ENTRY (entry));
-    gtk_search_bar_set_show_close_button (GTK_SEARCH_BAR (searchbar), FALSE);
-
-    gtk_widget_set_size_request (entry, 550, 45);
-
-    g_signal_connect (entry, "search-changed",
-    G_CALLBACK (search_changed_cb), NULL);
-
-  */
+  GtkWidget *entry = (GtkWidget *)gtk_builder_get_object (builder, "entry");
+  g_signal_connect (GTK_EDITABLE (entry), "changed",
+		    G_CALLBACK (changed_cb), main_box);
   
   GtkStatusIcon *status_icon = gtk_status_icon_new_from_file ("/usr/share/icons/hicolor/32x32/apps/fastfingers.png");
 
