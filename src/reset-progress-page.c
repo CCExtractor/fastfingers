@@ -3,12 +3,70 @@
 GtkWidget *message, *info, *button_box;
 
 void no_clicked_cb(GtkButton *button, gpointer user_data) {
-  printf("f");
   ff_switch_previous();
 }
 
 void yes_clicked_cb(GtkButton *button, gpointer user_data) {
-  // Reset progress here
+  DIR *d;
+  struct dirent *dir;
+  wordexp_t p;
+  char **w;
+
+  wordexp("~/.fastfingers/applications", &p, 0);
+  w = p.we_wordv;
+
+  d = opendir(w[0]);
+  if (d) {
+    while ((dir = readdir(d))) {
+      if (!g_str_has_suffix(dir->d_name, ".json"))
+        continue;
+      char *name = g_strndup(dir->d_name, strlen(dir->d_name) - 5);
+
+      cJSON *app = ff_get_application(name);
+      free(name);
+
+      cJSON *group = cJSON_GetObjectItem(app, "group");
+
+      for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
+        cJSON *category = cJSON_GetArrayItem(group, i);
+        cJSON *shortcuts =
+            cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+        for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
+          cJSON *shortcut = cJSON_GetArrayItem(shortcuts, j);
+          cJSON *learn_stat =
+              cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
+          learn_stat->valueint = 0;
+        }
+      }
+      char *out = cJSON_Print(app);
+      FILE *fp = NULL;
+      char *path = g_strconcat(w[0], "/", dir->d_name, (char *)0);
+      fp = fopen(path, "w");
+
+      if (!fp) {
+        fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", path,
+                strerror(errno));
+        goto end;
+      }
+
+      int written = fprintf(fp, "%s", out);
+
+      if (written < 0) {
+        fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", path,
+                strerror(errno));
+        goto end;
+      }
+
+    end:
+      if (fp)
+        fclose(fp);
+      free(out);
+      free(path);
+      cJSON_Delete(app);
+    }
+    closedir(d);
+  }
+
   gtk_label_set_text(GTK_LABEL(message), "Your progress has been reset.");
   gtk_label_set_text(GTK_LABEL(info), "You may continue.");
   gtk_widget_set_visible(button_box, 0);
