@@ -6,6 +6,8 @@
 #include "ff-utils.h"
 #include "key.h"
 
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <wordexp.h>
 

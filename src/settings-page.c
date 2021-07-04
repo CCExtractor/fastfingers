@@ -1,9 +1,14 @@
 #include "settings-page.h"
 
 void ff_configure_autostart(int state) {
+  char path[128];
+
   wordexp_t p;
-  wordexp("~/.config/autostart/org.ccextractor.FastFingers.desktop", &p, 0);
+  wordexp("~/.config/autostart", &p, 0);
   char **w = p.we_wordv;
+
+  sprintf(path, "%s/org.ccextractor.FastFingers.desktop", w[0]);
+
   if (state) {
     FILE *source = fopen(
         "/usr/share/applications/org.ccextractor.FastFingers.desktop", "r");
@@ -13,7 +18,13 @@ void ff_configure_autostart(int state) {
       return;
     }
 
-    FILE *target = fopen(w[0], "w");
+    struct stat st = {0};
+
+    if (stat(w[0], &st) == -1) {
+      mkdir(w[0], 0700);
+    }
+
+    FILE *target = fopen(path, "w");
 
     if (!target) {
       fprintf(
