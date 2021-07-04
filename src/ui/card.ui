@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
 	<template class="FFCard" parent="GtkEventBox">
-		<property name="size">75</property>
+		<property name="size">65</property>
 		<child>
 			<object class="GtkBox" id="box">
 				<property name="orientation">vertical</property>
