@@ -5,8 +5,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-  #include "cheatsheet.h"
-  int ff_start_tray_icon(int argc, char *argv[]);
+#include "cheatsheet.h"
+int ff_start_tray_icon(int argc, char *argv[]);
 
 #ifdef __cplusplus
 }

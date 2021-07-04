@@ -2,10 +2,10 @@
 #ifndef _FF_HOME
 #define _FF_HOME
 
-#include "ff-utils.h"
-#include "card.h"
-#include "settings-page.h"
 #include "button-box.h"
+#include "card.h"
+#include "ff-utils.h"
+#include "settings-page.h"
 
 G_BEGIN_DECLS
 

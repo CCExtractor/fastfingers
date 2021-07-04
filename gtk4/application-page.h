@@ -2,10 +2,10 @@
 #ifndef _FF_APPLICATION_PAGE
 #define _FF_APPLICATION_PAGE
 
+#include "fastfingers.h"
 #include "ff-utils.h"
 #include "practice-page.h"
 #include "shortcut-list-row.h"
-#include "fastfingers.h"
 
 G_BEGIN_DECLS
 

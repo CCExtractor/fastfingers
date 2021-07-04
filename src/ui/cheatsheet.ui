@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Generated with glade 3.38.2 -->
 <interface>
-  <requires lib="gtk+" version="3.6"/>
+  <requires lib="gtk+" version="3.6" />
   <object class="GtkWindow" id="window">
     <property name="can-focus">False</property>
     <property name="default-width">500</property>
     <property name="default-height">600</property>
     <property name="resizable">FALSE</property>
     <style>
-      <class name="cheatsheet-window"/>
+      <class name="cheatsheet-window" />
     </style>
     <child>
       <object class="GtkScrolledWindow">
@@ -25,8 +25,8 @@
                 <property name="can-focus">False</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">10</property>
-		<property name="margin-top">10</property>
-		<property name="margin-bottom">10</property>
+                <property name="margin-top">10</property>
+                <property name="margin-bottom">10</property>
                 <child>
                   <object class="GtkBox">
                     <property name="visible">True</property>
@@ -41,7 +41,7 @@
                         <property name="can-focus">False</property>
                         <property name="stock">gtk-dialog-error</property>
                         <property name="height-request">32</property>
-			<property name="width-request">32</property>
+                        <property name="width-request">32</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -55,9 +55,9 @@
                         <property name="can-focus">False</property>
                         <property name="halign">center</property>
                         <property name="label" translatable="yes">No app found</property>
-			<style>
-			  <class name="cheatsheet-title"/>
-			</style>
+                        <style>
+                          <class name="cheatsheet-title" />
+                        </style>
                       </object>
                       <packing>
                         <property name="expand">False</property>

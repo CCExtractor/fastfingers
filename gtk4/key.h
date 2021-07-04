@@ -6,12 +6,11 @@
 
 G_BEGIN_DECLS
 
-#define FF_TYPE_KEY ff_key_get_type ()
+#define FF_TYPE_KEY ff_key_get_type()
 
-G_DECLARE_FINAL_TYPE (FFKey, ff_key, FF, KEY, GtkWidget)
+G_DECLARE_FINAL_TYPE(FFKey, ff_key, FF, KEY, GtkWidget)
 
-GtkWidget*
-ff_key_new (const gchar *text);
+GtkWidget *ff_key_new(const gchar *text);
 
 G_END_DECLS
 

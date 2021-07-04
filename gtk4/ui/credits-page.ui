@@ -1,78 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <object class="GtkScrolledWindow" id="credits_scrolled_window">
-    <child>
-      <object class="GtkViewport">
-	<style>
-	  <class name="credits-viewport"/>
-	</style>
-	<child>
-	  <object class="GtkBox">
-            <property name="orientation">vertical</property>
-	    <child>
-	      <object class="FFButtonbox">
-		<property name="back-visible">True</property>
-		<property name="back-label">&lt; Settings</property>
-		<property name="settings-visible">False</property>
-	      </object>
-	    </child>
-	    <child>
-	      <object class="GtkBox" id="home_container">
-		<property name="orientation">vertical</property>
-		<property name="spacing">20</property>
+	<object class="GtkScrolledWindow" id="credits_scrolled_window">
 		<child>
-		  <object class="GtkLabel">
-		    <property name="halign">center</property>
-		    <property name="label">Credits</property>
-		    <style>
-		      <class name="credits-header"/>
-		    </style>
-		  </object>
+			<object class="GtkViewport">
+				<style>
+					<class name="credits-viewport" />
+				</style>
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">vertical</property>
+						<child>
+							<object class="FFButtonbox">
+								<property name="back-visible">True</property>
+								<property name="back-label">&lt; Settings</property>
+								<property name="settings-visible">False</property>
+							</object>
+						</child>
+						<child>
+							<object class="GtkBox" id="home_container">
+								<property name="orientation">vertical</property>
+								<property name="spacing">20</property>
+								<child>
+									<object class="GtkLabel">
+										<property name="halign">center</property>
+										<property name="label">Credits</property>
+										<style>
+											<class name="credits-header" />
+										</style>
+									</object>
+								</child>
+								<child>
+									<object class="GtkLabel">
+										<property name="halign">center</property>
+										<property name="label">Created by</property>
+										<style>
+											<class name="credits-title" />
+										</style>
+									</object>
+								</child>
+								<child>
+									<object class="GtkListBox">
+										<style>
+											<class name="credits-list" />
+										</style>
+										<child>
+											<object class="GtkListBoxRow">
+												<property name="name">shortcut</property>
+												<property name="selectable">False</property>
+												<child>
+													<object class="GtkBox">
+														<property name="homogeneous">True</property>
+														<child>
+															<object class="GtkLabel">
+																<property name="halign">start</property>
+																<property name="label">Ali Eren Yogurtcu</property>
+															</object>
+														</child>
+														<child>
+															<object class="GtkLabel">
+																<property name="halign">end</property>
+																<property name="label">aeren.yogurtcu@gmail.com</property>
+															</object>
+														</child>
+													</object>
+												</child>
+											</object>
+										</child>
+									</object>
+								</child>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
 		</child>
-		<child>
-		  <object class="GtkLabel">
-		    <property name="halign">center</property>
-		    <property name="label">Created by</property>
-		    <style>
-		      <class name="credits-title"/>
-		    </style>
-		  </object>
-		</child>
-		<child>
-		  <object class="GtkListBox">
-		    <style>
-		      <class name="credits-list"/>
-		    </style>
-		    <child>
-		      <object class="GtkListBoxRow">
-			<property name="name">shortcut</property>
-			<property name="selectable">False</property>
-			<child>
-			  <object class="GtkBox">
-			    <property name="homogeneous">True</property>
-			    <child>
-			      <object class="GtkLabel">
-				<property name="halign">start</property>
-				<property name="label">Ali Eren Yogurtcu</property>
-			      </object>
-			    </child>
-			    <child>
-			      <object class="GtkLabel">
-				<property name="halign">end</property>
-				<property name="label">aeren.yogurtcu@gmail.com</property>
-			      </object>
-			    </child>
-			  </object>
-			</child>
-		      </object>
-		    </child>
-		  </object>
-		</child>
-	      </object>
-	    </child>
-	  </object>
-        </child>
-      </object>
-    </child>
-  </object>
+	</object>
 </interface>

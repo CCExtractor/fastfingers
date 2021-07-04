@@ -6,27 +6,27 @@
     <property name="resizable">True</property>
     <property name="default-width">1280</property>
     <property name="default-height">720</property>
-    <signal name="destroy" handler="gtk_window_destroy" swapped="no"/>
+    <signal name="destroy" handler="gtk_window_destroy" swapped="no" />
     <child>
       <object class="GtkStack" id="ff_stack">
         <property name="visible">True</property>
         <property name="can-focus">False</property>
         <property name="transition-type">GTK_STACK_TRANSITION_TYPE_CROSSFADE</property>
         <child>
-          <placeholder/>
+          <placeholder />
         </child>
         <style>
-          <class name="app-stack"/>
+          <class name="app-stack" />
         </style>
       </object>
     </child>
     <child>
       <object class="GtkEventControllerKey">
-	<signal name="key_pressed" handler="key_pressed_cb"/>
+        <signal name="key_pressed" handler="key_pressed_cb" />
       </object>
     </child>
     <style>
-      <class name="app-window"/>
+      <class name="app-window" />
     </style>
   </object>
 </interface>

@@ -3,12 +3,12 @@
   <template class="FFKey" parent="GtkWidget">
     <child>
       <object class="GtkLabel" id="label">
-	<property name="halign">center</property>
-	<property name="height-request">50</property>
-	<property name="width-request">62</property>
-	<style>
-	  <class name="practice-key-label"/>
-	</style>
+        <property name="halign">center</property>
+        <property name="height-request">50</property>
+        <property name="width-request">62</property>
+        <style>
+          <class name="practice-key-label" />
+        </style>
       </object>
     </child>
   </template>

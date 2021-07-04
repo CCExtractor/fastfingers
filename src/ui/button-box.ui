@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-  <template class="FFButtonbox" parent="GtkBox">
-    <property name="orientation">horizontal</property>
-    <property name="homogeneous">True</property>
-    <style>
-      <class name="button-box"/>
-    </style>
-    <child>
-      <object class="GtkButton" id="back">
-	<property name="label" translatable="yes">Back</property>
-	<property name="visible">False</property>
-	<property name="receives-default">True</property>
-	<property name="halign">start</property>
-	<property name="valign">start</property>
-	<property name="margin-start">20</property>
-	<property name="margin-top">20</property>
-	<style>
-	  <class name="back-button"/>
-	</style>
-      </object>
-    </child>
-    <child>
-      <object class="GtkButton" id="settings">
-	<property name="label" translatable="yes">Settings</property>
-	<property name="receives-default">True</property>
-	<property name="halign">end</property>
-	<property name="valign">start</property>
-	<property name="margin-end">20</property>
-	<property name="margin-top">20</property>
-	<style>
-	  <class name="settings-button"/>
-	</style>
-      </object>
-    </child>
-  </template>
+	<template class="FFButtonbox" parent="GtkBox">
+		<property name="orientation">horizontal</property>
+		<property name="homogeneous">True</property>
+		<style>
+			<class name="button-box" />
+		</style>
+		<child>
+			<object class="GtkButton" id="back">
+				<property name="label" translatable="yes">Back</property>
+				<property name="visible">False</property>
+				<property name="receives-default">True</property>
+				<property name="halign">start</property>
+				<property name="valign">start</property>
+				<property name="margin-start">20</property>
+				<property name="margin-top">20</property>
+				<style>
+					<class name="back-button" />
+				</style>
+			</object>
+		</child>
+		<child>
+			<object class="GtkButton" id="settings">
+				<property name="label" translatable="yes">Settings</property>
+				<property name="receives-default">True</property>
+				<property name="halign">end</property>
+				<property name="valign">start</property>
+				<property name="margin-end">20</property>
+				<property name="margin-top">20</property>
+				<style>
+					<class name="settings-button" />
+				</style>
+			</object>
+		</child>
+	</template>
 </interface>

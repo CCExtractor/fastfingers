@@ -2,8 +2,8 @@
 #ifndef _FF_RESPROG
 #define _FF_RESPROG
 
-#include "ff-utils.h"
 #include "fastfingers.h"
+#include "ff-utils.h"
 
 G_BEGIN_DECLS
 

@@ -2,12 +2,12 @@
 #ifndef _FF_SETTINGS
 #define _FF_SETTINGS
 
-#include "key.h"
-#include "ff-utils.h"
 #include "fastfingers.h"
+#include "ff-utils.h"
+#include "key.h"
 
-#include <wordexp.h>
 #include <unistd.h>
+#include <wordexp.h>
 
 G_BEGIN_DECLS
 
