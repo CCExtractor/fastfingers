@@ -43,11 +43,12 @@ void ff_configure_autostart(int state) {
     fclose(source);
     fclose(target);
   } else {
-    int ret = remove(w[0]);
+    int ret = remove(path);
     if (ret)
       fprintf(
           stderr,
-          "FF-ERROR: Couldn't remove desktop file at ~/.config/autostart\n");
+          "FF-ERROR: Couldn't remove desktop file at ~/.config/autostart: %s\n",
+          strerror(errno));
   }
   wordfree(&p);
 }
