@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
+#include <wordexp.h>
 
 G_BEGIN_DECLS
 

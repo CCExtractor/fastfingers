@@ -89,8 +89,15 @@ cJSON *ff_get_application(const char *name) {
   char filepath[128], *data = NULL;
   long len, result;
   FILE *app_file;
+  wordexp_t p;
+  char **w;
 
-  sprintf(filepath, "/usr/share/fastfingers/applications/%s.json", name);
+  wordexp("~/.fastfingers/applications", &p, 0);
+  w = p.we_wordv;
+
+  sprintf(filepath, "%s/%s.json", w[0], name);
+  wordfree(&p);
+
   app_file = fopen(filepath, "rb");
 
   if (!app_file) {
