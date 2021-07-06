@@ -429,7 +429,9 @@ searchbar.top-searchbar box {
 entry {
     background-color: #d8dee9;
     border-color: transparent;
+    border-radius: 10px;
+    padding: 5px;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
-    font-size: 20px;
-    color: #2e3440;
+    font-size: 16px;
+    color: #000;
 }
