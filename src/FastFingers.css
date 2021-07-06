@@ -4,6 +4,17 @@
     all: unset;
 }
 
+scrollbar contents {
+    min-width: 10px;
+    background-color: #81A1C1;
+}
+
+scrollbar contents slider {
+    min-width: 10px;
+    background-color: #5E81AC;
+    border-radius: 10px;
+}
+
 button {
     padding: 5px 10px 5px 10px;
 }
