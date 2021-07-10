@@ -177,11 +177,23 @@ char *normalize_keyval_name(const char *str) {
   if (len == 1)
     ret = g_strdup_printf("%c", toupper(*str));
 
-  else if (!strcmp(str, "Control"))
+  else if (!strcmp(str, "Control") || !strcmp(str, "Control_L") ||
+           !strcmp(str, "Control_R"))
     ret = g_strdup("Ctrl");
+
+  else if (!strcmp(str, "Alt") || !strcmp(str, "Alt_L") ||
+           !strcmp(str, "Alt_R"))
+    ret = g_strdup("Alt");
+
+  else if (!strcmp(str, "Shift") || !strcmp(str, "Shift_L") ||
+           !strcmp(str, "Shift_R"))
+    ret = g_strdup("⇧");
 
   else if (!strcmp(str, "BackSpace"))
     ret = g_strdup("⌫");
+
+  else if (!strcmp(str, "Return"))
+    ret = g_strdup("⏎");
 
   else if (!strcmp(str, "Delete"))
     ret = g_strdup("Del");
@@ -198,11 +210,68 @@ char *normalize_keyval_name(const char *str) {
   else if (!strcmp(str, "Down"))
     ret = g_strdup("↓");
 
-  else if (!strcmp(str, "Page_Up") || !strcmp(str, "Page_Down")) {
-    int idx = strchr(str, '_') - str;
-    ret = g_strdup(str);
-    ret[idx] = ' ';
-  }
+  else if (!strcmp(str, "space"))
+    ret = g_strdup("␣");
+
+  else if (!strcmp(str, "Escape"))
+    ret = g_strdup("Esc");
+
+  else if (!strcmp(str, "Caps_Lock"))
+    ret = g_strdup("⇪");
+
+  else if (!strcmp(str, "quotedbl"))
+    ret = g_strdup("\"");
+
+  else if (!strcmp(str, "asterisk"))
+    ret = g_strdup("*");
+
+  else if (!strcmp(str, "minus"))
+    ret = g_strdup("-");
+
+  else if (!strcmp(str, "less"))
+    ret = g_strdup("<");
+
+  else if (!strcmp(str, "greater"))
+    ret = g_strdup(">");
+
+  else if (!strcmp(str, "period"))
+    ret = g_strdup(".");
+
+  else if (!strcmp(str, "comma"))
+    ret = g_strdup(",");
+
+  else if (!strcmp(str, "ISO_Level3_Shift"))
+    ret = g_strdup("AltGr");
+
+  else if (!strcmp(str, "Super_L") || !strcmp(str, "Super_R"))
+    ret = g_strdup("Super");
+
+  else if (!strcmp(str, "Insert"))
+    ret = g_strdup("Ins");
+
+  else if (!strcmp(str, "ISO_Level3_Shift"))
+    ret = g_strdup("AltGr");
+
+  else if (!strcmp(str, "ISO_Level3_Shift"))
+    ret = g_strdup("AltGr");
+
+  else if (!strcmp(str, "ISO_Level3_Shift"))
+    ret = g_strdup("AltGr");
+
+  else if (!strcmp(str, "Page_Up"))
+    ret = g_strdup("Pg Up");
+
+  else if (!strcmp(str, "Page_Down"))
+    ret = g_strdup("Pg Dn");
+
+  else if (!strcmp(str, "Scroll_Lock"))
+    ret = g_strdup("⤓");
+
+  else if (!strcmp(str, "Page_Down"))
+    ret = g_strdup("Pg Dn");
+
+  else if (!strcmp(str, "Num_Lock"))
+    ret = g_strdup("⇭");
 
   else
     ret = g_strdup(str);
