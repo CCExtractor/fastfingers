@@ -213,6 +213,7 @@ gboolean next_practice_page(callback_data *cbd) {
       for (int i = 0; i < kc->size; ++i) {
         key = ff_box_nth_child(pd->box, i);
         ff_key_set_style(key, "test");
+        ff_key_set_visible(FF_KEY(key), 0);
       }
 
       kc->is_test = 1;
