@@ -223,9 +223,9 @@
                     "learned": 0
                 },
                 {
-                    "title": "Del",
+                    "title": "Delete",
                     "keys": [
-                        "Del"
+                        "Delete"
                     ],
                     "learned": 0
                 },
@@ -241,7 +241,7 @@
                     "title": "Delete Word to the Right",
                     "keys": [
                         "Control",
-                        "Del"
+                        "Delete"
                     ],
                     "learned": 0
                 },
@@ -793,7 +793,7 @@
                     "keys": [
                         "Control",
                         "Shift",
-                        "Del"
+                        "Delete"
                     ],
                     "learned": 0
                 }
@@ -1094,7 +1094,7 @@
                     "title": "Delete Selected Autocomplete Entry",
                     "keys": [
                         "Shift",
-                        "Del"
+                        "Delete"
                     ],
                     "learned": 0
                 },
