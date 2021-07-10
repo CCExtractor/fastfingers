@@ -223,9 +223,9 @@
                     "learned": 0
                 },
                 {
-                    "title": "Delete",
+                    "title": "Del",
                     "keys": [
-                        "Delete"
+                        "Del"
                     ],
                     "learned": 0
                 },
@@ -241,7 +241,7 @@
                     "title": "Delete Word to the Right",
                     "keys": [
                         "Control",
-                        "Delete"
+                        "Del"
                     ],
                     "learned": 0
                 },
