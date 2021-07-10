@@ -19,6 +19,12 @@ typedef struct page_data {
   GtkStack *stack;
 } page_data;
 
+typedef struct callback_data {
+  GtkWidget *key;
+  key_container *kc;
+  page_data *pd;
+} callback_data;
+
 page_data *new_page_data(GtkWidget *box, key_container *kc, GtkStack *stack) {
   page_data *pd = malloc(sizeof(page_data));
   if (!pd) {
@@ -151,6 +157,74 @@ key_container *ff_get_key_container(cJSON *app, const char *row_title) {
   return kc;
 }
 
+gboolean next_practice_page(callback_data *cbd) {
+  GtkWidget *key = cbd->key;
+  key_container *kc = cbd->kc;
+  page_data *pd = cbd->pd;
+
+  if (kc->success) {
+    if (kc->is_test) {
+      const char *title = cJSON_GetObjectItem(kc->app, "title")->valuestring;
+      cJSON *group = cJSON_GetObjectItem(kc->app, "group");
+      cJSON *category = cJSON_GetArrayItem(group, kc->category_idx);
+      cJSON *shortcuts =
+          cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+      cJSON *shortcut = cJSON_GetArrayItem(shortcuts, kc->shortcut_idx);
+      cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
+      cJSON_SetIntValue(learned, 1);
+
+      wordexp_t p;
+      char **w;
+      char file_path[64];
+
+      char *name = ff_simplify_title(title);
+      sprintf(file_path, "~/.fastfingers/applications/%s.json", name);
+      free(name);
+
+      wordexp(file_path, &p, 0);
+      w = p.we_wordv;
+
+      char *out = cJSON_Print(kc->app);
+
+      FILE *fp = NULL;
+      fp = fopen(w[0], "w");
+
+      if (!fp) {
+        fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
+                strerror(errno));
+        goto end;
+      }
+
+      int written = fprintf(fp, "%s", out);
+
+      if (written < 0) {
+        fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
+                strerror(errno));
+        goto end;
+      }
+
+    end:
+      if (fp)
+        fclose(fp);
+      free(out);
+
+      ff_practice_page_init(pd->stack, kc->app, kc->row_title);
+    } else {
+      for (int i = 0; i < kc->size; ++i) {
+        key = ff_box_nth_child(pd->box, i);
+        ff_key_set_style(key, "test");
+      }
+
+      kc->is_test = 1;
+      kc->idx = 0;
+    }
+  } else {
+    ff_practice_page_init(pd->stack, kc->app, kc->row_title);
+  }
+
+  return 0;
+}
+
 gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
                         guint keycode, GdkModifierType state, page_data *pd) {
   static key_container *kc = NULL;
@@ -171,74 +245,15 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
   ff_key_set_text(FF_KEY(key), normalize_keyval_name(gdk_keyval_name(keyval)));
   ff_key_set_visible(FF_KEY(key), 1);
 
-  if (kc->size - 1 != kc->idx) {
+  if (kc->size - 1 != kc->idx)
     ++kc->idx;
-  } else {
-    clock_t t = clock();
-    while ((clock() - t) / CLOCKS_PER_SEC < 1)
-      ; // null statement
-
-    if (kc->success) {
-      if (kc->is_test) {
-        const char *title = cJSON_GetObjectItem(kc->app, "title")->valuestring;
-        cJSON *group = cJSON_GetObjectItem(kc->app, "group");
-        cJSON *category = cJSON_GetArrayItem(group, kc->category_idx);
-        cJSON *shortcuts =
-            cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
-        cJSON *shortcut = cJSON_GetArrayItem(shortcuts, kc->shortcut_idx);
-        cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
-        cJSON_SetIntValue(learned, 1);
-
-        wordexp_t p;
-        char **w;
-        char file_path[64];
-
-        char *name = ff_simplify_title(title);
-        sprintf(file_path, "~/.fastfingers/applications/%s.json", name);
-        free(name);
-
-        wordexp(file_path, &p, 0);
-        w = p.we_wordv;
-
-        char *out = cJSON_Print(kc->app);
-
-        FILE *fp = NULL;
-        fp = fopen(w[0], "w");
-
-        if (!fp) {
-          fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
-                  strerror(errno));
-          goto end;
-        }
-
-        int written = fprintf(fp, "%s", out);
-
-        if (written < 0) {
-          fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n",
-                  file_path, strerror(errno));
-          goto end;
-        }
-
-      end:
-        if (fp)
-          fclose(fp);
-        free(out);
-
-        ff_practice_page_init(pd->stack, kc->app, kc->row_title);
-      } else {
-        for (int i = 0; i < kc->size; ++i) {
-          key = ff_box_nth_child(pd->box, i);
-          ff_key_set_style(key, "test");
-        }
-
-        kc->is_test = 1;
-        kc->idx = 0;
-      }
-    } else {
-      ff_practice_page_init(pd->stack, kc->app, kc->row_title);
-    }
+  else {
+    callback_data *cbd = malloc(sizeof(callback_data));
+    cbd->key = key;
+    cbd->kc = kc;
+    cbd->pd = pd;
+    g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), cbd);
   }
-
   return 0;
 }
 
