@@ -72,9 +72,7 @@ void settings_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
   GSettings *settings = (GSettings *)user_data;
   const char *row_name = gtk_widget_get_name(GTK_WIDGET(row));
 
-  if (!strcmp(row_name, "shortcut")) {
-    // To-do: change shortcut
-  } else if (!strcmp(row_name, "autostart")) {
+  if (!strcmp(row_name, "autostart")) {
     GtkWidget *row_box = gtk_bin_get_child(GTK_BIN(row));
     GList *children = gtk_container_get_children(GTK_CONTAINER(row_box));
     GtkWidget *icon = (GtkWidget *)g_list_last(children)->data;
