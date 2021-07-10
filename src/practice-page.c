@@ -219,7 +219,15 @@ gboolean next_practice_page(callback_data *cbd) {
       kc->idx = 0;
     }
   } else {
-    ff_practice_page_init(pd->stack, kc->app, kc->row_title);
+    for (int i = 0; i < kc->size; ++i) {
+      key = ff_box_nth_child(pd->box, i);
+      ff_key_set_style(key, "tooltip");
+      ff_key_set_text(FF_KEY(key), normalize_keyval_name(kc->str_arr[i]));
+      ff_key_set_visible(FF_KEY(key), 1);
+    }
+
+    kc->is_test = 0;
+    kc->idx = 0;
   }
 
   return 0;
