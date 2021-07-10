@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
   <object class="GtkEventBox" id="event_box">
+    <property name="can-focus">True</property>
     <child>
       <object class="GtkBox" id="main_box">
         <property name="orientation">vertical</property>
