@@ -35,7 +35,7 @@ void yes_clicked_cb(GtkButton *button, gpointer user_data) {
           cJSON *shortcut = cJSON_GetArrayItem(shortcuts, j);
           cJSON *learn_stat =
               cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
-          learn_stat->valueint = 0;
+          cJSON_SetIntValue(learn_stat, 0);
         }
       }
       char *out = cJSON_Print(app);
@@ -62,7 +62,6 @@ void yes_clicked_cb(GtkButton *button, gpointer user_data) {
         fclose(fp);
       free(out);
       free(path);
-      cJSON_Delete(app);
     }
     closedir(d);
   }

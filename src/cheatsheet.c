@@ -21,14 +21,6 @@ int strcmpic(const char *str1, const char *str2) {
   return 1;
 }
 
-gboolean focus_out_event_cb(GtkWidget *widget, GdkEvent *event,
-                            gpointer user_data) {
-  if (gtk_widget_get_visible(widget))
-    gtk_widget_hide(widget);
-
-  return 0;
-}
-
 gboolean button_press_event_cb(GtkStatusIcon *status_icon, GdkEvent *event,
                                GtkWidget *window) {
   if (gtk_widget_get_visible(window))
@@ -40,7 +32,7 @@ gboolean button_press_event_cb(GtkStatusIcon *status_icon, GdkEvent *event,
 }
 
 gboolean delete_event_cb(GtkWidget *widget, GdkEvent *event, gpointer data) {
-  gtk_widget_hide(widget);
+  gtk_window_iconify(GTK_WINDOW(widget));
   return 1;
 }
 
@@ -49,11 +41,6 @@ char *normalize_name(const char *name) {
     return "firefox";
 
   return NULL;
-}
-
-void add_style_class(GtkWidget *widget, const char *class) {
-  GtkStyleContext *context = gtk_widget_get_style_context(widget);
-  gtk_style_context_add_class(context, class);
 }
 
 GtkWidget *new_label_with_class(const char *text, const char *class) {
@@ -83,47 +70,6 @@ GtkWidget *add_shortcut_title(GtkWidget *hbox, const char *shortcut_title) {
   return shortcut_label;
 }
 
-char *format_key(const char *str) {
-  int len = strlen(str);
-
-  char *ret = NULL;
-
-  if (len == 1)
-    ret = g_strdup_printf("%c", toupper(*str));
-
-  else if (!strcmp(str, "Control"))
-    ret = g_strdup("Ctrl");
-
-  else if (!strcmp(str, "BackSpace"))
-    ret = g_strdup("⌫");
-
-  else if (!strcmp(str, "Delete"))
-    ret = g_strdup("Del");
-
-  else if (!strcmp(str, "Right"))
-    ret = g_strdup("→");
-
-  else if (!strcmp(str, "Left"))
-    ret = g_strdup("←");
-
-  else if (!strcmp(str, "Up"))
-    ret = g_strdup("↑");
-
-  else if (!strcmp(str, "Down"))
-    ret = g_strdup("↓");
-
-  else if (!strcmp(str, "Page_Up") || !strcmp(str, "Page_Down")) {
-    int idx = strchr(str, '_') - str;
-    ret = g_strdup(str);
-    ret[idx] = ' ';
-  }
-
-  else
-    ret = g_strdup(str);
-
-  return ret;
-}
-
 gboolean update(GtkWidget *parent) {
   static const char *last_window = NULL;
   char *active_window = get_active_window();
@@ -135,6 +81,8 @@ gboolean update(GtkWidget *parent) {
       goto out;
 
     last_window = normalized;
+
+    fprintf(stderr, "%s\n", normalized);
 
     GList *children = gtk_container_get_children(GTK_CONTAINER(parent));
     GtkWidget *former_box = (GtkWidget *)(g_list_last(children)->data);
@@ -181,7 +129,7 @@ gboolean update(GtkWidget *parent) {
 
         for (int k = 0; k < cJSON_GetArraySize(keys); ++k) {
           cJSON *key = cJSON_GetArrayItem(keys, k);
-          char *key_str = format_key(key->valuestring);
+          char *key_str = normalize_keyval_name(key->valuestring);
           GtkWidget *key_label = new_label_with_class(key_str, "shortcut-key");
 
           gtk_widget_set_valign(key_label, GTK_ALIGN_CENTER);
@@ -190,10 +138,10 @@ gboolean update(GtkWidget *parent) {
         }
 
         gtk_box_pack_start(GTK_BOX(vbox), hbox, FALSE, TRUE, 0);
+        gtk_widget_show_all(parent);
       }
     }
-
-  out:
+  out:;
     free(active_window);
   }
 
@@ -268,6 +216,8 @@ static void activate(GtkApplication *app, gpointer user_data) {
   GtkWidget *window = (GtkWidget *)gtk_builder_get_object(builder, "window");
   GtkWidget *main_box =
       (GtkWidget *)gtk_builder_get_object(builder, "main-box");
+  gtk_widget_show_all(window);
+  gtk_window_iconify(GTK_WINDOW(window));
   gtk_window_set_title(GTK_WINDOW(window), "FastFingers Cheatsheet");
   gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
 
@@ -283,8 +233,6 @@ static void activate(GtkApplication *app, gpointer user_data) {
 
   g_signal_connect(status_icon, "button-press-event",
                    G_CALLBACK(button_press_event_cb), window);
-  g_signal_connect(window, "focus-out-event", G_CALLBACK(focus_out_event_cb),
-                   NULL);
 
   g_timeout_add(500, G_SOURCE_FUNC(update), main_box);
 
@@ -295,7 +243,7 @@ int main(int argc, char **argv) {
   GtkApplication *app;
   int status;
 
-  app = gtk_application_new("org.ccextractor.FastFingers",
+  app = gtk_application_new("org.ccextractor.FastFingers.cheatsheet",
                             G_APPLICATION_FLAGS_NONE);
   g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
   status = g_application_run(G_APPLICATION(app), argc, argv);

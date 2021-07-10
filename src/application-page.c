@@ -32,7 +32,6 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
   }
 
   char *name = ff_simplify_title(title);
-
   cJSON *app = ff_get_application(name);
   cJSON *group = cJSON_GetObjectItem(app, "group");
 

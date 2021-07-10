@@ -168,3 +168,89 @@ void set_scaled_image(GtkImage *image, const char *title, int size) {
 
   free(logo_path);
 }
+
+char *normalize_keyval_name(const char *str) {
+  int len = strlen(str);
+
+  char *ret = NULL;
+
+  if (len == 1)
+    ret = g_strdup_printf("%c", toupper(*str));
+
+  else if (!strcmp(str, "Control"))
+    ret = g_strdup("Ctrl");
+
+  else if (!strcmp(str, "BackSpace"))
+    ret = g_strdup("⌫");
+
+  else if (!strcmp(str, "Delete"))
+    ret = g_strdup("Del");
+
+  else if (!strcmp(str, "Right"))
+    ret = g_strdup("→");
+
+  else if (!strcmp(str, "Left"))
+    ret = g_strdup("←");
+
+  else if (!strcmp(str, "Up"))
+    ret = g_strdup("↑");
+
+  else if (!strcmp(str, "Down"))
+    ret = g_strdup("↓");
+
+  else if (!strcmp(str, "Page_Up") || !strcmp(str, "Page_Down")) {
+    int idx = strchr(str, '_') - str;
+    ret = g_strdup(str);
+    ret[idx] = ' ';
+  }
+
+  else
+    ret = g_strdup(str);
+
+  return ret;
+}
+
+void null_check(void *check_ptr, const char *str, void (*fptr)(void *),
+                void *free_arg) {
+  if (check_ptr)
+    return;
+
+  if (fptr && free_arg)
+    fprintf(stderr, "FF-ERROR: %s is null!\n", str);
+
+  fptr(free_arg);
+}
+
+GtkWidget *ff_box_nth_child(GtkWidget *box, int idx) {
+  GList *children = gtk_container_get_children(GTK_CONTAINER(box));
+  GtkWidget *ret = g_list_nth(children, idx)->data;
+  g_list_free(children);
+
+  return ret;
+}
+
+GtkWidget *ff_box_first_child(GtkWidget *box) {
+  GList *children = gtk_container_get_children(GTK_CONTAINER(box));
+  GtkWidget *ret = g_list_first(children)->data;
+  g_list_free(children);
+
+  return ret;
+}
+
+GtkWidget *ff_box_last_child(GtkWidget *box) {
+  GList *children = gtk_container_get_children(GTK_CONTAINER(box));
+  GtkWidget *ret = g_list_last(children)->data;
+  g_list_free(children);
+
+  return ret;
+}
+
+void add_style_class(GtkWidget *widget, const char *class) {
+  GtkStyleContext *context = gtk_widget_get_style_context(widget);
+  gtk_style_context_add_class(context, class);
+}
+
+void remove_style_class(GtkWidget *widget, const char *class) {
+  GtkStyleContext *context = gtk_widget_get_style_context(widget);
+  gtk_style_context_remove_class(context, class);
+}

@@ -10,7 +10,13 @@ G_BEGIN_DECLS
 
 G_DECLARE_FINAL_TYPE(FFKey, ff_key, FF, KEY, GtkLabel)
 
-GtkWidget *ff_key_new(const gchar *text);
+GtkWidget *ff_key_new(const gchar *text, int is_visible);
+void ff_key_set_style(GtkWidget *key, const char *style);
+
+const gchar *ff_key_get_text(FFKey *key);
+void ff_key_set_text(FFKey *key, const gchar *text);
+int ff_key_get_visible(FFKey *key);
+void ff_key_set_visible(FFKey *key, int state);
 
 G_END_DECLS
 

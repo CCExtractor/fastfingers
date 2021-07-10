@@ -86,6 +86,7 @@ char *get_active_from_gnome_shell(void) {
     goto out;
   }
 
+  fprintf(stderr, "ok\n");
   s = g_variant_print(result, TRUE);
   int len = strrchr(s, '"') - strchr(s, '"') - 1;
   parsed = malloc(len + 1);

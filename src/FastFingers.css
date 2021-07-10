@@ -145,11 +145,11 @@ key.test {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-key.wrong {
+key.fail {
     background-color: red;
 }
 
-key.correct {
+key.success {
     background-color: green;
 }
 

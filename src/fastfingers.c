@@ -28,8 +28,6 @@ void activate(GtkApplication *app, gpointer user_data) {
 
   window = gtk_builder_get_object(ffb_app, "ff_window");
   gtk_window_set_application(GTK_WINDOW(window), app);
-  g_signal_connect(G_OBJECT(window), "key_press_event",
-                   G_CALLBACK(key_pressed_cb), NULL);
 
   stack = gtk_builder_get_object(ffb_app, "ff_stack");
 

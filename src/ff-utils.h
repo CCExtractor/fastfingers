@@ -29,6 +29,18 @@ cJSON *ff_get_application(const char *name);
 
 void set_scaled_image(GtkImage *image, const char *title, int size);
 
+char *normalize_keyval_name(const char *str);
+
+void null_check(void *check_ptr, const char *str, void (*fptr)(void *),
+                void *free_arg);
+
+GtkWidget *ff_box_nth_child(GtkWidget *box, int idx);
+GtkWidget *ff_box_first_child(GtkWidget *box);
+GtkWidget *ff_box_last_child(GtkWidget *box);
+
+void add_style_class(GtkWidget *widget, const char *class);
+void remove_style_class(GtkWidget *widget, const char *class);
+
 G_END_DECLS
 
 #endif

@@ -4,8 +4,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 project(
   FastFingers
   VERSION 0.7.3
-  LANGUAGES C
-  )
+  LANGUAGES C)
 # Initializing other CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 include(GSettings)
@@ -22,19 +21,18 @@ find_package(PkgConfig REQUIRED QUIET)
 pkg_search_module(GTK REQUIRED gtk+-3.0)
 # Fetching gmodule-export-2.0
 pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
-pkg_search_module (X11 x11)
+pkg_search_module(X11 x11)
 
-# x11 support is suspended, only gnome-shell is supported
-# for the cheatscheet
+# x11 support is suspended, only gnome-shell is supported for the cheatscheet
 
-#if (X11_FOUND)
-#  add_compile_options(-D_X11_FOUND)
-#endif()
+if(X11_FOUND)
+  add_compile_options(-D_X11_FOUND)
+endif()
 
 # Checking the presence of glib-compile-resources command and fetching it
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
-set(GRESOURCE_C   ff_gresources.c)
+set(GRESOURCE_C ff_gresources.c)
 set(GRESOURCE_XML org.ccextractor.FastFingers.gresource.xml)
 # Defining GResources dependencies
 file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* applications/* FastFingers.css)
@@ -42,19 +40,16 @@ file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* applications/* FastFingers.css)
 add_custom_command(
   OUTPUT ${GRESOURCE_C}
   WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-  COMMAND ${GLIB_COMPILE_RESOURCES}
-  ARGS
-  --generate-source
-  --target=${CMAKE_CURRENT_BINARY_DIR}/${GRESOURCE_C}
-  ${GRESOURCE_XML}
+  COMMAND ${GLIB_COMPILE_RESOURCES} ARGS --generate-source
+          --target=${CMAKE_CURRENT_BINARY_DIR}/${GRESOURCE_C} ${GRESOURCE_XML}
   VERBATIM
   MAIN_DEPENDENCY ${GRESOURCE_XML}
-  DEPENDS
-  ${GRESOURCE_DEPENDENCIES}
-  )
+  DEPENDS ${GRESOURCE_DEPENDENCIES})
 
 # Listing sources to link with the executable
-list(APPEND FASTFINGERS_SOURCES
+list(
+  APPEND
+  FASTFINGERS_SOURCES
   main.c
   fastfingers.c
   ff-utils.c
@@ -69,35 +64,39 @@ list(APPEND FASTFINGERS_SOURCES
   key.c
   shortcut-list-row.c
   cJSON.c
-  ${GRESOURCE_C}
-  )
+  ${GRESOURCE_C})
 
-list(APPEND CHEATSHEET_SOURCES
+list(
+  APPEND
+  CHEATSHEET_SOURCES
   cheatsheet.c
   ff-utils.c
   cJSON.c
   active-window.c
-  ${GRESOURCE_C}
-  )
+  ${GRESOURCE_C})
 # Creation of the application executable
 add_executable(fastfingers ${FASTFINGERS_SOURCES})
 add_executable(cheatsheet ${CHEATSHEET_SOURCES})
 # Adding the GTK's include directories to the application's library
-target_include_directories(fastfingers PUBLIC ${GTK_INCLUDE_DIRS} ${GM_EXPORT_INCLUDE_DIRS})
-target_include_directories(cheatsheet PUBLIC ${GTK_INCLUDE_DIRS} ${GM_EXPORT_INCLUDE_DIRS})
+target_include_directories(fastfingers PUBLIC ${GTK_INCLUDE_DIRS}
+                                              ${GM_EXPORT_INCLUDE_DIRS})
+target_include_directories(cheatsheet PUBLIC ${GTK_INCLUDE_DIRS}
+                                             ${GM_EXPORT_INCLUDE_DIRS})
 # Linking the application executable and the libraries
-target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
-target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES} ${GM_EXPORT_LIBRARIES})
+target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
+                      ${GM_EXPORT_LIBRARIES})
+target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
+                      ${GM_EXPORT_LIBRARIES} ${X11_LIBRARIES})
 
 # Adding necessary compile flags
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall -g")
+set(CMAKE_C_FLAGS
+    "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall -g"
+)
 # Installing the binary to the system
-add_custom_command (
+add_custom_command(
   TARGET fastfingers
-  POST_BUILD
-  VERBATIM
-  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fastfingers> "/usr/bin/"
-  )
+  POST_BUILD VERBATIM
+  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fastfingers> "/usr/bin/")
 # Installing other files
 add_schema(fastfingers)
 add_icons(fastfingers)
