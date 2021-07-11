@@ -1,12 +1,6 @@
 #include "cheatsheet.h"
 
-char *get_active_window(void) {
-#ifdef _X11_FOUND
-  return get_active_from_xorg();
-#else
-  return get_active_from_gnome_shell();
-#endif
-}
+char *get_active_window(void) { return get_active_from_gnome_shell(); }
 
 int strcmpic(const char *str1, const char *str2) {
   int len = strlen(str1);
@@ -82,8 +76,6 @@ gboolean update(GtkWidget *parent) {
 
     last_window = normalized;
 
-    fprintf(stderr, "%s\n", normalized);
-
     GList *children = gtk_container_get_children(GTK_CONTAINER(parent));
     GtkWidget *former_box = (GtkWidget *)(g_list_last(children)->data);
     gtk_container_remove(GTK_CONTAINER(parent), former_box);
@@ -141,7 +133,7 @@ gboolean update(GtkWidget *parent) {
         gtk_widget_show_all(parent);
       }
     }
-  out:;
+  out:
     free(active_window);
   }
 
@@ -234,7 +226,7 @@ static void activate(GtkApplication *app, gpointer user_data) {
   g_signal_connect(status_icon, "button-press-event",
                    G_CALLBACK(button_press_event_cb), window);
 
-  g_timeout_add(500, G_SOURCE_FUNC(update), main_box);
+  g_timeout_add(100, G_SOURCE_FUNC(update), main_box);
 
   gtk_main();
 }

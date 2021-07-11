@@ -86,9 +86,19 @@ char *get_active_from_gnome_shell(void) {
     goto out;
   }
 
-  fprintf(stderr, "ok\n");
   s = g_variant_print(result, TRUE);
-  int len = strrchr(s, '"') - strchr(s, '"') - 1;
+
+  const char *first_occurrence = strchr(s, '"');
+  const char *last_occurrence = strrchr(s, '"');
+
+  if (!first_occurrence || !last_occurrence) {
+    g_printerr("FF-Error: Couldn't parse the application name. Probably new "
+               "application is launching. What we found are: %s\n",
+               s);
+    goto out;
+  }
+
+  int len = last_occurrence - first_occurrence - 1;
   parsed = malloc(len + 1);
 
   if (!parsed) {
@@ -99,13 +109,13 @@ char *get_active_from_gnome_shell(void) {
   memcpy(parsed, strchr(s, '"') + 1, len);
   parsed[len] = 0;
 
-  g_free(s);
-
 out:
   if (result)
     g_variant_unref(result);
   if (c)
     g_object_unref(c);
+  if (s)
+    g_free(s);
 
   return (char *)parsed;
 }
