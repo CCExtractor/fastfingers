@@ -120,59 +120,61 @@ void init_next_shortcut(void) {
     GtkWidget *key = ff_key_new(glob_data.str_arr[i], 1);
     gtk_box_pack_start(GTK_BOX(glob_data.box), key, FALSE, TRUE, 0);
   }
+  gtk_widget_show_all(glob_data.box);
+}
+
+void shortcut_learned(void) {
+  shortcut_learned();
+  const char *title = cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
+  cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
+  cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
+  cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+  cJSON *shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx);
+  cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
+  cJSON_SetIntValue(learned, 1);
+
+  wordexp_t p;
+  char **w;
+  char file_path[64];
+
+  char *name = ff_simplify_title(title);
+  sprintf(file_path, "~/.fastfingers/applications/%s.json", name);
+  free(name);
+
+  wordexp(file_path, &p, 0);
+  w = p.we_wordv;
+
+  char *out = cJSON_Print(glob_data.app);
+
+  FILE *fp = NULL;
+  fp = fopen(w[0], "w");
+
+  if (!fp) {
+    fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
+            strerror(errno));
+    goto end;
+  }
+
+  int written = fprintf(fp, "%s", out);
+
+  if (written < 0) {
+    fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
+            strerror(errno));
+    goto end;
+  }
+
+end:
+  if (fp)
+    fclose(fp);
+  free(out);
+
+  init_next_shortcut();
 }
 
 gboolean next_practice_page(gpointer user_data) {
   if (glob_data.success) {
-    if (glob_data.is_test) {
-      const char *title =
-          cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
-      cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
-      cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
-      cJSON *shortcuts =
-          cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
-      cJSON *shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx);
-      cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
-      cJSON_SetIntValue(learned, 1);
-
-      wordexp_t p;
-      char **w;
-      char file_path[64];
-
-      char *name = ff_simplify_title(title);
-      sprintf(file_path, "~/.fastfingers/applications/%s.json", name);
-      free(name);
-
-      wordexp(file_path, &p, 0);
-      w = p.we_wordv;
-
-      char *out = cJSON_Print(glob_data.app);
-
-      FILE *fp = NULL;
-      fp = fopen(w[0], "w");
-
-      if (!fp) {
-        fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
-                strerror(errno));
-        goto end;
-      }
-
-      int written = fprintf(fp, "%s", out);
-
-      if (written < 0) {
-        fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
-                strerror(errno));
-        goto end;
-      }
-
-    end:
-      if (fp)
-        fclose(fp);
-      free(out);
-
-      init_next_shortcut();
-    }
-
+    if (glob_data.is_test)
+      shortcut_learned();
     else {
       for (int i = 0; i < glob_data.size; ++i) {
         GtkWidget *key = ff_box_nth_child(glob_data.box, i);
