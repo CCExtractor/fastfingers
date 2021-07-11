@@ -20,18 +20,7 @@ struct {
   GtkLabel *shortcut_description;
 } glob_data;
 
-int get_keyval_from_name(const char *str) {
-  if (!strcmp("Control", str))
-    return gdk_keyval_from_name("Control_L");
-  if (!strcmp("Alt", str))
-    return gdk_keyval_from_name("Alt_L");
-  if (!strcmp("Shift", str))
-    return gdk_keyval_from_name("Shift_L");
-  return gdk_keyval_from_name(str);
-}
-
 void init_next_shortcut(void) {
-
   glob_data.size = 0;
   glob_data.idx = 0;
   glob_data.category_idx = -1;
@@ -217,7 +206,7 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
 
   GtkWidget *key;
   key = ff_box_nth_child(glob_data.box, glob_data.idx);
-  if (glob_data.key_arr[glob_data.idx] == keyval) {
+  if (key_compare(glob_data.key_arr[glob_data.idx], keyval)) {
     ff_key_set_style(key, "success");
   } else {
     glob_data.success = 0;

@@ -169,6 +169,36 @@ void set_scaled_image(GtkImage *image, const char *title, int size) {
   free(logo_path);
 }
 
+void right_to_left(int *keyval) {
+  if (*keyval == gdk_keyval_from_name("Control_R"))
+    *keyval = gdk_keyval_from_name("Control_L");
+  if (*keyval == gdk_keyval_from_name("Alt_R"))
+    *keyval = gdk_keyval_from_name("Alt_L");
+  if (*keyval == gdk_keyval_from_name("Shift_R"))
+    *keyval = gdk_keyval_from_name("Shift_L");
+  if (*keyval == gdk_keyval_from_name("Super_R"))
+    *keyval = gdk_keyval_from_name("Super_L");
+}
+
+int key_compare(int keyval1, int keyval2) {
+  right_to_left(&keyval1);
+  right_to_left(&keyval2);
+  if (gdk_keyval_to_upper(keyval1) == gdk_keyval_to_upper(keyval2))
+    return 1;
+
+  return 0;
+}
+
+int get_keyval_from_name(const char *str) {
+  if (!strcmp("Control", str))
+    return gdk_keyval_from_name("Control_L");
+  if (!strcmp("Alt", str))
+    return gdk_keyval_from_name("Alt_L");
+  if (!strcmp("Shift", str))
+    return gdk_keyval_from_name("Shift_L");
+  return gdk_keyval_from_name(str);
+}
+
 char *normalize_keyval_name(const char *str) {
   int len = strlen(str);
 
