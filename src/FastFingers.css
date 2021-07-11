@@ -125,32 +125,35 @@ image.practice-image {
 }
 
 key {
-    background-color: white;
-    color: black;
-    border-color: black;
+    background-image: none;
+    background-color: #D8DEE9;
+    color: #000;
     border-style: solid;
-    border-width: 3px;
-    border-radius: 9px;
+    border-width: 0px 0px 5px 0px;
+    border-color: #9599a0;
+    border-radius: 8px;
     font-size: 22px;
     font-weight: 700;
-    background-image: none;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
     padding: 10px;
 }
 
 key.test {
+    background-color: #D8DEE9;
+    border-color: #9599a0;
     color: rgba(255, 255, 255, 0.5);
-    background-color: transparent;
     border-style: dashed;
-    border-color: rgba(255, 255, 255, 0.2);
+    border-width: 3px;
 }
 
 key.fail {
-    background-color: red;
+    background-color: #e99090;
+    border-color: #a36666;
 }
 
 key.success {
-    background-color: green;
+    background-color: #99e985;
+    border-color: #5e8d52;
 }
 
 label.shortcut-description {
