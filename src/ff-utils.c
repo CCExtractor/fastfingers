@@ -333,6 +333,6 @@ void ff_container_remove_all(GtkWidget *container) {
     fprintf(stderr, "FF-ERRROR: %p is not a container to remove all children\n",
             container);
   }
-  gtk_container_foreach(GTK_CONTAINER(container), remove_all_cb,
+  gtk_container_foreach(GTK_CONTAINER(container), GTK_CALLBACK(remove_all_cb),
                         GTK_CONTAINER(container));
 }

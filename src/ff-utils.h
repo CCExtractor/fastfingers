@@ -14,6 +14,8 @@
 
 G_BEGIN_DECLS
 
+#define GTK_CALLBACK(f) ((GtkCallback)(f))
+
 typedef struct _resizable_container FFResizableContainer;
 
 void ff_init_css(void);
