@@ -153,6 +153,13 @@ key.success {
     background-color: green;
 }
 
+label.shortcut-description {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
 
 /* Settings Page */
 

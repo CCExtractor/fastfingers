@@ -16,6 +16,7 @@ struct {
 
   GtkWidget *box;
   GtkStack *stack;
+  GtkLabel *shortcut_description;
 } glob_data;
 
 int get_keyval_from_name(const char *str) {
@@ -74,6 +75,10 @@ void init_next_shortcut(void) {
     shortcut = cJSON_GetArrayItem(shortcuts,
                                   glob_data.shortcut_idx =
                                       rand() % cJSON_GetArraySize(shortcuts));
+
+  gtk_label_set_text(
+      glob_data.shortcut_description,
+      cJSON_GetObjectItemCaseSensitive(shortcut, "title")->valuestring);
 
   cJSON *keys = cJSON_GetObjectItemCaseSensitive(shortcut, "keys");
   // If there are more than one key strokes for one shortcut
@@ -237,6 +242,8 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
   GObject *buttonbox =
       gtk_builder_get_object(practice_page_builder, "buttonbox");
   GObject *key_box = gtk_builder_get_object(practice_page_builder, "key_box");
+  GObject *shortcut_description =
+      gtk_builder_get_object(practice_page_builder, "shortcut_description");
 
   char *title = g_strdup(cJSON_GetObjectItem(app, "title")->valuestring);
   char button_label[64];
@@ -257,6 +264,7 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
   glob_data.row_title = category;
   glob_data.box = GTK_WIDGET(key_box);
   glob_data.stack = stack;
+  glob_data.shortcut_description = GTK_LABEL(shortcut_description);
 
   init_next_shortcut();
 

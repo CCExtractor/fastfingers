@@ -27,8 +27,11 @@
           </object>
         </child>
         <child>
-          <object class="GtkLabel" id="shortcut_title">
+          <object class="GtkLabel" id="shortcut_description">
             <property name="halign">center</property>
+            <style>
+              <class name="shortcut-description" />
+            </style>
           </object>
         </child>
         <child>
