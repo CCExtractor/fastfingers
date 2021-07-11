@@ -16,14 +16,14 @@ macro(add_icons ICONS_TARGET)
         POST_BUILD
         COMMAND
           ${CMAKE_COMMAND} -E copy
-          "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/fastfingers.png"
+          "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/apps/fastfingers.png"
           "/usr/share/icons/hicolor/${PX}x${PX}/apps/")
       add_custom_command(
         TARGET ${ICONS_TARGET}
         POST_BUILD
         COMMAND
           ${CMAKE_COMMAND} -E copy
-          "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/fastfingers-cheatsheet.png"
+          "${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/apps/fastfingers-cheatsheet.png"
           "/usr/share/icons/hicolor/${PX}x${PX}/apps/")
     endif()
   endforeach()
@@ -49,14 +49,14 @@ macro(add_icons ICONS_TARGET)
         POST_BUILD
         COMMAND
           ${CMAKE_COMMAND} -E copy
-          "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/fastfingers.png"
+          "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/apps/fastfingers.png"
           "/usr/share/icons/HighContrast/${PX}x${PX}/apps/")
       add_custom_command(
         TARGET fastfingers
         POST_BUILD
         COMMAND
           ${CMAKE_COMMAND} -E copy
-          "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/fastfingers-cheatsheet.png"
+          "${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/apps/fastfingers-cheatsheet.png"
           "/usr/share/icons/HighContrast/${PX}x${PX}/apps/")
     endif()
   endforeach()
