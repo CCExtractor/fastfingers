@@ -6,5 +6,5 @@ void ff_credits_page_init(GtkStack *stack) {
   GObject *scrolled_window =
       gtk_builder_get_object(credits_builder, "credits_scrolled_window");
 
-  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(scrolled_window), "Credits");
+  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(scrolled_window), "credits");
 }

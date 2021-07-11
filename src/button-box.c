@@ -144,7 +144,7 @@ void back_click_cb(GtkWidget *widget, GdkEvent *event, gpointer user_data) {
 }
 
 void settings_click_cb(GtkWidget *widget, GdkEvent *event, gpointer user_data) {
-  ff_switch_page("Settings");
+  ff_switch_page("settings");
 }
 
 void back_show_cb(GtkWidget *widget, FFButtonbox *buttonbox) {

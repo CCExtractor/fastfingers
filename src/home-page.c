@@ -40,6 +40,6 @@ void ff_home_page_init(GtkStack *stack) {
   gtk_widget_set_hexpand(rfiller, FALSE);
   gtk_box_pack_start(GTK_BOX(hcont), rfiller, FALSE, FALSE, 0);
 
-  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(scrolled_window), "Home");
+  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(scrolled_window), "home");
   gtk_widget_show_all(GTK_WIDGET(scrolled_window));
 }

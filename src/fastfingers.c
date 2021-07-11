@@ -36,7 +36,7 @@ void activate(GtkApplication *app, gpointer user_data) {
   ff_home_page_init(GTK_STACK(stack));
   ff_settings_page_init(GTK_STACK(stack));
   ff_credits_page_init(GTK_STACK(stack));
-  ff_switch_page("Home");
+  ff_switch_page("home");
 }
 
 void ff_switch_page(const char *page_name) {

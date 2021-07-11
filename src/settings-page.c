@@ -85,7 +85,7 @@ void settings_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
   } else if (!strcmp(row_name, "reset_progress")) {
     GtkWidget *stack = ff_get_stack();
     ff_reset_progress_page_init(GTK_STACK(stack));
-    ff_switch_page("Reset-Progress");
+    ff_switch_page("reset-progress");
   } else if (!strcmp(row_name, "version")) {
     GtkWidget *window = ff_get_window();
     gtk_show_uri_on_window(
@@ -104,7 +104,7 @@ void settings_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
                            "https://github.com/CCExtractor/fastfingers/issues",
                            GDK_CURRENT_TIME, NULL);
   } else if (!strcmp(row_name, "credits")) {
-    ff_switch_page("Credits");
+    ff_switch_page("credits");
   } else {
   }
 }
@@ -128,6 +128,6 @@ void ff_settings_page_init(GtkStack *stack) {
   g_signal_connect(GTK_WIDGET(list), "row-activated",
                    G_CALLBACK(settings_row_activated_cb), settings);
 
-  gtk_stack_add_named(stack, GTK_WIDGET(main_box), "Settings");
+  gtk_stack_add_named(stack, GTK_WIDGET(main_box), "settings");
   gtk_widget_show_all(GTK_WIDGET(main_box));
 }

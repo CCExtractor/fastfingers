@@ -93,6 +93,6 @@ void ff_reset_progress_page_init(GtkStack *stack) {
   g_signal_connect(GTK_WIDGET(yes_btn), "clicked", G_CALLBACK(yes_clicked_cb),
                    NULL);
 
-  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(main_box), "Reset-Progress");
+  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(main_box), "reset-progress");
   gtk_widget_show_all(GTK_WIDGET(main_box));
 }
