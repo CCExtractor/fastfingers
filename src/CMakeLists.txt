@@ -21,13 +21,6 @@ find_package(PkgConfig REQUIRED QUIET)
 pkg_search_module(GTK REQUIRED gtk+-3.0)
 # Fetching gmodule-export-2.0
 pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
-pkg_search_module(X11 x11)
-
-# x11 support is suspended, only gnome-shell is supported for the cheatscheet
-
-if(X11_FOUND)
-  add_compile_options(-D_X11_FOUND)
-endif()
 
 # Checking the presence of glib-compile-resources command and fetching it
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
@@ -74,6 +67,7 @@ list(
   cJSON.c
   active-window.c
   ${GRESOURCE_C})
+
 # Creation of the application executable
 add_executable(fastfingers ${FASTFINGERS_SOURCES})
 add_executable(cheatsheet ${CHEATSHEET_SOURCES})
@@ -86,7 +80,7 @@ target_include_directories(cheatsheet PUBLIC ${GTK_INCLUDE_DIRS}
 target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
                       ${GM_EXPORT_LIBRARIES})
 target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
-                      ${GM_EXPORT_LIBRARIES} ${X11_LIBRARIES})
+                      ${GM_EXPORT_LIBRARIES})
 
 # Adding necessary compile flags
 set(CMAKE_C_FLAGS
