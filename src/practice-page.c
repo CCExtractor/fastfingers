@@ -7,6 +7,7 @@ struct {
   int shortcut_idx;
   int is_test;
   int success;
+  int idle;
   int *key_arr;
 
   char **str_arr;
@@ -37,6 +38,7 @@ void init_next_shortcut(void) {
   glob_data.shortcut_idx = 0;
   glob_data.is_test = 0;
   glob_data.success = 1;
+  glob_data.idle = 0;
   glob_data.key_arr = NULL;
   glob_data.str_arr = NULL;
 
@@ -202,12 +204,17 @@ gboolean next_practice_page(gpointer user_data) {
     glob_data.success = 1;
   }
 
+  glob_data.idle = 0;
+
   return 0;
 }
 
 gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
                         guint keycode, GdkModifierType state,
                         gpointer user_data) {
+  if (glob_data.idle)
+    return 0;
+
   GtkWidget *key;
   key = ff_box_nth_child(glob_data.box, glob_data.idx);
   if (glob_data.key_arr[glob_data.idx] == keyval) {
@@ -222,9 +229,10 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
 
   if (glob_data.size - 1 != glob_data.idx)
     ++glob_data.idx;
-  else
+  else {
+    glob_data.idle = 1;
     g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), NULL);
-
+  }
   return 0;
 }
 
