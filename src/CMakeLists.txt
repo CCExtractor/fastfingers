@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(
   FastFingers
-  VERSION 0.7.3
+  VERSION 0.7.11
   LANGUAGES C)
 # Initializing other CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
@@ -91,6 +91,15 @@ add_custom_command(
   TARGET fastfingers
   POST_BUILD VERBATIM
   COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fastfingers> "/usr/bin/")
+
+set_target_properties(cheatsheet PROPERTIES OUTPUT_NAME
+                                            "fastfingers-cheatsheet")
+
+add_custom_command(
+  TARGET cheatsheet
+  POST_BUILD VERBATIM
+  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:cheatsheet> "/usr/bin/")
+
 # Installing other files
 add_schema(fastfingers)
 add_icons(fastfingers)

@@ -7,11 +7,12 @@ void ff_configure_autostart(int state) {
   wordexp("~/.config/autostart", &p, 0);
   char **w = p.we_wordv;
 
-  sprintf(path, "%s/org.ccextractor.FastFingers.desktop", w[0]);
+  sprintf(path, "%s/org.ccextractor.Cheatsheet.desktop", w[0]);
 
   if (state) {
-    FILE *source = fopen(
-        "/usr/share/applications/org.ccextractor.FastFingers.desktop", "r");
+    FILE *source = fopen("/usr/share/applications/"
+                         "org.ccextractor.Cheatsheet.desktop",
+                         "r");
 
     if (!source) {
       fprintf(stderr, "FF-ERROR: Couldn't read desktop file at /usr/share\n");
@@ -55,7 +56,7 @@ void ff_configure_autostart(int state) {
 
 void ff_check_autostart_state(int state) {
   wordexp_t p;
-  wordexp("~/.config/autostart/org.ccextractor.FastFingers.desktop", &p, 0);
+  wordexp("~/.config/autostart/org.ccextractor.Cheatsheet.desktop", &p, 0);
   char **w = p.we_wordv;
 
   int exists = !access(w[0], F_OK);

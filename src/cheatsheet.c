@@ -25,11 +25,6 @@ gboolean button_press_event_cb(GtkStatusIcon *status_icon, GdkEvent *event,
   return 0;
 }
 
-gboolean delete_event_cb(GtkWidget *widget, GdkEvent *event, gpointer data) {
-  gtk_window_iconify(GTK_WINDOW(widget));
-  return 1;
-}
-
 char *normalize_name(const char *name) {
   if (strcmpic(name, "firefox"))
     return "firefox";
@@ -206,15 +201,15 @@ static void activate(GtkApplication *app, gpointer user_data) {
       "/org/ccextractor/FastFingers/ui/cheatsheet.ui");
 
   GtkWidget *window = (GtkWidget *)gtk_builder_get_object(builder, "window");
+  gtk_window_set_application(GTK_WINDOW(window), app);
+
   GtkWidget *main_box =
       (GtkWidget *)gtk_builder_get_object(builder, "main-box");
   gtk_widget_show_all(window);
+  gtk_widget_show_all(GTK_WIDGET(window));
   gtk_window_iconify(GTK_WINDOW(window));
   gtk_window_set_title(GTK_WINDOW(window), "FastFingers Cheatsheet");
   gtk_window_set_position(GTK_WINDOW(window), GTK_WIN_POS_CENTER_ALWAYS);
-
-  g_signal_connect(G_OBJECT(window), "delete-event",
-                   G_CALLBACK(delete_event_cb), NULL);
 
   GtkWidget *entry = (GtkWidget *)gtk_builder_get_object(builder, "entry");
   g_signal_connect(GTK_EDITABLE(entry), "changed", G_CALLBACK(changed_cb),
@@ -235,7 +230,7 @@ int main(int argc, char **argv) {
   GtkApplication *app;
   int status;
 
-  app = gtk_application_new("org.ccextractor.FastFingers.cheatsheet",
+  app = gtk_application_new("org.ccextractor.Cheatsheet",
                             G_APPLICATION_FLAGS_NONE);
   g_signal_connect(app, "activate", G_CALLBACK(activate), NULL);
   status = g_application_run(G_APPLICATION(app), argc, argv);
