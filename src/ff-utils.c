@@ -323,3 +323,16 @@ void remove_style_class(GtkWidget *widget, const char *class) {
   GtkStyleContext *context = gtk_widget_get_style_context(widget);
   gtk_style_context_remove_class(context, class);
 }
+
+static void remove_all_cb(GtkWidget *widget, GtkContainer *container) {
+  gtk_container_remove(container, widget);
+}
+
+void ff_container_remove_all(GtkWidget *container) {
+  if (!GTK_IS_CONTAINER(container)) {
+    fprintf(stderr, "FF-ERRROR: %p is not a container to remove all children\n",
+            container);
+  }
+  gtk_container_foreach(GTK_CONTAINER(container), remove_all_cb,
+                        GTK_CONTAINER(container));
+}

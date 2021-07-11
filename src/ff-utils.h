@@ -41,6 +41,8 @@ GtkWidget *ff_box_last_child(GtkWidget *box);
 void add_style_class(GtkWidget *widget, const char *class);
 void remove_style_class(GtkWidget *widget, const char *class);
 
+void ff_container_remove_all(GtkWidget *container);
+
 G_END_DECLS
 
 #endif
