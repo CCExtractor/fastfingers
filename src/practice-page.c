@@ -124,7 +124,6 @@ void init_next_shortcut(void) {
 }
 
 void shortcut_learned(void) {
-  shortcut_learned();
   const char *title = cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
   cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
   cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
@@ -195,6 +194,7 @@ gboolean next_practice_page(gpointer user_data) {
 
     glob_data.is_test = 0;
     glob_data.idx = 0;
+    glob_data.success = 1;
   }
 
   return 0;
