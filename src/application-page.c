@@ -55,7 +55,6 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
   g_signal_connect(GTK_WIDGET(list_topic), "row-activated",
                    G_CALLBACK(application_row_activated_cb), app);
 
-  // free(app);
   free(name);
 
   gtk_stack_add_named(stack, GTK_WIDGET(scrolled_window), title);
