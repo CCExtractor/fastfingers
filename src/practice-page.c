@@ -1,53 +1,22 @@
 #include "practice-page.h"
 
-typedef struct key_container {
-  size_t size;
-  int *key_arr;
-  char **str_arr;
+struct {
+  int size;
   int idx;
   int category_idx;
   int shortcut_idx;
   int is_test;
   int success;
-  cJSON *app;
+  int *key_arr;
+
+  char **str_arr;
   const char *row_title;
-} key_container;
 
-typedef struct page_data {
+  cJSON *app;
+
   GtkWidget *box;
-  key_container *kc;
   GtkStack *stack;
-} page_data;
-
-typedef struct callback_data {
-  GtkWidget *key;
-  key_container *kc;
-  page_data *pd;
-} callback_data;
-
-page_data *new_page_data(GtkWidget *box, key_container *kc, GtkStack *stack) {
-  page_data *pd = malloc(sizeof(page_data));
-  if (!pd) {
-    fprintf(stderr, "FF-ERROR: Couldn't allocate memory for page data!\n");
-    return NULL;
-  }
-
-  pd->box = box;
-  pd->kc = kc;
-  pd->stack = stack;
-
-  return pd;
-}
-
-void ff_free_key_container(void *ptr) {
-  key_container *kc = (key_container *)ptr;
-  free(kc->key_arr);
-  for (int i = 0; i < kc->size; ++i)
-    free(kc->str_arr[i]);
-  free(kc->str_arr);
-  free(kc);
-  fprintf(stderr, "freed\n");
-}
+} glob_data;
 
 int get_keyval_from_name(const char *str) {
   if (!strcmp("Control", str))
@@ -59,40 +28,34 @@ int get_keyval_from_name(const char *str) {
   return gdk_keyval_from_name(str);
 }
 
-key_container *ff_get_key_container(cJSON *app, const char *row_title) {
-  key_container *kc = malloc(sizeof(key_container));
+void init_next_shortcut(void) {
 
-  if (!kc) {
-    fprintf(stderr, "FF-ERROR: Couldn't allocate memory for key container!\n");
-    return NULL;
-  }
+  glob_data.size = 0;
+  glob_data.idx = 0;
+  glob_data.category_idx = -1;
+  glob_data.shortcut_idx = 0;
+  glob_data.is_test = 0;
+  glob_data.success = 1;
+  glob_data.key_arr = NULL;
+  glob_data.str_arr = NULL;
 
-  kc->size = 0;
-  kc->key_arr = NULL;
-  kc->str_arr = NULL;
-  kc->idx = kc->is_test = 0;
-  kc->success = 1;
-  kc->shortcut_idx = 0;
-  kc->app = app;
-  kc->row_title = row_title;
-
-  cJSON *group = cJSON_GetObjectItem(app, "group");
+  cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
 
   cJSON *category = NULL;
 
   for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
     cJSON *tmp = cJSON_GetArrayItem(group, i);
     cJSON *title = cJSON_GetObjectItemCaseSensitive(tmp, "title");
-    if (!strcmp(title->valuestring, row_title)) {
+    if (!strcmp(title->valuestring, glob_data.row_title)) {
       category = tmp;
-      kc->category_idx = i;
+      glob_data.category_idx = i;
       break;
     }
   }
 
   if (!category) {
     fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
-    return NULL;
+    return;
   }
 
   cJSON *shortcut = NULL;
@@ -102,14 +65,15 @@ key_container *ff_get_key_container(cJSON *app, const char *row_title) {
                                          "learned")
             ->valueint == 0) {
       shortcut = cJSON_GetArrayItem(shortcuts, i);
-      kc->shortcut_idx = i;
+      glob_data.shortcut_idx = i;
       break;
     }
   }
 
   if (!shortcut)
-    shortcut = cJSON_GetArrayItem(
-        shortcuts, kc->shortcut_idx = rand() % cJSON_GetArraySize(shortcuts));
+    shortcut = cJSON_GetArrayItem(shortcuts,
+                                  glob_data.shortcut_idx =
+                                      rand() % cJSON_GetArraySize(shortcuts));
 
   cJSON *keys = cJSON_GetObjectItemCaseSensitive(shortcut, "keys");
   // If there are more than one key strokes for one shortcut
@@ -117,59 +81,57 @@ key_container *ff_get_key_container(cJSON *app, const char *row_title) {
     // Select the first one (just temporary)
     keys = cJSON_GetArrayItem(keys, 0);
 
-  kc->size = cJSON_GetArraySize(keys);
+  glob_data.size = cJSON_GetArraySize(keys);
 
-  kc->key_arr = malloc(sizeof(int) * kc->size);
-  if (!kc->key_arr) {
+  glob_data.key_arr = malloc(sizeof(int) * glob_data.size);
+  if (!glob_data.key_arr) {
     fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
-    free(kc);
-    return NULL;
+    return;
   }
 
-  kc->str_arr = malloc(sizeof(char *) * kc->size);
-  if (!kc->key_arr) {
+  glob_data.str_arr = malloc(sizeof(char *) * glob_data.size);
+  if (!glob_data.key_arr) {
     fprintf(stderr,
             "FF-ERROR: Couldn't allocate space for key_container->str_arr!\n");
-    free(kc->key_arr);
-    free(kc);
-    return NULL;
+    free(glob_data.key_arr);
+    return;
   }
 
-  for (int i = 0; i < kc->size; ++i) {
+  for (int i = 0; i < glob_data.size; ++i) {
     int keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
 
     if (keyval == GDK_KEY_VoidSymbol) {
       fprintf(stderr, "FF-ERROR: Couldn't get keyval from name %s!\n",
               cJSON_GetArrayItem(keys, i)->valuestring);
-      free(kc->key_arr);
+      free(glob_data.key_arr);
       for (int j = 0; j < i; ++j)
-        free(kc->str_arr[j]);
-      free(kc->str_arr);
-      free(kc);
-      return NULL;
+        free(glob_data.str_arr[j]);
+      free(glob_data.str_arr);
+      return;
     }
 
-    kc->key_arr[i] = keyval;
-    kc->str_arr[i] =
+    glob_data.key_arr[i] = keyval;
+    glob_data.str_arr[i] =
         normalize_keyval_name(cJSON_GetArrayItem(keys, i)->valuestring);
   }
 
-  return kc;
+  ff_container_remove_all(glob_data.box);
+  for (int i = 0; i < glob_data.size; ++i) {
+    GtkWidget *key = ff_key_new(glob_data.str_arr[i], 1);
+    gtk_box_pack_start(GTK_BOX(glob_data.box), key, FALSE, TRUE, 0);
+  }
 }
 
-gboolean next_practice_page(callback_data *cbd) {
-  GtkWidget *key = cbd->key;
-  key_container *kc = cbd->kc;
-  page_data *pd = cbd->pd;
-
-  if (kc->success) {
-    if (kc->is_test) {
-      const char *title = cJSON_GetObjectItem(kc->app, "title")->valuestring;
-      cJSON *group = cJSON_GetObjectItem(kc->app, "group");
-      cJSON *category = cJSON_GetArrayItem(group, kc->category_idx);
+gboolean next_practice_page(gpointer user_data) {
+  if (glob_data.success) {
+    if (glob_data.is_test) {
+      const char *title =
+          cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
+      cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
+      cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
       cJSON *shortcuts =
           cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
-      cJSON *shortcut = cJSON_GetArrayItem(shortcuts, kc->shortcut_idx);
+      cJSON *shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx);
       cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
       cJSON_SetIntValue(learned, 1);
 
@@ -184,7 +146,7 @@ gboolean next_practice_page(callback_data *cbd) {
       wordexp(file_path, &p, 0);
       w = p.we_wordv;
 
-      char *out = cJSON_Print(kc->app);
+      char *out = cJSON_Print(glob_data.app);
 
       FILE *fp = NULL;
       fp = fopen(w[0], "w");
@@ -208,61 +170,54 @@ gboolean next_practice_page(callback_data *cbd) {
         fclose(fp);
       free(out);
 
-      ff_practice_page_init(pd->stack, kc->app, kc->row_title);
-    } else {
-      for (int i = 0; i < kc->size; ++i) {
-        key = ff_box_nth_child(pd->box, i);
+      init_next_shortcut();
+    }
+
+    else {
+      for (int i = 0; i < glob_data.size; ++i) {
+        GtkWidget *key = ff_box_nth_child(glob_data.box, i);
         ff_key_set_style(key, "test");
         ff_key_set_visible(FF_KEY(key), 0);
       }
 
-      kc->is_test = 1;
-      kc->idx = 0;
+      glob_data.is_test = 1;
+      glob_data.idx = 0;
     }
   } else {
-    for (int i = 0; i < kc->size; ++i) {
-      key = ff_box_nth_child(pd->box, i);
+    for (int i = 0; i < glob_data.size; ++i) {
+      GtkWidget *key = ff_box_nth_child(glob_data.box, i);
       ff_key_set_style(key, "tooltip");
-      ff_key_set_text(FF_KEY(key), normalize_keyval_name(kc->str_arr[i]));
+      ff_key_set_text(FF_KEY(key), normalize_keyval_name(glob_data.str_arr[i]));
       ff_key_set_visible(FF_KEY(key), 1);
     }
 
-    kc->is_test = 0;
-    kc->idx = 0;
+    glob_data.is_test = 0;
+    glob_data.idx = 0;
   }
 
   return 0;
 }
 
 gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
-                        guint keycode, GdkModifierType state, page_data *pd) {
-  static key_container *kc = NULL;
-  if (kc != pd->kc)
-    kc = pd->kc;
-  if (!kc)
-    return 1;
-
+                        guint keycode, GdkModifierType state,
+                        gpointer user_data) {
   GtkWidget *key;
-  key = ff_box_nth_child(pd->box, kc->idx);
-  if (kc->key_arr[kc->idx] == keyval) {
+  key = ff_box_nth_child(glob_data.box, glob_data.idx);
+  if (glob_data.key_arr[glob_data.idx] == keyval) {
     ff_key_set_style(key, "success");
   } else {
-    kc->success = 0;
+    glob_data.success = 0;
     ff_key_set_style(key, "fail");
   }
 
   ff_key_set_text(FF_KEY(key), normalize_keyval_name(gdk_keyval_name(keyval)));
   ff_key_set_visible(FF_KEY(key), 1);
 
-  if (kc->size - 1 != kc->idx)
-    ++kc->idx;
-  else {
-    callback_data *cbd = malloc(sizeof(callback_data));
-    cbd->key = key;
-    cbd->kc = kc;
-    cbd->pd = pd;
-    g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), cbd);
-  }
+  if (glob_data.size - 1 != glob_data.idx)
+    ++glob_data.idx;
+  else
+    g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), NULL);
+
   return 0;
 }
 
@@ -296,17 +251,18 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
 
   g_free(title);
 
-  key_container *kc = ff_get_key_container(app, category);
-  for (int i = 0; i < kc->size; ++i) {
-    GtkWidget *key = ff_key_new(kc->str_arr[i], 1);
-    gtk_box_pack_start(GTK_BOX(key_box), key, FALSE, TRUE, 0);
-  }
+  glob_data.app = app;
+  glob_data.row_title = category;
+  glob_data.box = GTK_WIDGET(key_box);
+  glob_data.stack = stack;
 
-  page_data *pd = new_page_data(GTK_WIDGET(key_box), kc, stack);
+  init_next_shortcut();
+
   GtkEventController *key_controller =
       gtk_event_controller_key_new(GTK_WIDGET(event_box));
+
   g_signal_connect(G_OBJECT(key_controller), "key_pressed",
-                   G_CALLBACK(key_pressed_cb), pd);
+                   G_CALLBACK(key_pressed_cb), NULL);
 
   gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice-page");
   gtk_widget_show_all(GTK_WIDGET(event_box));
