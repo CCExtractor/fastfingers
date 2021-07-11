@@ -133,7 +133,7 @@ void shortcut_learned(void) {
   char file_path[64];
 
   char *name = ff_simplify_title(title);
-  sprintf(file_path, "~/.fastfingers/applications/%s.json", name);
+  sprintf(file_path, "/usr/share/fastfingers/applications/%s.json", name);
   free(name);
 
   wordexp(file_path, &p, 0);

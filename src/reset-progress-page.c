@@ -9,13 +9,7 @@ void no_clicked_cb(GtkButton *button, gpointer user_data) {
 void yes_clicked_cb(GtkButton *button, gpointer user_data) {
   DIR *d;
   struct dirent *dir;
-  wordexp_t p;
-  char **w;
-
-  wordexp("~/.fastfingers/applications", &p, 0);
-  w = p.we_wordv;
-
-  d = opendir(w[0]);
+  d = opendir("/usr/share/fastfingers/applications");
   if (d) {
     while ((dir = readdir(d))) {
       if (!g_str_has_suffix(dir->d_name, ".json"))
@@ -40,7 +34,8 @@ void yes_clicked_cb(GtkButton *button, gpointer user_data) {
       }
       char *out = cJSON_Print(app);
       FILE *fp = NULL;
-      char *path = g_strconcat(w[0], "/", dir->d_name, (char *)0);
+      char *path = g_strconcat("/usr/share/fastfingers/applications/",
+                               dir->d_name, (char *)0);
       fp = fopen(path, "w");
 
       if (!fp) {
