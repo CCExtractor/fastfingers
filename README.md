@@ -3,10 +3,10 @@
 FastFingers is an open-source application that helps its users to remove the habit of using a mouse, by helping them to memorize the shortcuts they want to learn.
 
 ## Dependencies
-**GTK 4**   
-  * **Arch:** gtk4
-  * **Debian/Ubuntu:** libgtk-4-1, libgtk-4-dev 
-  * **Fedora:** gtk4, gtk4-devel
+**GTK 3 (see: https://www.gtk.org/docs/installations/linux/)**   
+  * **Arch:** gtk3
+  * **Debian/Ubuntu:** libgtk-3-0, libgtk-3-dev 
+  * **Fedora:** gtk3, gtk3-devel
 
 **CMake**   
   * **Arch, Debian/Ubuntu, Fedora:** CMake
@@ -34,10 +34,7 @@ Generate the binary files by CMake CLI
 cmake ..
 sudo cmake --build .
 ```
-It is ready to run
-```bash
-./ff_app
-```
+The apps are ready to run. The apps should be installed in the applications sections of your desktop environment where you can run them from. Also you can run them from the commands "fastfingers" and "fastfingers-cheatsheet"
 
 https://youtu.be/6ckgOJjpszU
 
