@@ -174,13 +174,25 @@ void right_to_left(int *keyval) {
     *keyval = gdk_keyval_from_name("Super_L");
 }
 
+void remove_mask(int *keyval) {
+  if (!strcmp("ISO_Left_Tab", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("Tab");
+}
+
 int key_compare(int keyval1, int keyval2) {
   right_to_left(&keyval1);
   right_to_left(&keyval2);
+  remove_mask(&keyval1);
+  remove_mask(&keyval2);
   if (gdk_keyval_to_upper(keyval1) == gdk_keyval_to_upper(keyval2))
     return 1;
-
+  remove_mask(&keyval1);
   return 0;
+}
+
+char *get_keyval_name(int keyval) {
+  remove_mask(&keyval);
+  return gdk_keyval_name(keyval);
 }
 
 int get_keyval_from_name(const char *str) {

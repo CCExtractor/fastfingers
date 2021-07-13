@@ -34,6 +34,7 @@ void set_scaled_image(GtkImage *image, const char *title, int size);
 int key_compare(int keyval1, int keyval2);
 
 int get_keyval_from_name(const char *str);
+char *get_keyval_name(int keyval);
 
 char *normalize_keyval_name(const char *str);
 
