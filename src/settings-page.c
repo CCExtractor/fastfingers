@@ -111,6 +111,9 @@ void settings_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
 }
 
 void ff_settings_page_init(GtkStack *stack) {
+  GtkWidget *temp = gtk_stack_get_child_by_name(stack, "settings");
+  if (temp)
+    gtk_container_remove(GTK_CONTAINER(stack), temp);
   GSettings *settings = g_settings_new("org.ccextractor.FastFingers");
 
   GtkBuilder *settings_page_builder = gtk_builder_new_from_resource(

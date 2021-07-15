@@ -1,6 +1,9 @@
 #include "home-page.h"
 
 void ff_home_page_init(GtkStack *stack) {
+  GtkWidget *temp = gtk_stack_get_child_by_name(stack, "home");
+  if (temp)
+    gtk_container_remove(GTK_CONTAINER(stack), temp);
   GtkBuilder *home_builder = gtk_builder_new_from_resource(
       "/org/ccextractor/FastFingers/ui/home-page.ui");
   GObject *scrolled_window =

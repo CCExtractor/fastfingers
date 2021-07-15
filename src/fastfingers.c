@@ -69,6 +69,17 @@ void ff_switch_previous(void) {
   free(current_page);
   current_page = prev_page;
 
+  if (!strcmp(current_page->page, "home"))
+    ff_home_page_init(GTK_STACK(stack));
+  else if (!strcmp(current_page->page, "settings"))
+    ff_settings_page_init(GTK_STACK(stack));
+  else if (!strcmp(current_page->page, "credits"))
+    ff_credits_page_init(GTK_STACK(stack));
+  else if (!strcmp(current_page->page, "reset-progress"))
+    ff_reset_progress_page_init(GTK_STACK(stack));
+  else
+    ff_application_page_init(GTK_STACK(stack), current_page->page);
+
   page_widget =
       gtk_stack_get_child_by_name(GTK_STACK(stack), current_page->page);
   gtk_widget_show_all(page_widget);

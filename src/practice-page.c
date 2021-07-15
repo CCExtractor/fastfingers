@@ -226,7 +226,7 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
 }
 
 void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
-  GtkWidget *temp = gtk_stack_get_child_by_name(stack, "practice-page");
+  GtkWidget *temp = gtk_stack_get_child_by_name(stack, "practice");
   if (temp)
     gtk_container_remove(GTK_CONTAINER(stack), temp);
 
