@@ -20,7 +20,7 @@ struct {
   GtkLabel *shortcut_description;
 } glob_data;
 
-void init_next_shortcut(void) {
+void init_next_shortcut(int previous_idx) {
   glob_data.size = 0;
   glob_data.idx = 0;
   glob_data.category_idx = -1;
@@ -62,10 +62,13 @@ void init_next_shortcut(void) {
     }
   }
 
-  if (!shortcut)
-    shortcut = cJSON_GetArrayItem(shortcuts,
-                                  glob_data.shortcut_idx =
-                                      rand() % cJSON_GetArraySize(shortcuts));
+  if (!shortcut) {
+    int rand_idx;
+    do {
+      rand_idx = rand() % cJSON_GetArraySize(shortcuts);
+    } while (previous_idx == rand_idx);
+    shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx = rand_idx);
+  }
 
   gtk_label_set_text(
       glob_data.shortcut_description,
@@ -163,7 +166,7 @@ end:
     fclose(fp);
   free(out);
 
-  init_next_shortcut();
+  init_next_shortcut(glob_data.shortcut_idx);
 }
 
 gboolean next_practice_page(gpointer user_data) {
@@ -263,7 +266,7 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
   glob_data.stack = stack;
   glob_data.shortcut_description = GTK_LABEL(shortcut_description);
 
-  init_next_shortcut();
+  init_next_shortcut(glob_data.shortcut_idx);
 
   GtkEventController *key_controller =
       gtk_event_controller_key_new(GTK_WIDGET(event_box));
