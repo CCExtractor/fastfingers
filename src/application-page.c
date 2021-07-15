@@ -1,11 +1,11 @@
 #include "application-page.h"
 
 void application_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
-                                  gpointer user_data) {
+                                  cJSON *app) {
   gtk_list_box_unselect_row(box, row);
   GtkWidget *stack = ff_get_stack();
   ff_practice_page_init(
-      GTK_STACK(stack), (cJSON *)user_data,
+      GTK_STACK(stack), app,
       ff_shortcut_list_row_get_left_text((FFShortcutListRow *)row));
   ff_switch_page("practice-page");
 }
