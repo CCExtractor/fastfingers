@@ -838,7 +838,7 @@
                 {
                     "title": "Show List of All Bookmarks",
                     "keys": [
-                        "Space"
+                        "space"
                     ],
                     "learned": 0,
                     "note": "In Empty Search Field in Bookmarks Library Window or Sidebar"
@@ -1221,14 +1221,14 @@
                 {
                     "title": "Decrease volume",
                     "keys": [
-                        "Up"
+                        "Down"
                     ],
                     "learned": 0
                 },
                 {
                     "title": "Increase volume",
                     "keys": [
-                        "Down"
+                        "Up"
                     ],
                     "learned": 0
                 },
@@ -1236,7 +1236,7 @@
                     "title": "Mute audio",
                     "keys": [
                         "Control",
-                        "Left"
+                        "Down"
                     ],
                     "learned": 0
                 },
@@ -1244,7 +1244,7 @@
                     "title": "Unmute audio",
                     "keys": [
                         "Control",
-                        "Left"
+                        "Up"
                     ],
                     "learned": 0
                 },
