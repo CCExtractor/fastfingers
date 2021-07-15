@@ -271,6 +271,6 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
   g_signal_connect(G_OBJECT(key_controller), "key_pressed",
                    G_CALLBACK(key_pressed_cb), NULL);
 
-  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice-page");
+  gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice");
   gtk_widget_show_all(GTK_WIDGET(event_box));
 }

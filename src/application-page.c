@@ -7,7 +7,7 @@ void application_row_activated_cb(GtkListBox *box, GtkListBoxRow *row,
   ff_practice_page_init(
       GTK_STACK(stack), app,
       ff_shortcut_list_row_get_left_text((FFShortcutListRow *)row));
-  ff_switch_page("practice-page");
+  ff_switch_page("practice");
 }
 
 void ff_application_page_init(GtkStack *stack, const char *title) {
