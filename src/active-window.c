@@ -65,7 +65,7 @@ char *get_active_from_xorg(void) {
 char *get_active_from_gnome_shell(void) {
   GError *error = NULL;
   GDBusConnection *c = NULL;
-  gchar *s, *parsed = NULL;
+  gchar *s = NULL, *parsed = NULL;
 
   c = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, &error);
 
@@ -75,7 +75,8 @@ char *get_active_from_gnome_shell(void) {
     goto out;
   }
 
-  GVariant *result = g_dbus_connection_call_sync(
+  GVariant *result = NULL;
+  result = g_dbus_connection_call_sync(
       c, "org.gnome.Shell", "/org/gnome/Shell", "org.gnome.Shell", "Eval",
       g_variant_new("(s)", "global.get_window_actors().map(a=>a.meta_window)."
                            "find(w=>w.has_focus()).get_wm_class()"),
