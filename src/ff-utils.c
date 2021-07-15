@@ -174,25 +174,37 @@ void right_to_left(int *keyval) {
     *keyval = gdk_keyval_from_name("Super_L");
 }
 
-void remove_mask(int *keyval) {
+void normalize_keyval(int *keyval) {
   if (!strcmp("ISO_Left_Tab", gdk_keyval_name(*keyval)))
     *keyval = gdk_keyval_from_name("Tab");
+  if (!strcmp("KP_Add", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("plus");
+  //
+  if (!strcmp("KP_Divide", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("slash");
+  if (!strcmp("KP_Multiply", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("asterisk");
+  if (!strcmp("KP_Subtract", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("minus");
+  if (!strcmp("KP_Enter", gdk_keyval_name(*keyval)))
+    *keyval = gdk_keyval_from_name("Return");
 }
 
 int key_compare(int keyval1, int keyval2) {
   right_to_left(&keyval1);
   right_to_left(&keyval2);
-  remove_mask(&keyval1);
-  remove_mask(&keyval2);
+  normalize_keyval(&keyval1);
+  normalize_keyval(&keyval2);
   if (gdk_keyval_to_upper(keyval1) == gdk_keyval_to_upper(keyval2))
     return 1;
-  remove_mask(&keyval1);
+
   return 0;
 }
 
 char *get_keyval_name(int keyval) {
-  remove_mask(&keyval);
-  return gdk_keyval_name(keyval);
+  normalize_keyval(&keyval);
+  return normalize_keyval_name(gdk_keyval_name(keyval));
+  // slash yerine / dön
 }
 
 int get_keyval_from_name(const char *str) {
@@ -202,6 +214,39 @@ int get_keyval_from_name(const char *str) {
     return gdk_keyval_from_name("Alt_L");
   if (!strcmp("Shift", str))
     return gdk_keyval_from_name("Shift_L");
+  if (!strcmp("Space", str))
+    return gdk_keyval_from_name("space");
+  if (!strcmp("?", str))
+    return gdk_keyval_from_name("exclam");
+  if (!strcmp("\"", str))
+    return gdk_keyval_from_name("quotedbl");
+  if (!strcmp("$", str))
+    return gdk_keyval_from_name("dollar");
+  if (!strcmp("%", str))
+    return gdk_keyval_from_name("percent");
+  if (!strcmp("&", str))
+    return gdk_keyval_from_name("ampersand");
+  if (!strcmp("'", str))
+    return gdk_keyval_from_name("apostrophe");
+  if (!strcmp("'", str))
+    return gdk_keyval_from_name("quoteright");
+  if (!strcmp("(", str))
+    return gdk_keyval_from_name("parenleft");
+  if (!strcmp(")", str))
+    return gdk_keyval_from_name("parenright");
+  if (!strcmp("*", str))
+    return gdk_keyval_from_name("asterisk");
+  if (!strcmp("+", str))
+    return gdk_keyval_from_name("plus");
+  if (!strcmp(",", str))
+    return gdk_keyval_from_name("comma");
+  if (!strcmp("-", str))
+    return gdk_keyval_from_name("minus");
+  if (!strcmp(".", str))
+    return gdk_keyval_from_name("period");
+  if (!strcmp("/", str))
+    return gdk_keyval_from_name("slash");
+
   return gdk_keyval_from_name(str);
 }
 
@@ -275,6 +320,42 @@ char *normalize_keyval_name(const char *str) {
 
   else if (!strcmp(str, "comma"))
     ret = g_strdup(",");
+
+  else if (!strcmp(str, "exclam"))
+    ret = g_strdup("?");
+
+  else if (!strcmp(str, "quotedbl"))
+    ret = g_strdup("\"");
+
+  else if (!strcmp(str, "dollar"))
+    ret = g_strdup("$");
+
+  else if (!strcmp(str, "percent"))
+    ret = g_strdup("%");
+
+  else if (!strcmp(str, "ampersand"))
+    ret = g_strdup("&");
+
+  else if (!strcmp(str, "apostrophe"))
+    ret = g_strdup("'");
+
+  else if (!strcmp(str, "quoteright"))
+    ret = g_strdup("'");
+
+  else if (!strcmp(str, "parenleft"))
+    ret = g_strdup("(");
+
+  else if (!strcmp(str, "parenright"))
+    ret = g_strdup(")");
+
+  else if (!strcmp(str, "asterisk"))
+    ret = g_strdup("*");
+
+  else if (!strcmp(str, "plus"))
+    ret = g_strdup("+");
+
+  else if (!strcmp(str, "slash"))
+    ret = g_strdup("/");
 
   else if (!strcmp(str, "ISO_Level3_Shift"))
     ret = g_strdup("AltGr");

@@ -213,7 +213,7 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
     ff_key_set_style(key, "fail");
   }
 
-  ff_key_set_text(FF_KEY(key), normalize_keyval_name(get_keyval_name(keyval)));
+  ff_key_set_text(FF_KEY(key), get_keyval_name(keyval));
   ff_key_set_visible(FF_KEY(key), 1);
 
   if (glob_data.size - 1 != glob_data.idx)
