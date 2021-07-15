@@ -204,7 +204,6 @@ int key_compare(int keyval1, int keyval2) {
 char *get_keyval_name(int keyval) {
   normalize_keyval(&keyval);
   return normalize_keyval_name(gdk_keyval_name(keyval));
-  // slash yerine / dön
 }
 
 int get_keyval_from_name(const char *str) {
