@@ -23,6 +23,8 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
   GObject *image = gtk_builder_get_object(application_page_builder, "image");
   GObject *list_topic =
       gtk_builder_get_object(application_page_builder, "list_topic");
+  GObject *main_box =
+      gtk_builder_get_object(application_page_builder, "main_box");
 
   char *logo_path = ff_logo_path_gen(title);
 
@@ -50,6 +52,43 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     sprintf(progress, "%d/%d", learned, cJSON_GetArraySize(shortcuts));
     GtkWidget *row = ff_shortcut_list_row_new(title->valuestring, progress);
     gtk_container_add(GTK_CONTAINER(list_topic), row);
+  }
+
+  cJSON *recent = cJSON_GetObjectItem(app, "recent");
+  if (cJSON_GetArraySize(recent) > 0) {
+    GtkWidget *recent_title = gtk_label_new("Recent");
+    add_style_class(recent_title, "application-title");
+    gtk_box_pack_start(GTK_BOX(main_box), recent_title, FALSE, FALSE, 0);
+    gtk_box_reorder_child(GTK_BOX(main_box), recent_title, 2);
+
+    GtkWidget *recent_list = gtk_list_box_new();
+    add_style_class(recent_list, "application-list");
+    gtk_box_pack_start(GTK_BOX(main_box), recent_list, FALSE, FALSE, 0);
+    gtk_box_reorder_child(GTK_BOX(main_box), recent_list, 3);
+
+    for (int i = cJSON_GetArraySize(recent) - 1; i >= 0; --i) {
+      for (int j = 0; j < cJSON_GetArraySize(group); ++j) {
+        const char *group_title =
+            cJSON_GetObjectItem(cJSON_GetArrayItem(group, j), "title")
+                ->valuestring;
+        const char *recent_title = cJSON_GetArrayItem(recent, i)->valuestring;
+        if (!strcmp(group_title, recent_title)) {
+          cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(
+              cJSON_GetArrayItem(group, i), "shortcuts");
+          int learned = 0;
+          for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
+            cJSON *shortcut = cJSON_GetArrayItem(shortcuts, j);
+            cJSON *learn_stat =
+                cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
+            learned += learn_stat->valueint;
+          }
+          char progress[8];
+          sprintf(progress, "%d/%d", learned, cJSON_GetArraySize(shortcuts));
+          GtkWidget *row = ff_shortcut_list_row_new(recent_title, progress);
+          gtk_container_add(GTK_CONTAINER(recent_list), row);
+        }
+      }
+    }
   }
 
   g_signal_connect(GTK_WIDGET(list_topic), "row-activated",
