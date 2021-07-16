@@ -32,6 +32,12 @@ void yes_clicked_cb(GtkButton *button, gpointer user_data) {
           cJSON_SetIntValue(learn_stat, 0);
         }
       }
+
+      cJSON *recent = cJSON_GetObjectItem(app, "recent");
+      for (int i = cJSON_GetArraySize(recent) - 1; i >= 0; --i) {
+        cJSON_DeleteItemFromArray(recent, i);
+      }
+
       char *out = cJSON_Print(app);
       FILE *fp = NULL;
       char *path = g_strconcat("/usr/share/fastfingers/applications/",

@@ -122,30 +122,74 @@ void init_next_shortcut(int previous_idx) {
   gtk_widget_show_all(glob_data.box);
 }
 
-void shortcut_learned(void) {
+void update_global_recent(void) {
+  cJSON *recent_json = ff_get_application("appdata");
+  cJSON *arr = cJSON_GetObjectItem(recent_json, "recent");
   const char *title = cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
-  cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
-  cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
-  cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
-  cJSON *shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx);
-  cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
-  cJSON_SetIntValue(learned, 1);
+  int len = cJSON_GetArraySize(arr);
+  int already_in_list = 0;
+  for (int i = 0; i < len; ++i) {
+    // If the app is already in the recent, make it the last element of the list
+    if (!strcmp(cJSON_GetArrayItem(arr, i)->valuestring, title)) {
+      char *tmp = NULL;
+      for (int j = i; j < i - 1; ++j) {
+        tmp = g_strdup(cJSON_GetArrayItem(arr, j)->valuestring);
+        cJSON_SetValuestring(cJSON_GetArrayItem(arr, j),
+                             cJSON_GetArrayItem(arr, j + 1)->valuestring);
+        cJSON_SetValuestring(cJSON_GetArrayItem(arr, j + 1), tmp);
+      }
+      g_free(tmp);
+      already_in_list = 1;
+      break;
+    }
+  }
+  // If it is not already in the list, add it to the list
+  if (!already_in_list) {
+    cJSON *str_to_add = cJSON_CreateString(title);
+    cJSON_AddItemToArray(arr, str_to_add);
+    // Remove the old entries
+    while (cJSON_GetArraySize(arr) > 5)
+      cJSON_DeleteItemFromArray(arr, 0);
+  }
 
-  wordexp_t p;
-  char **w;
+  const char *file_path = "/usr/share/fastfingers/applications/appdata.json";
+  FILE *fp = NULL;
+  fp = fopen(file_path, "w");
+
+  if (!fp) {
+    fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
+            strerror(errno));
+    goto end;
+  }
+
+  char *out = cJSON_Print(recent_json);
+
+  int written = fprintf(fp, "%s", out);
+
+  if (written < 0) {
+    fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
+            strerror(errno));
+    goto end;
+  }
+
+end:
+  if (fp)
+    fclose(fp);
+  free(out);
+}
+
+void update_app_json_file(void) {
   char file_path[64];
 
-  char *name = ff_simplify_title(title);
+  char *name = ff_simplify_title(
+      cJSON_GetObjectItem(glob_data.app, "title")->valuestring);
   sprintf(file_path, "/usr/share/fastfingers/applications/%s.json", name);
   free(name);
-
-  wordexp(file_path, &p, 0);
-  w = p.we_wordv;
 
   char *out = cJSON_Print(glob_data.app);
 
   FILE *fp = NULL;
-  fp = fopen(w[0], "w");
+  fp = fopen(file_path, "w");
 
   if (!fp) {
     fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
@@ -165,7 +209,55 @@ end:
   if (fp)
     fclose(fp);
   free(out);
+}
 
+void update_app_recent(void) {
+  cJSON *arr = cJSON_GetObjectItem(glob_data.app, "recent");
+  const char *category = glob_data.row_title;
+  int len = cJSON_GetArraySize(arr);
+  int already_in_list = 0;
+  for (int i = 0; i < len; ++i) {
+    // If category is already in the recent make it the last element of the list
+    if (!strcmp(cJSON_GetArrayItem(arr, i)->valuestring, category)) {
+      char *tmp = NULL;
+      for (int j = i; j < i - 1; ++j) {
+        tmp = g_strdup(cJSON_GetArrayItem(arr, j)->valuestring);
+        cJSON_SetValuestring(cJSON_GetArrayItem(arr, j),
+                             cJSON_GetArrayItem(arr, j + 1)->valuestring);
+        cJSON_SetValuestring(cJSON_GetArrayItem(arr, j + 1), tmp);
+      }
+      g_free(tmp);
+      already_in_list = 1;
+      break;
+    }
+  }
+  // If it is not already in the list, add it to the list
+  if (!already_in_list) {
+    cJSON *str_to_add = cJSON_CreateString(category);
+    cJSON_AddItemToArray(arr, str_to_add);
+    // Remove the old entries
+    while (cJSON_GetArraySize(arr) > 5)
+      cJSON_DeleteItemFromArray(arr, 0);
+  }
+
+  update_app_json_file();
+}
+
+void update_recent(void) {
+  update_global_recent();
+  update_app_recent();
+}
+
+void shortcut_learned(void) {
+  cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
+  cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
+  cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+  cJSON *shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx);
+  cJSON *learned = cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
+  cJSON_SetIntValue(learned, 1);
+
+  update_app_json_file();
+  update_recent();
   init_next_shortcut(glob_data.shortcut_idx);
 }
 
