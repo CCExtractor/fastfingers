@@ -211,7 +211,7 @@ end:
   free(out);
 }
 
-void update_appdata_recent(void) {
+void update_app_recent(void) {
   cJSON *arr = cJSON_GetObjectItem(glob_data.app, "recent");
   const char *category = glob_data.row_title;
   int len = cJSON_GetArraySize(arr);
@@ -245,7 +245,7 @@ void update_appdata_recent(void) {
 
 void update_recent(void) {
   update_global_recent();
-  update_appdata_recent();
+  update_app_recent();
 }
 
 void shortcut_learned(void) {
