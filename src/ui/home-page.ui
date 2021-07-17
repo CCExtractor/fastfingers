@@ -9,6 +9,9 @@
 				<child>
 					<object class="GtkBox" id="main_box">
 						<property name="orientation">vertical</property>
+						<style>
+							<class name="home-main-box" />
+						</style>
 						<child>
 							<object class="FFButtonbox">
 								<property name="back-visible">False</property>

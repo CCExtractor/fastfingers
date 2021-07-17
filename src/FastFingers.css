@@ -64,9 +64,13 @@ viewport.home-viewport {
 
 label.home-header {
     color: #eceff4;
-    font-size: 40px;
+    font-size: 28px;
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
-    margin-top: 40px;
+    margin-top: 15px;
+}
+
+box.home-main-box {
+    padding-bottom: 30px;
 }
 
 
