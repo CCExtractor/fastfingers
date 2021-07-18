@@ -36,3 +36,7 @@ jobs:
     - name: Install
       # Install the app system wide
       run: sudo make --directory ${{github.workspace}}/src/build install
+      
+    - name: Create Package
+      # Create debian package
+      run: sudo ${{github.workspace}}/package_creators/debian.sh ${{github.workspace}}
