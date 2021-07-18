@@ -15,10 +15,11 @@
     <file preprocess="xml-stripblanks">ui/cheatsheet.ui</file>
     <file>FastFingers.css</file>
     <file>logo/fastfingers.png</file>
-    <file>logo/gmail.png</file>
-    <file>logo/sketch.png</file>
-    <file>logo/slack.png</file>
-    <file>logo/vscode.png</file>
     <file>logo/firefox.png</file>
+    <file>logo/gimp.png</file>
+    <file>logo/slack.png</file>
+    <file>logo/thunderbird.png</file>
+    <file>logo/vlc.png</file>
+    <file>logo/vscode.png</file>
   </gresource>
 </gresources>
