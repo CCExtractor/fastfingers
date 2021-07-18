@@ -83,5 +83,18 @@ set(CMAKE_C_FLAGS
 # Changing cheatsheet's executable name to "fastfingers-cheatsheet"
 set_target_properties(cheatsheet PROPERTIES OUTPUT_NAME
                                             "fastfingers-cheatsheet")
+
+install(
+  TARGETS fastfingers cheatsheet
+  DESTINATION bin
+  PERMISSIONS
+    OWNER_READ
+    OWNER_WRITE
+    OWNER_EXECUTE
+    GROUP_READ
+    GROUP_EXECUTE
+    WORLD_READ
+    WORLD_EXECUTE)
+
 # Creating desktop files
 add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
