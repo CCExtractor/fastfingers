@@ -28,6 +28,10 @@ Maintainer: ${maintainer}
 Architecture: ${architecture}
 Description: ${description}" > ${path}/packages/debian/fastfingers/DEBIAN/control
 
+echo "#!/bin/bash
+gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/
+gtk-update-icon-cache -t -f /usr/share/icons/hicolor/" > ${path}/packages/debian/fastfingers/DEBIAN/postinst
+
 mkdir -p -v ${path}/packages/debian/fastfingers/usr/bin
 cp -v ${path}/src/build/fastfingers ${path}/packages/debian/fastfingers/usr/bin
 cp -v ${path}/src/build/fastfingers-cheatsheet ${path}/packages/debian/fastfingers/usr/bin
