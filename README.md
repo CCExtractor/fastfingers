@@ -5,8 +5,8 @@ FastFingers is an open-source application that helps its users to remove the hab
 ## Dependencies
 **GTK 3 (see: https://www.gtk.org/docs/installations/linux/)**   
   * **Arch:** gtk3
-  * **Debian/Ubuntu:** libgtk-3-0, libgtk-3-dev 
-  * **Fedora:** gtk3, gtk3-devel
+  * **Debian/Ubuntu:** libgtk-3-0 and libgtk-3-dev (Both are required to build from source!)
+  * **Fedora:** gtk3 and gtk3-devel (Both are required to build from source!)
 
 **CMake**   
   * **Arch, Debian/Ubuntu, Fedora:** CMake
