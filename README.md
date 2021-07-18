@@ -5,35 +5,42 @@ FastFingers is an open-source application that helps its users to remove the hab
 ## Dependencies
 **GTK 3 (see: https://www.gtk.org/docs/installations/linux/)**   
   * **Arch:** gtk3
-  * **Debian/Ubuntu:** libgtk-3-0, libgtk-3-dev 
-  * **Fedora:** gtk3, gtk3-devel
+  * **Debian/Ubuntu:** libgtk-3-0 and libgtk-3-dev (Both are required to build from source!)
+  * **Fedora:** gtk3 and gtk3-devel (Both are required to build from source!)
 
 **CMake**   
   * **Arch, Debian/Ubuntu, Fedora:** CMake
 
+**pkg-config**
+  * **Debian/Ubuntu:** pkg-config
+
 A C compiler and build tool, such as GCC and GNU Make or Ninja.
 
-## Installation
+## Building and Installing
 
 Download the source code and move to the source directory
 
 ```bash
 git clone https://github.com/aliereny/fastfingers.git
-cd fastfingers/src
 ```
-Create the build directory and move to it
+Configure the CMake
 
 ```bash
-mkdir build
-cd build
+cmake -S fastfingers/src -B fastfingers/src/build -DCMAKE_BUILD_TYPE=Release
 ```
 
-Generate the binary files by CMake CLI
+Build
 
 ```bash
-cmake ..
-sudo cmake --build .
+cmake --build fastfingers/src/build --config Release
 ```
+
+Install
+
+```bash
+cmake --build fastfingers/src/build --target install
+```
+
 The apps are ready to run. The apps should be installed in the applications sections of your desktop environment where you can run them from. Also you can run them from the commands "fastfingers" and "fastfingers-cheatsheet"
 
 https://youtu.be/6ckgOJjpszU
