@@ -35,4 +35,4 @@ jobs:
     
     - name: Install
       # Install the app system wide
-      run: sudo make install
+      run: sudo make --directory ${{github.workspace}}/src/build install
