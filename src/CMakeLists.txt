@@ -94,7 +94,7 @@ install(
 
 install(
   DIRECTORY ${CMAKE_SOURCE_DIR}/../data/applications/
-  DESTINATION "/usr/share/fastfingers"
+  DESTINATION "/usr/share/fastfingers/applications"
   FILE_PERMISSIONS
     OWNER_READ OWNER_WRITE
     GROUP_READ GROUP_WRITE
