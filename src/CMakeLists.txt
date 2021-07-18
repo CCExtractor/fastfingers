@@ -101,5 +101,17 @@ install(
     WORLD_READ WORLD_WRITE
 )
 
+install (
+    FILES 
+      ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
+      ${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop
+    DESTINATION
+      /usr/share/applications/
+    PERMISSIONS
+        OWNER_READ
+        GROUP_READ
+        WORLD_READ
+)
+
 # Creating desktop files
 add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
