@@ -35,7 +35,7 @@ for px in 16 22 24 32 48 256
 do
     rm -v /usr/share/icons/HighContrast/${px}x${px}/apps/fastfingers.png
     rm -v /usr/share/icons/HighContrast/${px}x${px}/apps/fastfingers-cheatsheet.png
-    gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/
 done
+gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/
 echo "5#END - Removing icons"
 echo "===================================="
