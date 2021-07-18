@@ -101,6 +101,9 @@ install(
     WORLD_READ WORLD_WRITE
 )
 
+# Creating desktop files
+add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
+
 install (
     FILES 
       ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
@@ -113,5 +116,42 @@ install (
         WORLD_READ
 )
 
-# Creating desktop files
-add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
+  # Installing hicolor icons
+  list(APPEND HICOLOR_PX 16 32 48 64 128)
+  foreach(PX IN LISTS HICOLOR_PX)
+    if(EXISTS "/usr/share/icons/hicolor/${PX}x${PX}/")
+      install (
+        FILES 
+          ${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/apps/fastfingers.png
+          ${CMAKE_SOURCE_DIR}/../data/icons/hicolor/${PX}x${PX}/apps/fastfingers-cheatsheet.png
+        DESTINATION
+          /usr/share/icons/hicolor/${PX}x${PX}/apps/
+        PERMISSIONS
+            OWNER_READ OWNER_WRITE
+            GROUP_READ
+            WORLD_READ
+      )
+    endif()
+  endforeach()
+  # Installing highcontrast icons
+  list( APPEND HICONTRAST_PX 16 22 24 32 48 256)
+  foreach(PX IN LISTS HICONTRAST_PX)
+    if(EXISTS "/usr/share/icons/HighContrast/${PX}x${PX}/")
+      install (
+        FILES 
+          ${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/apps/fastfingers.png
+          ${CMAKE_SOURCE_DIR}/../data/icons/HighContrast/${PX}x${PX}/apps/fastfingers-cheatsheet.png
+        DESTINATION
+          /usr/share/icons/HighContrast/${PX}x${PX}/apps/
+        PERMISSIONS
+            OWNER_READ OWNER_WRITE
+            GROUP_READ
+            WORLD_READ
+      )
+    endif()
+  endforeach()
+  # Updating highcontrast cache
+  install (CODE "execute_process(COMMAND gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/)")
+  install (CODE "execute_process(COMMAND gtk-update-icon-cache -t -f /usr/share/icons/hicolor/)")
+
+
