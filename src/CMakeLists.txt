@@ -111,14 +111,14 @@ install (
     DESTINATION
       /usr/share/applications/
     PERMISSIONS
-        OWNER_READ
+        OWNER_READ OWNER_WRITE
         GROUP_READ
         WORLD_READ
 )
 
-  # Installing hicolor icons
-  list(APPEND HICOLOR_PX 16 32 48 64 128)
-  foreach(PX IN LISTS HICOLOR_PX)
+# Installing hicolor icons
+list(APPEND HICOLOR_PX 16 32 48 64 128)
+foreach(PX IN LISTS HICOLOR_PX)
     if(EXISTS "/usr/share/icons/hicolor/${PX}x${PX}/")
       install (
         FILES 
