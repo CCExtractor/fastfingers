@@ -4,22 +4,7 @@ macro(add_desktop DESKTOP_TARGET VERSION)
   configure_file(
     "${CMAKE_SOURCE_DIR}/../data/org.ccextractor.FastFingers.desktop.in"
     "${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop" @ONLY)
-  add_custom_command(
-    TARGET ${DESKTOP_TARGET}
-    POST_BUILD
-    COMMAND
-      ${CMAKE_COMMAND} -E copy
-      "${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop"
-      "/usr/share/applications/")
-
   configure_file(
     "${CMAKE_SOURCE_DIR}/../data/org.ccextractor.Cheatsheet.desktop.in"
     "${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop" @ONLY)
-  add_custom_command(
-    TARGET ${DESKTOP_TARGET}
-    POST_BUILD
-    COMMAND
-      ${CMAKE_COMMAND} -E copy
-      "${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop"
-      "/usr/share/applications/")
 endmacro()

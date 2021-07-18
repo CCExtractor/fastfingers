@@ -3,14 +3,11 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 project(
   FastFingers
-  VERSION 0.7.11
+  VERSION 0.7.18
   LANGUAGES C)
 # Initializing other CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-include(GSettings)
-include(Icons)
 include(Desktop)
-include(Data)
 # Declaring the C standards
 set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_EXTENSIONS OFF)
@@ -21,14 +18,13 @@ find_package(PkgConfig REQUIRED QUIET)
 pkg_search_module(GTK REQUIRED gtk+-3.0)
 # Fetching gmodule-export-2.0
 pkg_search_module(GM_EXPORT REQUIRED gmodule-export-2.0)
-
 # Checking the presence of glib-compile-resources command and fetching it
 find_program(GLIB_COMPILE_RESOURCES NAMES glib-compile-resources REQUIRED)
 # Defining GResources and resource files
 set(GRESOURCE_C ff_gresources.c)
 set(GRESOURCE_XML org.ccextractor.FastFingers.gresource.xml)
 # Defining GResources dependencies
-file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* applications/* FastFingers.css)
+file(GLOB GRESOURCE_DEPENDENCIES ui/* logo/* FastFingers.css)
 # Defining how to compile the GResources
 add_custom_command(
   OUTPUT ${GRESOURCE_C}
@@ -38,7 +34,6 @@ add_custom_command(
   VERBATIM
   MAIN_DEPENDENCY ${GRESOURCE_XML}
   DEPENDS ${GRESOURCE_DEPENDENCIES})
-
 # Listing sources to link with the executable
 list(
   APPEND
@@ -81,27 +76,12 @@ target_link_libraries(fastfingers ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
                       ${GM_EXPORT_LIBRARIES})
 target_link_libraries(cheatsheet ${CMAKE_THREAD_LIBS_INIT} ${GTK_LIBRARIES}
                       ${GM_EXPORT_LIBRARIES})
-
 # Adding necessary compile flags
 set(CMAKE_C_FLAGS
     "${CMAKE_C_FLAGS} -Wl,--export-dynamic -rdynamic -Wno-deprecated-declarations -Wall -g"
 )
-# Installing the binary to the system
-add_custom_command(
-  TARGET fastfingers
-  POST_BUILD VERBATIM
-  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:fastfingers> "/usr/bin/")
-
+# Changing cheatsheet's executable name to "fastfingers-cheatsheet"
 set_target_properties(cheatsheet PROPERTIES OUTPUT_NAME
                                             "fastfingers-cheatsheet")
-
-add_custom_command(
-  TARGET cheatsheet
-  POST_BUILD VERBATIM
-  COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:cheatsheet> "/usr/bin/")
-
-# Installing other files
-add_schema(fastfingers)
-add_icons(fastfingers)
+# Creating desktop files
 add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
-add_data(fastfingers)
