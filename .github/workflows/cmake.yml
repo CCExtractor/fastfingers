@@ -40,3 +40,12 @@ jobs:
     - name: Create Package
       # Create debian package
       run: sudo ${{github.workspace}}/package_creators/debian.sh ${{github.workspace}}
+      
+    - name: Release
+      # Release the created Debian package
+      uses: softprops/action-gh-release@v0.1.5
+      with:
+        name: Debian Package
+        prerelease: true
+        files: ${{github.workspace}}/packages/debian/*.deb
+
