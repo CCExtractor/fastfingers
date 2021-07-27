@@ -1,6 +1,6 @@
 #include "home-page.h"
 
-struct {
+static struct {
   GSequence *categories;
   GSequence *hbox_arr;
 } glob_data;

@@ -1,6 +1,6 @@
 #include "practice-page.h"
 
-struct {
+static struct {
   int size;
   int idx;
   int category_idx;
