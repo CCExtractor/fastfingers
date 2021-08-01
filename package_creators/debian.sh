@@ -56,3 +56,5 @@ chmod -v u=rw,g=r,o=r ${path}/packages/debian/fastfingers/usr/share/glib-2.0/sch
 chmod -R -v u=rwx,g=rx,o=rx ${path}/packages/debian/fastfingers/DEBIAN/
 
 dpkg-deb --build ${path}/packages/debian/fastfingers ${path}/packages/debian
+
+rm -rfv ${path}/packages/debian/fastfingers/
