@@ -50,7 +50,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPO: self
-        BRANCH: main
+        BRANCH: ${{ needs.build.outputs.branch }}
         FOLDER: ${{github.workspace}}/packages
         SKIP_EMPTY_COMMITS: true
 
