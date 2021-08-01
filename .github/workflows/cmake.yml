@@ -18,7 +18,7 @@ jobs:
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
     outputs:
-      branch: v0.7.2
+      branch: v0.7
       tag: v0.7.2
 
     steps:
@@ -49,52 +49,16 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPO: self
-        BRANCH: v0.7.2
+        BRANCH: v0.7
         FOLDER: ${{github.workspace}}/packages
         SKIP_EMPTY_COMMITS: true
 
-  tag_version:
-    needs: build
-    runs-on: ubuntu-latest
-    outputs:
-      tagged: ${{ steps.check_tagged.outputs.tagged }}
-      tag: ${{ steps.tag.outputs.new_tag }}
-    steps:
-      - name: Checkout dist branch
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ needs.build.outputs.branch }}
-          fetch-depth: 0
-
-      - name: Check tag exists
-        id: check_tag
-        uses: mukunku/tag-exists-action@v1.0.0
-        with:
-          tag: ${{ needs.build.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Tag version
-        id: tag
-        if: ${{ steps.check_tag.outputs.exists == 'false' }}
-        uses: anothrNick/github-tag-action@1.34.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CUSTOM_TAG: ${{ needs.build.outputs.tag }}
-
-      - name: Check created tag
-        id: check_tagged
-        run: |
-          echo "::set-output name=tagged::${{ (steps.check_tag.outputs.exists == 'false') && (steps.tag.outputs.new_tag == steps.tag.outputs.tag) }}"
-
   create_release:
-    needs: tag_version
-    if: ${{ needs.tag_version.outputs.tagged == 'true' }}
     runs-on: ubuntu-latest
     steps:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ needs.tag_version.outputs.tag }}
+          tag: v0.7.2
           draft: true
