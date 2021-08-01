@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/ccextractor/FastFingers">
+    <file preprocess="xml-stripblanks">ui/card.ui</file>
+    <file preprocess="xml-stripblanks">ui/fastfingers.ui</file>
+    <file preprocess="xml-stripblanks">ui/home-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/application-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/practice-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/settings-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/credits-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/reset-progress-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/button-box.ui</file>
+    <file preprocess="xml-stripblanks">ui/key.ui</file>
+    <file preprocess="xml-stripblanks">ui/shortcut-list-row.ui</file>
+    <file preprocess="xml-stripblanks">ui/cheatsheet.ui</file>
+    <file>FastFingers.css</file>
+    <file>logo/fastfingers.png</file>
+    <file>logo/gmail.png</file>
+    <file>logo/sketch.png</file>
+    <file>logo/slack.png</file>
+    <file>logo/vscode.png</file>
+    <file>logo/firefox.png</file>
+  </gresource>
+</gresources>

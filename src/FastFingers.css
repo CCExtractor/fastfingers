@@ -1,0 +1,451 @@
+/* Reset all preset stylings and global settings */
+
+* {
+    all: unset;
+}
+
+scrollbar contents {
+    min-width: 10px;
+    background-color: #81A1C1;
+}
+
+scrollbar contents slider {
+    min-width: 10px;
+    background-color: #5E81AC;
+    border-radius: 10px;
+}
+
+button {
+    padding: 5px 10px 5px 10px;
+}
+
+headerbar {
+    background-color: #1b1e24;
+    color: white;
+    font-weight: 600;
+}
+
+headerbar button:hover {
+    background-color: #282d38;
+}
+
+
+/* Button Box */
+
+button.settings-button,
+button.back-button {
+    background-image: none;
+    background-color: #3b4252;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+button.settings-button:hover,
+button.back-button:hover {
+    background-color: #434c5e;
+}
+
+button.settings-button:active,
+button.back-button:active {
+    background-color: #4c566a;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Home Page */
+
+viewport.home-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+label.home-header {
+    color: #eceff4;
+    font-size: 28px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+    margin-top: 15px;
+}
+
+box.home-main-box {
+    padding-bottom: 30px;
+}
+
+
+/* Card */
+
+card {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+card:hover {
+    background-color: #434c5e;
+}
+
+image.card-image {
+    margin: 10px;
+}
+
+label.card-label {
+    color: #eceff4;
+    font-weight: 300;
+    font-size: 25px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+}
+
+levelbar trough {
+    padding: 5px;
+}
+
+levelbar block {
+    min-height: 5px;
+}
+
+levelbar block.filled {
+    background-color: #BF616A;
+}
+
+levelbar block.empty {
+    background-color: #434C5E;
+}
+
+
+/* Practice Page */
+
+box.practice-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.practice-image {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+key {
+    background-image: none;
+    background-color: #D8DEE9;
+    color: #000;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: #9599a0;
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 700;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    padding: 10px;
+}
+
+key.test {
+    background-color: #D8DEE9;
+    border-color: #9599a0;
+    color: rgba(255, 255, 255, 0.5);
+    border-style: dashed;
+    border-width: 3px;
+}
+
+key.fail {
+    background-color: #e99090;
+    border-color: #a36666;
+}
+
+key.success {
+    background-color: #99e985;
+    border-color: #5e8d52;
+}
+
+label.shortcut-description {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+/* Settings Page */
+
+box.settings-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.settings-logo {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+label.settings-key {
+    background-color: #2E3440;
+    margin: 0px 5px 0px 5px;
+    padding: 0px 7px 0px 7px;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: #000;
+    border-radius: 8px;
+}
+
+list.settings-list {
+    background-color: #3b4252;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0px 300px 100px 300px;
+}
+
+list.settings-list row {
+    background-color: #3b4252;
+    padding: 10px 15px 10px 15px;
+}
+
+list.settings-list row:hover {
+    background-color: #434c5e;
+}
+
+list.settings-list row:selected {
+    background-color: #4c566a;
+}
+
+list.settings-list label {
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Application Page */
+
+viewport.application-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+image.application-logo {
+    background-color: #3b4252;
+    background-image: none;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+}
+
+box.application-box label.application-title {
+    color: #eceff4;
+    font-size: 35px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+    margin-top: 20px;
+}
+
+list.application-list {
+    background-color: #3b4252;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 10px 300px 0px 300px;
+}
+
+list.application-list label {
+    color: white;
+    font-size: 18px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+}
+
+shortcut-list-row {
+    background-color: #3b4252;
+    padding: 10px 15px 10px 15px;
+}
+
+shortcut-list-row:hover {
+    background-color: #434c5e;
+}
+
+shortcut-list-row:selected {
+    background-color: #4c566a;
+}
+
+
+/* Credits Page */
+
+viewport.credits-viewport {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+label.credits-header {
+    color: #81A1C1;
+    font-size: 60px;
+    font-weight: 500;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+    margin-top: 30px;
+}
+
+label.credits-title {
+    color: #88C0D0;
+    font-size: 30px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+}
+
+list.credits-list {
+    background-color: #3b4252;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0px 300px 100px 300px;
+}
+
+list.credits-list row {
+    background-color: #3b4252;
+    margin: 6px 15px 6px 15px;
+}
+
+list.credits-list row:hover {
+    background-color: #3b4252;
+}
+
+list.credits-list row:selected {
+    background-color: #3b4252;
+}
+
+list.credits-list label {
+    color: #ECEFF4;
+    font-size: 18px;
+}
+
+
+/* Reset Progress Page */
+
+box.reset-progress-box {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+box.reset-progress-container {
+    margin: 0px 300px 0px 300px;
+    padding: 20px;
+    background-color: #3b4252;
+}
+
+label.reset-progress-header {
+    color: #BF616A;
+    font-size: 60px;
+    font-weight: 500;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.16);
+    margin-top: 30px;
+}
+
+label.reset-progress-message {
+    color: #ECEFF4;
+    font-size: 25px;
+}
+
+label.reset-progress-info {
+    color: #ECEFF4;
+    font-size: 20px;
+}
+
+box.reset-progress-buttonbox {
+    margin: 0px 300px 0px 300px;
+}
+
+button.reset-progress-cancel {
+    background-image: none;
+    background-color: #D08770;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+button.reset-progress-cancel:hover {
+    background-color: #e8a18b;
+}
+
+button.reset-progress-cancel:active {
+    background-color: #f7bdab;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+button.reset-progress-proceed {
+    background-image: none;
+    background-color: #BF616A;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+button.reset-progress-proceed:hover {
+    background-color: #d47981;
+}
+
+button.reset-progress-proceed:active {
+    background-color: #f299a0;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+
+/* Cheatsheet */
+
+.cheatsheet-window {
+    background-image: linear-gradient(to bottom, #2e3440, #3b4252);
+}
+
+label.category-title {
+    color: #5e81ac;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+label.shortcut-title {
+    color: white;
+    padding-right: 50px;
+}
+
+label.cheatsheet-title {
+    color: #bf616a;
+    font-size: 30px;
+}
+
+label.shortcut-title {
+    color: white;
+    padding-right: 50px;
+}
+
+label.cheatsheet-title {
+    color: #bf616a;
+}
+
+label.shortcut-key {
+    background-color: #2E3440;
+}
+
+label.shortcut-key {
+    background-color: #2E3440;
+    color: white;
+    padding: 0px 7px 0px 7px;
+    border-style: solid;
+    border-width: 0px 0px 5px 0px;
+    border-color: #000;
+    border-radius: 8px;
+}
+
+searchbar.top-searchbar {
+    background-image: none;
+    background-color: transparent;
+    border: none;
+}
+
+searchbar.top-searchbar box {
+    background-image: none;
+    background-color: transparent;
+    border: none;
+}
+
+entry {
+    background-color: #d8dee9;
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    font-size: 16px;
+    color: #000;
+}

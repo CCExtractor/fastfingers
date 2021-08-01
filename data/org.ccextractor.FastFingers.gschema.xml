@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<schemalist>
+  <schema path="/org/ccextractor/FastFingers/" id="org.ccextractor.FastFingers">
+    <key name='autostart' type='b'>
+      <default>true</default>
+      <summary>Autostart at launch</summary>
+      <description>
+        If enabled, app will autostart at launch and cheatscreen will be
+	accessible If disabled, app will not autostart at launch and
+	cheatscreen will not be accessible until launcher manually
+        asked to install them manually.
+      </description>
+    </key>
+  </schema>
+</schemalist>

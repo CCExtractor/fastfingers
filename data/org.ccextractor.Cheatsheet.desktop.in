@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=FastFingers Cheatsheet
+Comment=Shortcut cheatsheet utility of FastFingers
+Type=Application
+Encoding=UTF-8
+Version=@_d_version@
+Exec=fastfingers-cheatsheet
+Icon=fastfingers-cheatsheet
+Terminal=false
+Categories=Education
+X-GNOME-Autostart-enabled=true
+Hidden=false
+NoDisplay=false

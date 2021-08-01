@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<object class="GtkBox" id="main_box">
+		<property name="orientation">vertical</property>
+		<style>
+			<class name="reset-progress-box" />
+		</style>
+		<child>
+			<object class="FFButtonbox">
+				<property name="back-visible">True</property>
+				<property name="back-label">&lt; Settings</property>
+				<property name="settings-visible">False</property>
+			</object>
+		</child>
+		<child>
+			<object class="GtkBox">
+				<property name="orientation">vertical</property>
+				<property name="spacing">20</property>
+				<child>
+					<object class="GtkLabel">
+						<property name="halign">center</property>
+						<property name="label">Confirm</property>
+						<style>
+							<class name="reset-progress-header" />
+						</style>
+					</object>
+				</child>
+				<child>
+					<object class="GtkBox">
+						<property name="orientation">vertical</property>
+						<style>
+							<class name="reset-progress-container" />
+						</style>
+						<child>
+							<object class="GtkLabel" id="message">
+								<property name="halign">center</property>
+								<property name="label">Are you sure you want to reset your progress?</property>
+								<style>
+									<class name="reset-progress-message" />
+								</style>
+							</object>
+						</child>
+						<child>
+							<object class="GtkLabel" id="info">
+								<property name="halign">center</property>
+								<property name="label">You can't undo this action.</property>
+								<style>
+									<class name="reset-progress-info" />
+								</style>
+							</object>
+						</child>
+					</object>
+				</child>
+				<child>
+					<object class="GtkBox" id="button_box">
+						<property name="orientation">horizontal</property>
+						<property name="homogeneous">True</property>
+						<style>
+							<class name="reset-progress-buttonbox" />
+						</style>
+						<child>
+							<object class="GtkButton">
+								<property name="label" translatable="yes">Cancel</property>
+								<property name="halign">end</property>
+								<property name="margin-end">20</property>
+								<signal name="clicked" handler="no_clicked_cb" />
+								<style>
+									<class name="reset-progress-cancel" />
+								</style>
+							</object>
+						</child>
+						<child>
+							<object class="GtkButton">
+								<property name="label" translatable="yes">Yes, reset</property>
+								<property name="halign">start</property>
+								<property name="margin-start">20</property>
+								<signal name="clicked" handler="yes_clicked_cb" />
+								<style>
+									<class name="reset-progress-proceed" />
+								</style>
+							</object>
+						</child>
+					</object>
+				</child>
+			</object>
+		</child>
+	</object>
+</interface>
