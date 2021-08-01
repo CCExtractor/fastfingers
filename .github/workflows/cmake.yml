@@ -20,6 +20,7 @@ jobs:
     outputs:
       branch: v0.7
       tag: v0.7.2
+      version: 0.7.2
 
     steps:
     - uses: actions/checkout@v2
@@ -33,7 +34,7 @@ jobs:
       run: cmake -S ${{github.workspace}}/src -B ${{github.workspace}}/src/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      # Build your program with the given configuration
+      # Build your   program with the given configuration
       run: cmake --build ${{github.workspace}}/src/build --config ${{env.BUILD_TYPE}} -v
     
     - name: Install
@@ -49,16 +50,18 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         REPO: self
-        BRANCH: v0.7
+        BRANCH: main
         FOLDER: ${{github.workspace}}/packages
         SKIP_EMPTY_COMMITS: true
 
   create_release:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: v0.7.2
+          tag: ${{ needs.build.outputs.tag }}
           draft: true
+          artifacts: ${{github.workspace}}/packages/fastfingers_${{ needs.build.outputs.version }}_all.deb
