@@ -38,7 +38,7 @@ cmake --build fastfingers/src/build --config Release
 Install
 
 ```bash
-cmake --build fastfingers/src/build --target install
+sudo cmake --build fastfingers/src/build --target install
 ```
 
 The apps are ready to run. The apps should be installed in the applications sections of your desktop environment where you can run them from. Also you can run them from the commands "fastfingers" and "fastfingers-cheatsheet"
