@@ -27,8 +27,8 @@ echo "===================================="
 echo "5#START - Removing icons"
 for px in 16 32 48 64 128
 do
-    rm -v /usr/share/icons/hicolor/{$px}x{$px}/apps/fastfingers.png
-    rm -v /usr/share/icons/hicolor/{$px}x{$px}/apps/fastfingers-cheatsheet.png
+    rm -v /usr/share/icons/hicolor/${px}x${px}/apps/fastfingers.png
+    rm -v /usr/share/icons/hicolor/${px}x${px}/apps/fastfingers-cheatsheet.png
 done
 gtk-update-icon-cache -t -f /usr/share/icons/hicolor/
 for px in 16 22 24 32 48 256
