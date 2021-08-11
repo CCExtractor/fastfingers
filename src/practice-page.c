@@ -393,7 +393,7 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
 
   init_next_shortcut(glob_data.shortcut_idx);
 
-  g_signal_connect(G_OBJECT(event_box), "key_pressed",
+  g_signal_connect(G_OBJECT(event_box), "key_press_event",
                    G_CALLBACK(key_press_event_cb), NULL);
 
   gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice");
