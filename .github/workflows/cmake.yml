@@ -44,24 +44,4 @@ jobs:
     - name: Create Package
       # Create debian package
       run: sudo ${{github.workspace}}/package_creators/debian.sh ${{github.workspace}}
-          
-    - name: Push the debian package
-      uses: s0/git-publish-subdir-action@v2.5.0
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        REPO: self
-        BRANCH: ${{ needs.build.outputs.branch }}
-        FOLDER: ${{github.workspace}}/packages
-        SKIP_EMPTY_COMMITS: true
 
-  create_release:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Create release
-        uses: ncipollo/release-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ needs.build.outputs.tag }}
-          draft: true
-          artifacts: ${{github.workspace}}/packages/fastfingers_${{ needs.build.outputs.version }}_all.deb
