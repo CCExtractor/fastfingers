@@ -128,6 +128,8 @@ void update_global_recent(void) {
   const char *title = cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
   int len = cJSON_GetArraySize(arr);
   int already_in_list = 0;
+  char *out;
+
   for (int i = 0; i < len; ++i) {
     // If the app is already in the recent, make it the last element of the list
     if (!strcmp(cJSON_GetArrayItem(arr, i)->valuestring, title)) {
@@ -162,7 +164,7 @@ void update_global_recent(void) {
     goto end;
   }
 
-  char *out = cJSON_Print(recent_json);
+  out = cJSON_Print(recent_json);
 
   int written = fprintf(fp, "%s", out);
 

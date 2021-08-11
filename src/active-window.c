@@ -69,13 +69,14 @@ char *get_active_from_gnome_shell(void) {
 
   c = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, &error);
 
+  GVariant *result = NULL;
+
   if (!c) {
     g_printerr("Error connecting: %s\n", error->message);
     g_error_free(error);
     goto out;
   }
 
-  GVariant *result = NULL;
   result = g_dbus_connection_call_sync(
       c, "org.gnome.Shell", "/org/gnome/Shell", "org.gnome.Shell", "Eval",
       g_variant_new("(s)", "global.get_window_actors().map(a=>a.meta_window)."
