@@ -10,4 +10,4 @@ sudo dnf install -y rpmdevtools rpmlint cmake gtk3-devel
 rpmdev-wipetree
 rpmdev-setuptree
 cp ${path}/package_creators/fastfingers.spec ~/rpmbuild/SPECS
-cp -rv ${path}/* ~/rpmbuild/BUILD/
+cp -rv ${path}/* ~/rpmbuild/SOURCES/
