@@ -55,13 +55,14 @@ dkms.conf
 *.*~
 *.*#
 
-# vscode
+# ide's
 .vscode
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+.idea
 
 # Local History for Visual Studio Code
 .history/
@@ -71,3 +72,4 @@ src/build
 gtk4/build
 build
 packages
+cmake-build-debug

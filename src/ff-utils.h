@@ -15,6 +15,9 @@
 G_BEGIN_DECLS
 
 #define GTK_CALLBACK(f) ((GtkCallback)(f))
+#ifndef G_SOURCE_FUNC
+	#define G_SOURCE_FUNC(f) ((GSourceFunc) (void (*)(void)) (f))
+#endif
 
 typedef struct _resizable_container FFResizableContainer;
 

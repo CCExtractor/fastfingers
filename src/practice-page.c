@@ -293,6 +293,7 @@ gboolean next_practice_page(gpointer user_data) {
   return 0;
 }
 
+/*
 gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
                         guint keycode, GdkModifierType state,
                         gpointer user_data) {
@@ -318,6 +319,36 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
     g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), NULL);
   }
   return 0;
+}
+*/
+gboolean
+key_press_event_cb (
+        GtkWidget *self,
+        GdkEventKey event,
+        gpointer user_data
+        ){
+    if (glob_data.idle)
+        return 0;
+    guint keyval = event.keyval;
+    GtkWidget *key;
+    key = ff_box_nth_child(glob_data.box, glob_data.idx);
+    if (key_compare(glob_data.key_arr[glob_data.idx], keyval)) {
+        ff_key_set_style(key, "success");
+    } else {
+        glob_data.success = 0;
+        ff_key_set_style(key, "fail");
+    }
+
+    ff_key_set_text(FF_KEY(key), get_keyval_name(keyval));
+    ff_key_set_visible(FF_KEY(key), 1);
+
+    if (glob_data.size - 1 != glob_data.idx)
+        ++glob_data.idx;
+    else {
+        glob_data.idle = 1;
+        g_timeout_add(1000, G_SOURCE_FUNC(next_practice_page), NULL);
+    }
+    return 0;
 }
 
 void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
@@ -360,11 +391,8 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
 
   init_next_shortcut(glob_data.shortcut_idx);
 
-  GtkEventController *key_controller =
-      gtk_event_controller_key_new(GTK_WIDGET(event_box));
-
-  g_signal_connect(G_OBJECT(key_controller), "key_pressed",
-                   G_CALLBACK(key_pressed_cb), NULL);
+  g_signal_connect(G_OBJECT(event_box), "key_pressed",
+                   G_CALLBACK(key_press_event_cb), NULL);
 
   gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice");
   gtk_widget_show_all(GTK_WIDGET(event_box));
