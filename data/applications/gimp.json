@@ -585,22 +585,6 @@
           "learned": 0
         },
         {
-          "title": "Zoom in",
-          "keys": [
-            "Control",
-            "WheelButton"
-          ],
-          "learned": 0
-        },
-        {
-          "title": "Zoom out",
-          "keys": [
-            "Control",
-            "WheelButton"
-          ],
-          "learned": 0
-        },
-        {
           "title": "Zoom 1:1",
           "keys": [
             "1"
