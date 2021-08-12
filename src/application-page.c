@@ -31,8 +31,6 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     GObject *image = gtk_builder_get_object(application_page_builder, "image");
     GObject *list_topic =
             gtk_builder_get_object(application_page_builder, "list_topic");
-    GObject *main_box =
-            gtk_builder_get_object(application_page_builder, "main_box");
     GObject *recent_list =
             gtk_builder_get_object(application_page_builder, "list_recent");
     GObject *recent_title =

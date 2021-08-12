@@ -52,7 +52,6 @@
                         </child>
                         <child>
                             <object class="GtkListBox" id="list_recent">
-                                <property name="margin-bottom">50</property>
                                 <style>
                                     <class name="application-list"/>
                                 </style>
