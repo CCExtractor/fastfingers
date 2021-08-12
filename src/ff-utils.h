@@ -14,12 +14,14 @@
 
 G_BEGIN_DECLS
 
-#define GTK_CALLBACK(f) ((GtkCallback)(f))
+#define GTK_CALLBACK(f) ((GtkCallback) (f))
 #ifndef G_SOURCE_FUNC
-	#define G_SOURCE_FUNC(f) ((GSourceFunc) (void (*)(void)) (f))
+#define G_SOURCE_FUNC(f) ((GSourceFunc) (void(*)(void))(f))
 #endif
 
 typedef struct _resizable_container FFResizableContainer;
+
+typedef struct dynamicArray dynamicArray;
 
 void ff_init_css(void);
 
@@ -52,6 +54,13 @@ void add_style_class(GtkWidget *widget, const char *class);
 void remove_style_class(GtkWidget *widget, const char *class);
 
 void ff_container_remove_all(GtkWidget *container);
+
+dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize);
+size_t ff_dynamicArray_append(dynamicArray *arr, const void *item);
+size_t ff_dynamicArray_prepend(dynamicArray *arr, const void *item);
+void *ff_dynamicArray_get(dynamicArray *arr, size_t idx);
+size_t ff_dynamicArray_size(dynamicArray *arr);
+void ff_dynamicArray_free(dynamicArray *arr);
 
 G_END_DECLS
 

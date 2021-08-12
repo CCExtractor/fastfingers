@@ -1,13 +1,6 @@
 #include "home-page.h"
 
-static struct {
-    GSequence *categories;
-    GSequence *hbox_arr;
-} glob_data;
-
-void destroy_cb(gpointer data) { g_free(data); }
-
-double progress_of_app (cJSON *app){
+double progress_of_app(cJSON *app) {
     int total = 0, learned = 0;
     cJSON *group = cJSON_GetObjectItem(app, "group");
     for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
@@ -16,7 +9,7 @@ double progress_of_app (cJSON *app){
         for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
             ++total;
             if (cJSON_GetObjectItem(cJSON_GetArrayItem(shortcuts, j), "learned")
-            ->valueint)
+                        ->valueint)
                 ++learned;
         }
     }
@@ -34,6 +27,14 @@ void ff_home_page_init(GtkStack *stack) {
             gtk_builder_get_object(home_builder, "home_scrolled_window");
     GObject *container = gtk_builder_get_object(home_builder, "home_container");
 
+    dynamicArray *categoryArray = ff_dynamicArray_new(10, sizeof(char *));
+    if (!categoryArray)
+        return;
+
+    dynamicArray *hboxArray = ff_dynamicArray_new(10, sizeof(GtkWidget *));
+    if (!hboxArray)
+        return;
+
     cJSON *recent_json = ff_get_application("appdata");
     cJSON *recentApps = cJSON_GetObjectItem(recent_json, "recent");
     if (cJSON_GetArraySize(recentApps) > 0) {
@@ -50,14 +51,11 @@ void ff_home_page_init(GtkStack *stack) {
             char *appTitle = cJSON_GetArrayItem(recentApps, i)->valuestring;
             char *name = ff_simplify_title(appTitle);
             cJSON *app = ff_get_application(name);
-            double progress = progress_of_app (app);
+            double progress = progress_of_app(app);
             GtkWidget *card = ff_card_new(appTitle, progress);
             gtk_box_pack_start(GTK_BOX(recent_container), card, FALSE, FALSE, 0);
         }
     }
-
-    glob_data.categories = g_sequence_new(destroy_cb);
-    glob_data.hbox_arr = g_sequence_new(NULL);
 
     DIR *d;
     struct dirent *dir;
@@ -76,9 +74,8 @@ void ff_home_page_init(GtkStack *stack) {
             char *app_title = cJSON_GetObjectItem(app, "title")->valuestring;
 
             int category_idx = -1;
-            for (int i = 0; i < g_sequence_get_length(glob_data.categories); ++i) {
-                if (g_str_equal(category, g_sequence_get(g_sequence_get_iter_at_pos(
-                                              glob_data.categories, i)))) {
+            for (size_t i = 0; i < ff_dynamicArray_size(categoryArray); ++i) {
+                if (g_str_equal(category, ff_dynamicArray_get(categoryArray, i))) {
                     category_idx = i;
                     break;
                 }
@@ -97,15 +94,14 @@ void ff_home_page_init(GtkStack *stack) {
                 gtk_box_pack_start(GTK_BOX(container), category_container, FALSE, FALSE,
                                    0);
 
-                g_sequence_append(glob_data.categories, category);
-                g_sequence_append(glob_data.hbox_arr, category_container);
+                ff_dynamicArray_append(categoryArray, &category);
+                ff_dynamicArray_append(hboxArray, &category_container);
 
-                category_idx = g_sequence_get_length(glob_data.categories) - 1;
+                category_idx = ff_dynamicArray_size(categoryArray) - 1;
             }
 
             GtkWidget *card = ff_card_new(app_title, progress_of_app(app));
-            GtkBox *box = g_sequence_get(
-                    g_sequence_get_iter_at_pos(glob_data.hbox_arr, category_idx));
+            GtkBox *box = ff_dynamicArray_get(categoryArray, category_idx);
             gtk_box_pack_start(box, card, FALSE, FALSE, 0);
 
             g_free(name);
