@@ -71,8 +71,12 @@ void ff_switch_previous(void) {
         ff_credits_page_init(GTK_STACK(stack));
     else if (!strcmp(current_page->page, "reset-progress"))
         ff_reset_progress_page_init(GTK_STACK(stack));
-    else if (!strcmp(current_page->page, "quiz"))
-        continue;
+    else if (!strcmp(current_page->page, "quiz")){
+        GtkWidget *quiz_page = gtk_stack_get_child_by_name(GTK_STACK(stack), "quiz");
+        gtk_container_remove(GTK_CONTAINER(stack), quiz_page);
+        ff_switch_previous();
+        return;
+    }
     else
         ff_application_page_init(GTK_STACK(stack), current_page->page);
 
