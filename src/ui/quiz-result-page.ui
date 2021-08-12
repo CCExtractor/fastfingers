@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-    <object class="GtkScrolledWindow" id="application_scrolled_window">
+    <object class="GtkScrolledWindow" id="quiz_result_scrolled_window">
         <child>
             <object class="GtkViewport" id="application_viewport">
                 <style>
@@ -31,44 +31,15 @@
                             </object>
                         </child>
                         <child>
-                            <object class="GtkButton" id="quiz_button">
-                                <property name="label" translatable="yes">Quiz</property>
-                                <property name="receives-default">True</property>
-                                <property name="halign">center</property>
-                                <property name="can-focus">False</property>
-                                <style>
-                                    <class name="quiz-button"/>
-                                </style>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="GtkLabel" id="recent_title">
-                                <property name="label">Recent</property>
+                            <object class="GtkLabel" id="score_label">
                                 <property name="halign">center</property>
                                 <style>
-                                    <class name="application-title"/>
+                                    <class name="score-label"/>
                                 </style>
                             </object>
                         </child>
                         <child>
-                            <object class="GtkListBox" id="list_recent">
-                                <style>
-                                    <class name="application-list"/>
-                                </style>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="GtkLabel">
-                                <property name="label">By Topic</property>
-                                <property name="halign">center</property>
-                                <style>
-                                    <class name="application-title"/>
-                                </style>
-                            </object>
-                        </child>
-                        <child>
-                            <object class="GtkListBox" id="list_topic">
-                                <property name="margin-bottom">50</property>
+                            <object class="GtkListBox" id="shortcut_listbox">
                                 <style>
                                     <class name="application-list"/>
                                 </style>

@@ -163,7 +163,7 @@ void set_scaled_image(GtkImage *image, const char *title, int size) {
   free(logo_path);
 }
 
-void right_to_left(int *keyval) {
+void right_to_left(guint *keyval) {
   if (*keyval == gdk_keyval_from_name("Control_R"))
     *keyval = gdk_keyval_from_name("Control_L");
   if (*keyval == gdk_keyval_from_name("Alt_R"))
@@ -174,7 +174,7 @@ void right_to_left(int *keyval) {
     *keyval = gdk_keyval_from_name("Super_L");
 }
 
-void normalize_keyval(int *keyval) {
+void normalize_keyval(guint *keyval) {
   if (!strcmp("ISO_Left_Tab", gdk_keyval_name(*keyval)))
     *keyval = gdk_keyval_from_name("Tab");
   if (!strcmp("KP_Add", gdk_keyval_name(*keyval)))
@@ -190,7 +190,7 @@ void normalize_keyval(int *keyval) {
     *keyval = gdk_keyval_from_name("Return");
 }
 
-int key_compare(int keyval1, int keyval2) {
+int key_compare(guint keyval1, guint keyval2) {
   right_to_left(&keyval1);
   right_to_left(&keyval2);
   normalize_keyval(&keyval1);
@@ -201,12 +201,12 @@ int key_compare(int keyval1, int keyval2) {
   return 0;
 }
 
-char *get_keyval_name(int keyval) {
+char *get_keyval_name(guint keyval) {
   normalize_keyval(&keyval);
   return normalize_keyval_name(gdk_keyval_name(keyval));
 }
 
-int get_keyval_from_name(const char *str) {
+guint get_keyval_from_name(const char *str) {
   if (!strcmp("Control", str))
     return gdk_keyval_from_name("Control_L");
   if (!strcmp("Alt", str))

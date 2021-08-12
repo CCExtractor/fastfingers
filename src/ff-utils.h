@@ -34,10 +34,10 @@ cJSON *ff_get_application(const char *name);
 
 void set_scaled_image(GtkImage *image, const char *title, int size);
 
-int key_compare(int keyval1, int keyval2);
+int key_compare(guint keyval1, guint keyval2);
 
-int get_keyval_from_name(const char *str);
-char *get_keyval_name(int keyval);
+guint get_keyval_from_name(const char *str);
+char *get_keyval_name(guint keyval);
 
 char *normalize_keyval_name(const char *str);
 

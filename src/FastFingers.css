@@ -161,12 +161,25 @@ key.success {
 }
 
 label.shortcut-description {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 30px;
     font-size: 30px;
     font-weight: 600;
 }
 
+label.question-counter {
+    color: #EBCB8B;
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+label.score-label {
+    color: #A3BE8C;
+    margin: 25px 0;
+    font-size: 30px;
+    font-weight: 600;
+}
 
 /* Settings Page */
 
@@ -262,6 +275,26 @@ shortcut-list-row:selected {
     background-color: #4c566a;
 }
 
+button.quiz-button{
+    margin-top: 30px;
+    background-image: none;
+    background-color: #A3BE8C;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+button.quiz-button:hover {
+    background-color: #83a06a;
+}
+
+button.quiz-button:active {
+    background-color: #7a9b5c;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
 
 /* Credits Page */
 
