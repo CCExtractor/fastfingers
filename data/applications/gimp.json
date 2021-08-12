@@ -16,7 +16,8 @@
         {
           "title": "Context Help",
           "keys": [
-            "Shift", "F1"
+            "Shift",
+            "F1"
           ],
           "learned": 0
         }
@@ -56,7 +57,8 @@
         {
           "title": "Select By Color",
           "keys": [
-            "Shift", "O"
+            "Shift",
+            "O"
           ],
           "learned": 0
         },
@@ -91,42 +93,48 @@
         {
           "title": "Crop and Resize",
           "keys": [
-            "Shift", "C"
+            "Shift",
+            "C"
           ],
           "learned": 0
         },
         {
           "title": "Rotate",
           "keys": [
-            "Shift", "R"
+            "Shift",
+            "R"
           ],
           "learned": 0
         },
         {
           "title": "Scale",
           "keys": [
-            "Shift", "T"
+            "Shift",
+            "T"
           ],
           "learned": 0
         },
         {
           "title": "Shear",
           "keys": [
-            "Shift", "S"
+            "Shift",
+            "S"
           ],
           "learned": 0
         },
         {
           "title": "Perspective",
           "keys": [
-            "Shift", "P"
+            "Shift",
+            "P"
           ],
           "learned": 0
         },
         {
           "title": "Flip",
           "keys": [
-            "Shift", "F"
+            "Shift",
+            "F"
           ],
           "learned": 0
         },
@@ -140,7 +148,8 @@
         {
           "title": "Bucket Fill",
           "keys": [
-            "Shift", "B"
+            "Shift",
+            "B"
           ],
           "learned": 0
         },
@@ -168,7 +177,8 @@
         {
           "title": "Eraser",
           "keys": [
-            "Shift", "E"
+            "Shift",
+            "E"
           ],
           "learned": 0
         },
@@ -210,7 +220,8 @@
         {
           "title": "Dodge/Burn",
           "keys": [
-            "Shift", "D"
+            "Shift",
+            "D"
           ],
           "learned": 0
         },
@@ -236,119 +247,138 @@
         {
           "title": "New image",
           "keys": [
-            "Control", "N"
+            "Control",
+            "N"
           ],
           "learned": 0
         },
         {
           "title": "Open image",
           "keys": [
-            "Control", "O"
+            "Control",
+            "O"
           ],
           "learned": 0
         },
         {
           "title": "Open image as new layer",
           "keys": [
-            "Control", "Alt", "O"
+            "Control",
+            "Alt",
+            "O"
           ],
           "learned": 0
         },
         {
           "title": "Duplicate image",
           "keys": [
-            "Control", "D"
+            "Control",
+            "D"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 01",
           "keys": [
-            "Control", "1"
+            "Control",
+            "1"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 02",
           "keys": [
-            "Control", "2"
+            "Control",
+            "2"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 03",
           "keys": [
-            "Control", "3"
+            "Control",
+            "3"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 04",
           "keys": [
-            "Control", "4"
+            "Control",
+            "4"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 05",
           "keys": [
-            "Control", "5"
+            "Control",
+            "5"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 06",
           "keys": [
-            "Control", "6"
+            "Control",
+            "6"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 07",
           "keys": [
-            "Control", "7"
+            "Control",
+            "7"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 08",
           "keys": [
-            "Control", "8"
+            "Control",
+            "8"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 09",
           "keys": [
-            "Control", "9"
+            "Control",
+            "9"
           ],
           "learned": 0
         },
         {
           "title": "Open recent image 10",
           "keys": [
-            "Control", "0"
+            "Control",
+            "0"
           ],
           "learned": 0
         },
         {
           "title": "Save image",
           "keys": [
-            "Control", "S"
+            "Control",
+            "S"
           ],
           "learned": 0
         },
         {
           "title": "Save under a new name",
           "keys": [
-            "Shift", "Control", "S"
+            "Shift",
+            "Control",
+            "S"
           ],
           "learned": 0
         },
         {
           "title": "Quit",
           "keys": [
-            "Control", "Q"
+            "Control",
+            "Q"
           ],
           "learned": 0
         }
@@ -360,63 +390,77 @@
         {
           "title": "Layers",
           "keys": [
-            "Control", "L"
+            "Control",
+            "L"
           ],
           "learned": 0
         },
         {
           "title": "Brushes",
           "keys": [
-            "Shift", "Control", "B"
+            "Shift",
+            "Control",
+            "B"
           ],
           "learned": 0
         },
         {
           "title": "Patterns",
           "keys": [
-            "Shift", "Control", "P"
+            "Shift",
+            "Control",
+            "P"
           ],
           "learned": 0
         },
         {
           "title": "Gradients",
           "keys": [
-            "Control", "G"
+            "Control",
+            "G"
           ],
           "learned": 0
         },
         {
           "title": "Tool-Options",
           "keys": [
-            "Shift", "Control", "T"
+            "Shift",
+            "Control",
+            "T"
           ],
           "learned": 0
         },
         {
           "title": "Palettes",
           "keys": [
-            "Control", "P"
+            "Control",
+            "P"
           ],
           "learned": 0
         },
         {
           "title": "Info window",
           "keys": [
-            "Shift", "Control", "I"
+            "Shift",
+            "Control",
+            "I"
           ],
           "learned": 0
         },
         {
           "title": "Navigation window",
           "keys": [
-            "Shift", "Control", "N"
+            "Shift",
+            "Control",
+            "N"
           ],
           "learned": 0
         },
         {
           "title": "Close the window",
           "keys": [
-            "Alt", "F4"
+            "Alt",
+            "F4"
           ],
           "learned": 0
         },
@@ -430,7 +474,8 @@
         {
           "title": "Jump to previous widget",
           "keys": [
-            "Shift", "Tab"
+            "Shift",
+            "Tab"
           ],
           "learned": 0
         },
@@ -451,35 +496,41 @@
         {
           "title": "In a multi-tab dialog, switch tabs",
           "keys": [
-            "Control", "Alt", "PgUp"
+            "Control",
+            "Alt",
+            "PgUp"
           ],
           "learned": 0
         },
         {
           "title": "Open Location",
           "keys": [
-            "Shift", "L"
+            "Shift",
+            "L"
           ],
           "learned": 0
         },
         {
           "title": "Up-Folder",
           "keys": [
-            "Alt", "  up"
+            "Alt",
+            "  up"
           ],
           "learned": 0
         },
         {
           "title": "Down-Folder",
           "keys": [
-            "Alt", "  down"
+            "Alt",
+            "  down"
           ],
           "learned": 0
         },
         {
           "title": "Home-Folder",
           "keys": [
-            "Alt", "Home"
+            "Alt",
+            "Home"
           ],
           "learned": 0
         },
@@ -505,7 +556,8 @@
         {
           "title": "Drop-down Menu",
           "keys": [
-            "Shift", "F10"
+            "Shift",
+            "F10"
           ],
           "learned": 0
         },
@@ -519,28 +571,33 @@
         {
           "title": "Toggle quickmask",
           "keys": [
-            "Shift", "Q"
+            "Shift",
+            "Q"
           ],
           "learned": 0
         },
         {
           "title": "Close document window",
           "keys": [
-            "Control", "W"
+            "Control",
+            "W"
           ],
           "learned": 0
         },
         {
           "title": "Zoom in",
           "keys": [
-            "", " or Control", "Mousewheel"
+            "",
+            " or Control",
+            "Mousewheel"
           ],
           "learned": 0
         },
         {
           "title": "Zoom out",
           "keys": [
-            "- or Control", "Mousewheel"
+            "- or Control",
+            "Mousewheel"
           ],
           "learned": 0
         },
@@ -554,28 +611,35 @@
         {
           "title": "Shrink wrap",
           "keys": [
-            "Control", "E"
+            "Control",
+            "E"
           ],
           "learned": 0
         },
         {
           "title": "Fit image in window",
           "keys": [
-            "Shift", "Control", "E"
+            "Shift",
+            "Control",
+            "E"
           ],
           "learned": 0
         },
         {
           "title": "Toggle rulers",
           "keys": [
-            "Shift", "Control", "R"
+            "Shift",
+            "Control",
+            "R"
           ],
           "learned": 0
         },
         {
           "title": "Toggle guides",
           "keys": [
-            "Shift", "Control", "T"
+            "Shift",
+            "Control",
+            "T"
           ],
           "learned": 0
         }
@@ -587,98 +651,117 @@
         {
           "title": "Undo",
           "keys": [
-            "Control", "Z"
+            "Control",
+            "Z"
           ],
           "learned": 0
         },
         {
           "title": "Redo",
           "keys": [
-            "Control", "Y"
+            "Control",
+            "Y"
           ],
           "learned": 0
         },
         {
           "title": "Copy selection",
           "keys": [
-            "Control", "C"
+            "Control",
+            "C"
           ],
           "learned": 0
         },
         {
           "title": "Cut selection",
           "keys": [
-            "Control", "X"
+            "Control",
+            "X"
           ],
           "learned": 0
         },
         {
           "title": "Copy visible",
           "keys": [
-            "Control", "Shift", "C"
+            "Control",
+            "Shift",
+            "C"
           ],
           "learned": 0
         },
         {
           "title": "Paste as new image",
           "keys": [
-            "Control", "Shift", "V"
+            "Control",
+            "Shift",
+            "V"
           ],
           "learned": 0
         },
         {
           "title": "Paste clipboard",
           "keys": [
-            "Control", "V"
+            "Control",
+            "V"
           ],
           "learned": 0
         },
         {
           "title": "Clears selection",
           "keys": [
-            "Control", "K"
+            "Control",
+            "K"
           ],
           "learned": 0
         },
         {
           "title": "Named copy selection",
           "keys": [
-            "Shift", "Control", "C"
+            "Shift",
+            "Control",
+            "C"
           ],
           "learned": 0
         },
         {
           "title": "Named cut selection",
           "keys": [
-            "Shift", "Control", "X"
+            "Shift",
+            "Control",
+            "X"
           ],
           "learned": 0
         },
         {
           "title": "Named paste clipboard",
           "keys": [
-            "Shift", "Control", "V"
+            "Shift",
+            "Control",
+            "V"
           ],
           "learned": 0
         },
         {
           "title": "Fill with FG Color",
           "keys": [
-            "Control", ","
+            "Control",
+            ","
           ],
           "learned": 0
         },
         {
           "title": "Fill with BG Color",
           "keys": [
-            "Control", "."
+            "Control",
+            "."
           ],
           "learned": 0
         },
         {
           "title": "Fill with Pattern",
           "keys": [
-            "Control", ":"
+            "Control",
+            ":"
           ],
           "learned": 0
         }
@@ -718,14 +801,16 @@
         {
           "title": "Merge visible layers",
           "keys": [
-            "Control", "M"
+            "Control",
+            "M"
           ],
           "learned": 0
         },
         {
           "title": "Anchar layer",
           "keys": [
-            "Control", "H"
+            "Control",
+            "H"
           ],
           "learned": 0
         }
@@ -733,69 +818,81 @@
     },
     {
       "title": "Selections",
-      "shortcuts": {
-        "title": "Toggle selections",
-        "keys": [
-          "Control", "T"
-        ],
-        "learned": 0
-      },
-    {
-      "title": "Select all",
-      "keys": [
-        "Control", "A"
-      ],
-      "learned": 0
+      "shortcuts": [
+        {
+          "title": "Toggle selections",
+          "keys": [
+            "Control",
+            "T"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Select all",
+          "keys": [
+            "Control",
+            "A"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Select none",
+          "keys": [
+            "Shift",
+            "Control",
+            "A"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Invert selection",
+          "keys": [
+            "Control",
+            "I"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Float selection",
+          "keys": [
+            "Shift",
+            "Control",
+            "L"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Path to selection",
+          "keys": [
+            "Shift",
+            "V"
+          ],
+          "learned": 0
+        }
+      ]
     },
     {
-      "title": "Select none",
-      "keys": [
-        "Shift", "Control", "A"
-      ],
-      "learned": 0
-    },
-    {
-      "title": "Invert selection",
-      "keys": [
-        "Control", "I"
-      ],
-      "learned": 0
-    },
-    {
-      "title": "Float selection",
-      "keys": [
-        "Shift", "Control", "L"
-      ],
-      "learned": 0
-    },
-    {
-      "title": "Path to selection",
-      "keys": [
-        "Shift", "V"
-      ],
-      "learned": 0
+      "title": "Plug-ins",
+      "shortcuts": [
+        {
+          "title": "Repeat last plug-in",
+          "keys": [
+            "Control",
+            "F"
+          ],
+          "learned": 0
+        },
+        {
+          "title": "Reshow last plug-in",
+          "keys": [
+            "Shift",
+            "Control",
+            "F"
+          ],
+          "learned": 0
+        }
+      ]
     }
   ]
-},
-{
-"title": "Plug-ins",
-"shortcuts": [
-{
-"title": "Repeat last plug-in",
-"keys": [
-"Control", "F"
-],
-"learned": 0
-},
-{
-"title": "Reshow last plug-in",
-"keys": [
-"Shift", "Control", "F"
-],
-"learned": 0
-}
-]
-}
-],
 }
 
