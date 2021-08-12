@@ -2,16 +2,16 @@
 
 static void
 wrap_hash_map_to_list(
-        const char *key,
-        const int *value,
-        GtkContainer *container) {
+        void *key,
+        void *value,
+        void *container) {
     GtkWidget *row = ff_shortcut_list_row_new(key,
-                                              *value ? "Correct" : "Wrong");
+                                              *(int *)value ? "Correct" : "Wrong");
     gtk_container_add(GTK_CONTAINER(container), row);
 }
 
 void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
-    GtkStack *stack = ff_get_stack();
+    GtkStack *stack = (GtkStack *) ff_get_stack();
     GtkWidget *temp = gtk_stack_get_child_by_name(stack, "quiz-result");
     if (temp)
         gtk_container_remove(GTK_CONTAINER(stack), temp);
