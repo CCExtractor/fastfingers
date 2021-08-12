@@ -17,7 +17,7 @@ void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
     GObject *shortcut_listbox =
             gtk_builder_get_object(quiz_result_page_builder, "shortcut_listbox");
 
-    set_scaled_image(GTK_IMAGE(image), title, 100);
+    set_scaled_image(GTK_IMAGE(image), app_title, 100);
 
     int score = 0;
     GList *keys = g_hash_table_get_keys(hashTable);
