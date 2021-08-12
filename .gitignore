@@ -73,3 +73,4 @@ gtk4/build
 build
 packages
 cmake-build-debug
+/.clang-format
