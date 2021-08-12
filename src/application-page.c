@@ -64,6 +64,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
         gtk_container_add(GTK_CONTAINER(list_topic), row);
     }
 
+    GtkWidget *recent_list = gtk_list_box_new();
     cJSON *recent = cJSON_GetObjectItem(app, "recent");
     if (cJSON_GetArraySize(recent) > 0) {
         GtkWidget *recent_title = gtk_label_new("Recent");
@@ -71,7 +72,6 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
         gtk_box_pack_start(GTK_BOX(main_box), recent_title, FALSE, FALSE, 0);
         gtk_box_reorder_child(GTK_BOX(main_box), recent_title, 3);
 
-        GtkWidget *recent_list = gtk_list_box_new();
         add_style_class(recent_list, "application-list");
         gtk_box_pack_start(GTK_BOX(main_box), recent_list, FALSE, FALSE, 0);
         gtk_box_reorder_child(GTK_BOX(main_box), recent_list, 4);
@@ -111,6 +111,8 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     }
 
     g_signal_connect(GTK_WIDGET(list_topic), "row-activated",
+                     G_CALLBACK(application_row_activated_cb), app);
+    g_signal_connect(GTK_WIDGET(recent_list), "row-activated",
                      G_CALLBACK(application_row_activated_cb), app);
 
     free(name);
