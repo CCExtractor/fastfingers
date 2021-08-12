@@ -33,6 +33,12 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
             gtk_builder_get_object(application_page_builder, "list_topic");
     GObject *main_box =
             gtk_builder_get_object(application_page_builder, "main_box");
+    GObject *recent_list =
+            gtk_builder_get_object(application_page_builder, "list_recent");
+    GObject *recent_title =
+            gtk_builder_get_object(application_page_builder, "recent_title");
+    GObject *quiz_button =
+            gtk_builder_get_object(application_page_builder, "quiz_button");
 
     char *logo_path = ff_logo_path_gen(title);
 
@@ -64,18 +70,8 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
         gtk_container_add(GTK_CONTAINER(list_topic), row);
     }
 
-    GtkWidget *recent_list = gtk_list_box_new();
     cJSON *recent = cJSON_GetObjectItem(app, "recent");
     if (cJSON_GetArraySize(recent) > 0) {
-        GtkWidget *recent_title = gtk_label_new("Recent");
-        add_style_class(recent_title, "application-title");
-        gtk_box_pack_start(GTK_BOX(main_box), recent_title, FALSE, FALSE, 0);
-        gtk_box_reorder_child(GTK_BOX(main_box), recent_title, 3);
-
-        add_style_class(recent_list, "application-list");
-        gtk_box_pack_start(GTK_BOX(main_box), recent_list, FALSE, FALSE, 0);
-        gtk_box_reorder_child(GTK_BOX(main_box), recent_list, 4);
-
         for (int i = cJSON_GetArraySize(recent) - 1; i >= 0; --i) {
             for (int j = 0; j < cJSON_GetArraySize(group); ++j) {
                 const char *group_title =
@@ -100,16 +96,9 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
             }
         }
 
-        if (learned_of_all >= 10) {
-            GtkWidget *quizButton = gtk_button_new_with_label("Quiz");
-            gtk_widget_set_halign(quizButton, GTK_ALIGN_CENTER);
-            add_style_class(quizButton, "quiz-button");
-            gtk_box_pack_start(GTK_BOX(main_box), quizButton, FALSE, FALSE, 0);
-            gtk_box_reorder_child(GTK_BOX(main_box), quizButton, 2);
-            g_signal_connect(quizButton, "clicked", G_CALLBACK(quizButton_clicked_cb), app);
-        }
     }
 
+    g_signal_connect(quiz_button, "clicked", G_CALLBACK(quizButton_clicked_cb), app);
     g_signal_connect(GTK_WIDGET(list_topic), "row-activated",
                      G_CALLBACK(application_row_activated_cb), app);
     g_signal_connect(GTK_WIDGET(recent_list), "row-activated",
