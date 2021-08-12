@@ -101,7 +101,7 @@ void ff_home_page_init(GtkStack *stack) {
             }
 
             GtkWidget *card = ff_card_new(app_title, progress_of_app(app));
-            GtkBox *box = ff_dynamicArray_get(categoryArray, category_idx);
+            GtkBox *box = *(GtkBox **)ff_dynamicArray_get(categoryArray, category_idx);
             gtk_box_pack_start(box, card, FALSE, FALSE, 0);
 
             g_free(name);
@@ -109,6 +109,9 @@ void ff_home_page_init(GtkStack *stack) {
         }
         closedir(d);
     }
+
+    ff_dynamicArray_free(categoryArray);
+    ff_dynamicArray_free(hboxArray);
 
     gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(scrolled_window), "home");
     gtk_widget_show_all(GTK_WIDGET(scrolled_window));

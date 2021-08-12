@@ -516,7 +516,7 @@ size_t ff_dynamicArray_prepend(dynamicArray *arr, const void *item){
 }
 
 void *ff_dynamicArray_get(dynamicArray *arr, size_t idx){
-    return arr->array + arr->itemSize * arr->inUse;
+    return arr->array + arr->itemSize * idx;
 }
 
 size_t ff_dynamicArray_size(dynamicArray *arr){
