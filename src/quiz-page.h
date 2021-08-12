@@ -4,6 +4,7 @@
 
 #include "fastfingers.h"
 #include "ff-utils.h"
+#include "quiz-result-page.h"
 #include "key.h"
 
 G_BEGIN_DECLS

@@ -12,6 +12,8 @@ static struct {
 
     char **str_arr;
 
+    char *app_title;
+
     cJSON *app;
 
     GHashTable *hash_table;
@@ -114,23 +116,16 @@ static void init_next_shortcut(void) {
     gtk_widget_show_all(glob_data.box);
 }
 
-static void
-print_hash_map(
-        gpointer key,
-        gpointer value,
-        gpointer user_data
-) {
-    fprintf(stderr, "%s : %s", key, value);
-}
-
 static gboolean next_quiz_page(gpointer user_data) {
     int *success = malloc(sizeof(int));
+    *success = glob_data.success;
     g_hash_table_insert(glob_data.hash_table,
                         g_strdup(gtk_label_get_text(glob_data.shortcut_description)),
-                        g_strdup(glob_data.success ? "Correct" : "Wrong"));
+                        success);
 
     if (glob_data.question_idx == 10) {
-        g_hash_table_foreach(glob_data.hash_table, print_hash_map, NULL);
+        ff_quiz_result_page_init(glob_data.app_title, glob_data.hash_table);
+        ff_switch_page("quiz");
     } else {
         init_next_shortcut();
         glob_data.idle = 0;
@@ -214,6 +209,7 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.question_counter = GTK_LABEL(question_counter);
     glob_data.question_idx = 1;
     glob_data.hash_table = hash_table;
+    glob_data.app_title = cJSON_GetObjectItem(app, "title")->valuestring;
 
     init_next_shortcut();
 
