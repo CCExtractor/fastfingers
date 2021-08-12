@@ -120,13 +120,14 @@ print_hash_map(
         gpointer value,
         gpointer user_data
 ) {
-    fprintf(stderr, "%s : %d", key, value);
+    fprintf(stderr, "%s : %s", key, value);
 }
 
 static gboolean next_quiz_page(gpointer user_data) {
     int *success = malloc(sizeof(int));
-    *success = glob_data.success;
-    g_hash_table_insert(glob_data.hash_table, glob_data.shortcut_description, success);
+    g_hash_table_insert(glob_data.hash_table,
+                        g_strdup(gtk_label_get_text(glob_data.shortcut_description)),
+                        g_strdup(glob_data.success ? "Correct" : "Wrong"));
 
     if (glob_data.question_idx == 10) {
         g_hash_table_foreach(glob_data.hash_table, print_hash_map, NULL);
@@ -203,7 +204,7 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
 
     g_free(title);
 
-    GHashTable *hash_table = g_hash_table_new(g_str_hash, (GEqualFunc) g_strcmp0);
+    GHashTable *hash_table = g_hash_table_new(g_str_hash, g_str_equal);
 
     glob_data.app = app;
     glob_data.box = GTK_WIDGET(key_box);
