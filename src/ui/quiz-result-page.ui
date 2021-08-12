@@ -34,7 +34,7 @@
                             <object class="GtkLabel" id="score_label">
                                 <property name="halign">center</property>
                                 <style>
-                                    <class name="score"/>
+                                    <class name="score-label"/>
                                 </style>
                             </object>
                         </child>

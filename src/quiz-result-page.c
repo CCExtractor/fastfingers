@@ -36,7 +36,7 @@ void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
 
     int score = 0;
     GList *vals = g_hash_table_get_values(hashTable);
-    for (int i = 0; i < g_list_length(vals); ++i)
+    for (int i = (int) g_list_length(vals) - 1; i; --i)
         if (*(int *) g_list_nth_data(vals, i))
             ++score;
 
