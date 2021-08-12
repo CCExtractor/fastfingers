@@ -17,7 +17,7 @@ static struct {
     GtkLabel *shortcut_description;
 } glob_data;
 
-static void init_next_shortcut() {
+static void init_next_shortcut(void) {
     glob_data.size = 0;
     glob_data.idx = 0;
     glob_data.success = 1;
@@ -31,9 +31,9 @@ static void init_next_shortcut() {
     cJSON *shortcut = NULL;
     for (int i = glob_data.category_idx; i < cJSON_GetArraySize(group); ++i) {
         cJSON *tmp_category = cJSON_GetArrayItem(group, i);
-        cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+        cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(tmp_category, "shortcuts");
         for (int j = glob_data.shortcut_idx + 1; j < cJSON_GetArraySize(shortcuts); ++j) {
-            cJSON *tmp_shortcut = cJSON_GetArrayItem(tmp_category, j);
+            cJSON *tmp_shortcut = cJSON_GetArrayItem(shortcuts, j);
             if (cJSON_GetObjectItemCaseSensitive(tmp_shortcut, "learned")->valueint == 1) {
                 category = tmp_category;
                 shortcut = tmp_shortcut;
@@ -47,7 +47,7 @@ static void init_next_shortcut() {
 
     if (!category || !shortcut) {
         fprintf(stderr,
-                "FF-ERROR: category: %p - shortcut: %p\n", category, shortcut);
+                "FF-ERROR: Couldn't find shortcut or category!\n");
         return;
     }
 
@@ -110,7 +110,7 @@ static gboolean next_quiz_page(gpointer user_data) {
         //
     }
 
-    init_next_shortcut(glob_data.shortcut_idx);
+    init_next_shortcut();
     glob_data.idle = 0;
 
     return 0;
@@ -121,10 +121,10 @@ key_press_event_cb(
         GtkWidget *self,
         GdkEventKey *event,
         gpointer user_data
-) {
+        ) {
     if (glob_data.idle)
         return 0;
-    guint keyval;
+    int keyval;
     gdk_event_get_keyval((const GdkEvent *) event, &keyval);
     GtkWidget *key;
     key = ff_box_nth_child(glob_data.box, glob_data.idx);
@@ -192,4 +192,5 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
 
     gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "quiz");
     gtk_widget_show_all(GTK_WIDGET(event_box));
+
 }
