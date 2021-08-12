@@ -489,7 +489,7 @@
         {
           "title": "Activate current button or list",
           "keys": [
-            "Space"
+            "space"
           ],
           "learned": 0
         },
@@ -498,7 +498,7 @@
           "keys": [
             "Control",
             "Alt",
-            "PgUp"
+            "Page_Up"
           ],
           "learned": 0
         },
@@ -514,7 +514,7 @@
           "title": "Up-Folder",
           "keys": [
             "Alt",
-            "  up"
+            "Up"
           ],
           "learned": 0
         },
@@ -522,7 +522,7 @@
           "title": "Down-Folder",
           "keys": [
             "Alt",
-            "  down"
+            "Down"
           ],
           "learned": 0
         },
@@ -569,7 +569,7 @@
           "learned": 0
         },
         {
-          "title": "Toggle quickmask",
+          "title": "Toggle quick mask",
           "keys": [
             "Shift",
             "Q"
@@ -587,17 +587,16 @@
         {
           "title": "Zoom in",
           "keys": [
-            "",
-            " or Control",
-            "Mousewheel"
+            "Control",
+            "WheelButton"
           ],
           "learned": 0
         },
         {
           "title": "Zoom out",
           "keys": [
-            "- or Control",
-            "Mousewheel"
+            "Control",
+            "WheelButton"
           ],
           "learned": 0
         },
@@ -773,14 +772,14 @@
         {
           "title": "Select the layer above",
           "keys": [
-            "PgUp"
+            "Page_Up"
           ],
           "learned": 0
         },
         {
           "title": "Select the layer below",
           "keys": [
-            "PgDn"
+            "Page_Down"
           ],
           "learned": 0
         },
@@ -807,7 +806,7 @@
           "learned": 0
         },
         {
-          "title": "Anchar layer",
+          "title": "Anchor layer",
           "keys": [
             "Control",
             "H"
