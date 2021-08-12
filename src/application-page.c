@@ -102,6 +102,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
 
         if (learned_of_all >= 10) {
             GtkWidget *quizButton = gtk_button_new_with_label("Quiz");
+            gtk_widget_set_halign(quizButton, GTK_ALIGN_CENTER);
             add_style_class(quizButton, "quiz-button");
             gtk_box_pack_start(GTK_BOX(main_box), quizButton, FALSE, FALSE, 0);
             gtk_box_reorder_child(GTK_BOX(main_box), quizButton, 2);

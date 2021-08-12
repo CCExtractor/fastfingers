@@ -263,6 +263,7 @@ shortcut-list-row:selected {
 }
 
 button.quiz-button{
+    margin-top: 30px;
     background-image: none;
     background-color: #A3BE8C;
     border: none;
