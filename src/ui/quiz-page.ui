@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <object class="GtkEventBox" id="event_box">
+    <property name="can-focus">True</property>
+    <child>
+      <object class="GtkBox" id="main_box">
+        <property name="orientation">vertical</property>
+        <style>
+          <class name="practice-box" />
+        </style>
+        <child>
+          <object class="FFButtonbox" id="buttonbox">
+            <property name="back-visible">True</property>
+            <property name="back-label">&lt; Home</property>
+            <property name="settings-visible">False</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkImage" id="image">
+            <property name="halign">center</property>
+            <property name="height-request">100</property>
+            <property name="width-request">100</property>
+            <property name="margin-top">50</property>
+            <style>
+              <class name="practice-image" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkLabel" id="shortcut_description">
+            <property name="halign">center</property>
+            <style>
+              <class name="shortcut-description" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="key_box">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="spacing">15</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

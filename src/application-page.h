@@ -5,6 +5,7 @@
 #include "fastfingers.h"
 #include "ff-utils.h"
 #include "practice-page.h"
+#include "quiz-page.h"
 #include "shortcut-list-row.h"
 
 G_BEGIN_DECLS
