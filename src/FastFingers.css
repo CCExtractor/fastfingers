@@ -262,6 +262,25 @@ shortcut-list-row:selected {
     background-color: #4c566a;
 }
 
+button.quiz-button{
+    background-image: none;
+    background-color: #A3BE8C;
+    border: none;
+    border-radius: 0px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 400;
+    font-size: 25px;
+}
+
+button.quiz-button:hover {
+    background-color: #83a06a;
+}
+
+button.quiz-button:active {
+    background-color: #7a9b5c;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+}
 
 /* Credits Page */
 
