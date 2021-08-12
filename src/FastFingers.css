@@ -161,7 +161,7 @@ key.success {
 }
 
 label.shortcut-description {
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 30px;
     font-size: 30px;
     font-weight: 600;
@@ -170,7 +170,6 @@ label.shortcut-description {
 label.question-counter {
     color: #EBCB8B;
     margin-top: 30px;
-    margin-bottom: 30px;
     font-size: 18px;
     font-weight: 600;
 }
