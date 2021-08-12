@@ -8,12 +8,14 @@ static struct {
     int success;
     int idle;
     int *key_arr;
+    int question_idx;
 
     char **str_arr;
 
     cJSON *app;
 
     GtkWidget *box;
+    GtkLabel *question_counter;
     GtkLabel *shortcut_description;
 } glob_data;
 
@@ -55,6 +57,13 @@ static void init_next_shortcut(void) {
             glob_data.shortcut_description,
             cJSON_GetObjectItemCaseSensitive(shortcut, "title")->valuestring);
 
+    char *question_info = g_strdup_printf("Question %d/10", glob_data.question_idx);
+    gtk_label_set_text(
+            glob_data.question_counter,
+            question_info);
+    g_free(question_info);
+
+
     cJSON *keys = cJSON_GetObjectItemCaseSensitive(shortcut, "keys");
     // If there are more than one key strokes for one shortcut
     if (cJSON_IsArray(cJSON_GetArrayItem(keys, 0)))
@@ -78,7 +87,7 @@ static void init_next_shortcut(void) {
     }
 
     for (int i = 0; i < glob_data.size; ++i) {
-        int keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
+        guint keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
 
         if (keyval == GDK_KEY_VoidSymbol) {
             fprintf(stderr, "FF-ERROR: Couldn't get keyval from name %s!\n",
@@ -112,6 +121,7 @@ static gboolean next_quiz_page(gpointer user_data) {
 
     init_next_shortcut();
     glob_data.idle = 0;
+    ++glob_data.question_idx;
 
     return 0;
 }
@@ -163,6 +173,7 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     GObject *key_box = gtk_builder_get_object(quiz_page_builder, "key_box");
     GObject *shortcut_description =
             gtk_builder_get_object(quiz_page_builder, "shortcut_description");
+    GObject *question_counter = gtk_builder_get_object(quiz_page_builder, "question_counter");
 
     char *title = g_strdup(cJSON_GetObjectItem(app, "title")->valuestring);
     char button_label[64];
@@ -184,7 +195,8 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.shortcut_description = GTK_LABEL(shortcut_description);
     glob_data.category_idx = 0;
     glob_data.shortcut_idx = -1;
-
+    glob_data.question_counter = GTK_LABEL(question_counter);
+    glob_data.question_idx = 1;
     init_next_shortcut();
 
     g_signal_connect(G_OBJECT(event_box), "key_press_event",

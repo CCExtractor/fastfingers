@@ -167,6 +167,13 @@ label.shortcut-description {
     font-weight: 600;
 }
 
+label.question-counter {
+    color: #EBCB8B;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 600;
+}
 
 /* Settings Page */
 
