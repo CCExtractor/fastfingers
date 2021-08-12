@@ -129,7 +129,7 @@ static gboolean next_quiz_page(gpointer user_data) {
         ++glob_data.question_idx;
     } else {
         ff_quiz_result_page_init(glob_data.app_title, glob_data.hash_table);
-        ff_switch_page("quiz");
+        ff_switch_page("quiz-result");
     }
 
     return 0;
