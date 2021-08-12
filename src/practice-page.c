@@ -20,7 +20,7 @@ static struct {
     GtkLabel *shortcut_description;
 } glob_data;
 
-void init_next_shortcut(int previous_idx) {
+static void init_next_shortcut(int previous_idx) {
     glob_data.size = 0;
     glob_data.idx = 0;
     glob_data.category_idx = -1;
@@ -122,13 +122,13 @@ void init_next_shortcut(int previous_idx) {
     gtk_widget_show_all(glob_data.box);
 }
 
-void update_global_recent(void) {
+static void update_global_recent(void) {
     cJSON *recent_json = ff_get_application("appdata");
     cJSON *arr = cJSON_GetObjectItem(recent_json, "recent");
     const char *title = cJSON_GetObjectItem(glob_data.app, "title")->valuestring;
     int len = cJSON_GetArraySize(arr);
     int already_in_list = 0;
-    char *out;
+    char *out = NULL;
 
     for (int i = 0; i < len; ++i) {
         // If the app is already in the recent, make it the last element of the list
@@ -180,7 +180,7 @@ void update_global_recent(void) {
     free(out);
 }
 
-void update_app_json_file(void) {
+static void update_app_json_file(void) {
     char file_path[64];
 
     char *name = ff_simplify_title(
@@ -213,7 +213,7 @@ void update_app_json_file(void) {
     free(out);
 }
 
-void update_app_recent(void) {
+static void update_app_recent(void) {
     cJSON *arr = cJSON_GetObjectItem(glob_data.app, "recent");
     const char *category = glob_data.row_title;
     int len = cJSON_GetArraySize(arr);
@@ -245,12 +245,12 @@ void update_app_recent(void) {
     update_app_json_file();
 }
 
-void update_recent(void) {
+static void update_recent(void) {
     update_global_recent();
     update_app_recent();
 }
 
-void shortcut_learned(void) {
+static void shortcut_learned(void) {
     cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
     cJSON *category = cJSON_GetArrayItem(group, glob_data.category_idx);
     cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
@@ -263,7 +263,7 @@ void shortcut_learned(void) {
     init_next_shortcut(glob_data.shortcut_idx);
 }
 
-gboolean next_practice_page(gpointer user_data) {
+static gboolean next_practice_page(gpointer user_data) {
     if (glob_data.success) {
         if (glob_data.is_test)
             shortcut_learned();
@@ -323,7 +323,7 @@ gboolean key_pressed_cb(GtkEventControllerKey *controller, guint keyval,
   return 0;
 }
 */
-gboolean
+static gboolean
 key_press_event_cb (
         GtkWidget *self,
         GdkEventKey* event,
@@ -332,7 +332,7 @@ key_press_event_cb (
     if (glob_data.idle)
         return 0;
     guint keyval;
-    gdk_event_get_keyval (event, &keyval);
+    gdk_event_get_keyval ((const GdkEvent *) event, &keyval);
     GtkWidget *key;
     key = ff_box_nth_child(glob_data.box, glob_data.idx);
     if (key_compare(glob_data.key_arr[glob_data.idx], keyval)) {

@@ -17,7 +17,7 @@ static struct {
     GtkLabel *shortcut_description;
 } glob_data;
 
-void init_next_shortcut() {
+static void init_next_shortcut() {
     glob_data.size = 0;
     glob_data.idx = 0;
     glob_data.success = 1;
@@ -34,7 +34,7 @@ void init_next_shortcut() {
         cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
         for (int j = glob_data.shortcut_idx + 1; j < cJSON_GetArraySize(shortcuts); ++j) {
             cJSON *tmp_shortcut = cJSON_GetArrayItem(tmp_category, j);
-            if (cJSON_GetObjectItemCaseSensitive(tmp_shortcut, "learned") == 1) {
+            if (cJSON_GetObjectItemCaseSensitive(tmp_shortcut, "learned")->valueint == 1) {
                 category = tmp_category;
                 shortcut = tmp_shortcut;
                 glob_data.category_idx = i;
@@ -103,7 +103,7 @@ void init_next_shortcut() {
     gtk_widget_show_all(glob_data.box);
 }
 
-gboolean next_quiz_page(gpointer user_data) {
+static gboolean next_quiz_page(gpointer user_data) {
     if (glob_data.success) {
         //
     } else {
@@ -116,7 +116,7 @@ gboolean next_quiz_page(gpointer user_data) {
     return 0;
 }
 
-gboolean
+static gboolean
 key_press_event_cb(
         GtkWidget *self,
         GdkEventKey *event,
