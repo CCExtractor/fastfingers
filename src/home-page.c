@@ -21,8 +21,9 @@ double progress_of_app (cJSON *app){
         }
     }
 
-    return total ? learned / total : 0;
+    return total ? (double) learned / total : 0;
 }
+
 void ff_home_page_init(GtkStack *stack) {
     GtkWidget *temp = gtk_stack_get_child_by_name(stack, "home");
     if (temp)
