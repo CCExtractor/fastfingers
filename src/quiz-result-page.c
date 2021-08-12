@@ -26,7 +26,7 @@ void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
 
     int score = 0;
     GList *keys = g_hash_table_get_keys(hashTable);
-    for (int i = (int) g_list_length(keys) - 1; i; --i){
+    for (int i = (int) g_list_length(keys) - 1; i >= 0; --i){
         char *key = g_list_nth_data(keys, i);
         int value = *(int *)g_hash_table_lookup(hashTable, key);
         if (value)
