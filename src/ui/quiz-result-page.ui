@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface>
-    <object class="GtkScrolledWindow" id="application_scrolled_window">
+    <object class="GtkScrolledWindow" id="quiz_result_scrolled_window">
         <child>
             <object class="GtkViewport" id="application_viewport">
                 <style>
