@@ -8,7 +8,7 @@ static struct {
     int is_test;
     int success;
     int idle;
-    int *key_arr;
+    guint *key_arr;
 
     char **str_arr;
     const char *row_title;
@@ -82,7 +82,7 @@ static void init_next_shortcut(int previous_idx) {
 
     glob_data.size = cJSON_GetArraySize(keys);
 
-    glob_data.key_arr = malloc(sizeof(int) * glob_data.size);
+    glob_data.key_arr = malloc(sizeof(guint) * glob_data.size);
     if (!glob_data.key_arr) {
         fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
         return;
@@ -97,7 +97,7 @@ static void init_next_shortcut(int previous_idx) {
     }
 
     for (int i = 0; i < glob_data.size; ++i) {
-        int keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
+        guint keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
 
         if (keyval == GDK_KEY_VoidSymbol) {
             fprintf(stderr, "FF-ERROR: Couldn't get keyval from name %s!\n",

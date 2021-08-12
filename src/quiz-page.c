@@ -124,7 +124,7 @@ key_press_event_cb(
         ) {
     if (glob_data.idle)
         return 0;
-    int keyval;
+    guint keyval;
     gdk_event_get_keyval((const GdkEvent *) event, &keyval);
     GtkWidget *key;
     key = ff_box_nth_child(glob_data.box, glob_data.idx);
