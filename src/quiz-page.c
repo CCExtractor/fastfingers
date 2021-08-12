@@ -123,13 +123,13 @@ static gboolean next_quiz_page(gpointer user_data) {
                         g_strdup(gtk_label_get_text(glob_data.shortcut_description)),
                         success);
 
-    if (glob_data.question_idx == 10) {
-        ff_quiz_result_page_init(glob_data.app_title, glob_data.hash_table);
-        ff_switch_page("quiz");
-    } else {
+    if (glob_data.question_idx < 10) {
         init_next_shortcut();
         glob_data.idle = 0;
         ++glob_data.question_idx;
+    } else {
+        ff_quiz_result_page_init(glob_data.app_title, glob_data.hash_table);
+        ff_switch_page("quiz");
     }
 
     return 0;
