@@ -124,7 +124,7 @@ static gboolean next_quiz_page(gpointer user_data) {
                         success);
 
     glob_data.idle = 0;
-    if (glob_data.question_idx < 10) {
+    if (glob_data.question_idx < 2) {
         init_next_shortcut();
         ++glob_data.question_idx;
     } else {
@@ -143,6 +143,7 @@ key_press_event_cb(
 ) {
     if (glob_data.idle)
         return 0;
+
     guint keyval;
     gdk_event_get_keyval((const GdkEvent *) event, &keyval);
     GtkWidget *key;

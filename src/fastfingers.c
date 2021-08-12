@@ -21,8 +21,6 @@ void activate(GtkApplication *app, gpointer user_data) {
   ff_init_css();
   ff_init_custom_widgets();
 
-  srand(time(NULL));
-
   GtkBuilder *ffb_app = gtk_builder_new_from_resource(
       "/org/ccextractor/FastFingers/ui/fastfingers.ui");
 

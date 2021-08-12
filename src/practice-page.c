@@ -65,7 +65,7 @@ static void init_next_shortcut(int previous_idx) {
     if (!shortcut) {
         int rand_idx;
         do {
-            rand_idx = rand() % cJSON_GetArraySize(shortcuts);
+            rand_idx = g_rand_int();
         } while (previous_idx == rand_idx);
         shortcut = cJSON_GetArrayItem(shortcuts, glob_data.shortcut_idx = rand_idx);
     }
