@@ -14,6 +14,8 @@ static struct {
 
     cJSON *app;
 
+    GHashTable *hash_table;
+
     GtkWidget *box;
     GtkLabel *question_counter;
     GtkLabel *shortcut_description;
@@ -112,16 +114,27 @@ static void init_next_shortcut(void) {
     gtk_widget_show_all(glob_data.box);
 }
 
-static gboolean next_quiz_page(gpointer user_data) {
-    if (glob_data.success) {
-        //
-    } else {
-        //
-    }
+static void
+print_hash_map(
+        gpointer key,
+        gpointer value,
+        gpointer user_data
+) {
+    fprintf(stderr, "%s : %d", key, value);
+}
 
-    init_next_shortcut();
-    glob_data.idle = 0;
-    ++glob_data.question_idx;
+static gboolean next_quiz_page(gpointer user_data) {
+    int *success = malloc(sizeof(int));
+    *success = glob_data.success;
+    g_hash_table_insert(glob_data.hash_table, glob_data.shortcut_description, success);
+
+    if (glob_data.question_idx == 10) {
+        g_hash_table_foreach(glob_data.hash_table, print_hash_map, NULL);
+    } else {
+        init_next_shortcut();
+        glob_data.idle = 0;
+        ++glob_data.question_idx;
+    }
 
     return 0;
 }
@@ -131,7 +144,7 @@ key_press_event_cb(
         GtkWidget *self,
         GdkEventKey *event,
         gpointer user_data
-        ) {
+) {
     if (glob_data.idle)
         return 0;
     guint keyval;
@@ -190,6 +203,8 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
 
     g_free(title);
 
+    GHashTable *hash_table = g_hash_table_new(g_str_hash, (GEqualFunc) g_strcmp0);
+
     glob_data.app = app;
     glob_data.box = GTK_WIDGET(key_box);
     glob_data.shortcut_description = GTK_LABEL(shortcut_description);
@@ -197,6 +212,8 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.shortcut_idx = -1;
     glob_data.question_counter = GTK_LABEL(question_counter);
     glob_data.question_idx = 1;
+    glob_data.hash_table = hash_table;
+
     init_next_shortcut();
 
     g_signal_connect(G_OBJECT(event_box), "key_press_event",

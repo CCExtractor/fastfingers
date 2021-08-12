@@ -47,6 +47,7 @@ list(
         application-page.c
         practice-page.c
         quiz-page.c
+        quiz-result-page.c
         settings-page.c
         credits-page.c
         reset-progress-page.c

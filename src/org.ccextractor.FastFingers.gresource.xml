@@ -9,6 +9,7 @@
     <file preprocess="xml-stripblanks">ui/application-page.ui</file>
     <file preprocess="xml-stripblanks">ui/practice-page.ui</file>
     <file preprocess="xml-stripblanks">ui/quiz-page.ui</file>
+    <file preprocess="xml-stripblanks">ui/quiz-result-page.ui</file>
     <file preprocess="xml-stripblanks">ui/settings-page.ui</file>
     <file preprocess="xml-stripblanks">ui/credits-page.ui</file>
     <file preprocess="xml-stripblanks">ui/reset-progress-page.ui</file>
