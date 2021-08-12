@@ -9,7 +9,7 @@ double progress_of_app(cJSON *app) {
         for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
             ++total;
             if (cJSON_GetObjectItem(cJSON_GetArrayItem(shortcuts, j), "learned")
-                        ->valueint)
+            ->valueint)
                 ++learned;
         }
     }
@@ -94,14 +94,13 @@ void ff_home_page_init(GtkStack *stack) {
                 gtk_box_pack_start(GTK_BOX(container), category_container, FALSE, FALSE,
                                    0);
 
-                ff_dynamicArray_append(categoryArray, &category);
+                ff_dynamicArray_append(categoryArray, category);
                 ff_dynamicArray_append(hboxArray, &category_container);
 
-                category_idx = ff_dynamicArray_size(categoryArray) - 1;
+                category_idx = ff_dynamicArray_size(hboxArray) - 1;
             }
-
             GtkWidget *card = ff_card_new(app_title, progress_of_app(app));
-            GtkBox *box = ff_dynamicArray_get(categoryArray, category_idx);
+            GtkBox *box = *(GtkBox **) ff_dynamicArray_get(hboxArray, category_idx);
             gtk_box_pack_start(box, card, FALSE, FALSE, 0);
 
             g_free(name);
