@@ -1,15 +1,5 @@
 #include "quiz-result-page.h"
 
-static void
-wrap_hash_map_to_list(
-        void *key,
-        void *value,
-        void *container) {
-    GtkWidget *row = ff_shortcut_list_row_new(key,
-                                              *(int *)value ? "Correct" : "Wrong");
-    gtk_container_add(GTK_CONTAINER(container), row);
-}
-
 void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
     GtkStack *stack = (GtkStack *) ff_get_stack();
     GtkWidget *temp = gtk_stack_get_child_by_name(stack, "quiz-result");
@@ -35,17 +25,19 @@ void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
     }
 
     int score = 0;
-    GList *vals = g_hash_table_get_values(hashTable);
-    for (int i = (int) g_list_length(vals) - 1; i; --i)
-        if (*(int *) g_list_nth_data(vals, i))
+    GList *keys = g_hash_table_get_keys(hashTable);
+    for (int i = (int) g_list_length(keys) - 1; i; --i){
+        char *key = g_list_nth_data(keys, i);
+        int value = *(int *)g_hash_table_lookup(hashTable, key);
+        if (value)
             ++score;
+        GtkWidget *row = ff_shortcut_list_row_new(key,value ? "Correct" : "Wrong");
+        gtk_container_add(GTK_CONTAINER(shortcut_listbox), row);
+    }
 
     char *score_str = g_strdup_printf("Score: %d/10", score);
     gtk_label_set_label(GTK_LABEL(score_label), score_str);
     g_free(score_str);
-
-    g_hash_table_foreach(hashTable, wrap_hash_map_to_list, GTK_CONTAINER(shortcut_listbox));
-
 
     gtk_stack_add_named(stack, GTK_WIDGET(scrolled_window), "quiz-result");
     gtk_widget_show_all(GTK_WIDGET(scrolled_window));
