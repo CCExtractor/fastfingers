@@ -38,12 +38,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     GObject *quiz_button =
             gtk_builder_get_object(application_page_builder, "quiz_button");
 
-    char *logo_path = ff_logo_path_gen(title);
-
-    if (logo_path) {
-        gtk_image_set_from_resource(GTK_IMAGE(image), logo_path);
-        free(logo_path);
-    }
+    set_scaled_image(GTK_IMAGE(image), title, 100);
 
     char *name = ff_simplify_title(title);
     cJSON *app = ff_get_application(name);

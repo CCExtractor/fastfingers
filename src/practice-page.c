@@ -377,12 +377,7 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
 
     ff_buttonbox_set_backbutton_label(FF_BUTTONBOX(buttonbox), button_label);
 
-    char *logo_path = ff_logo_path_gen(title);
-
-    if (logo_path) {
-        gtk_image_set_from_resource(GTK_IMAGE(image), logo_path);
-        free(logo_path);
-    }
+    set_scaled_image(GTK_IMAGE(image), title, 100);
 
     g_free(title);
 
