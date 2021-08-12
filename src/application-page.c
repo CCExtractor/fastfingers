@@ -105,7 +105,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
             add_style_class(quizButton, "quiz-button");
             gtk_box_pack_start(GTK_BOX(main_box), quizButton, FALSE, FALSE, 0);
             gtk_box_reorder_child(GTK_BOX(main_box), quizButton, 2);
-            g_signal_connect(quizButton, "clicked", G_CALLBACK(quizButton_clicked_cb), app)
+            g_signal_connect(quizButton, "clicked", G_CALLBACK(quizButton_clicked_cb), app);
         }
     }
 
