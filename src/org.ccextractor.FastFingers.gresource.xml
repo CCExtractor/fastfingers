@@ -23,5 +23,6 @@
     <file>logo/thunderbird.png</file>
     <file>logo/vlc.png</file>
     <file>logo/vscode.png</file>
+    <file>logo/postman.png</file>
   </gresource>
 </gresources>
