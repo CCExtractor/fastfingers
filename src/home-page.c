@@ -101,7 +101,7 @@ void ff_home_page_init(GtkStack *stack) {
             }
 
             GtkWidget *card = ff_card_new(app_title, progress_of_app(app));
-            GtkBox *box = *(GtkBox **)ff_dynamicArray_get(categoryArray, category_idx);
+            GtkBox *box = ff_dynamicArray_get(categoryArray, category_idx);
             gtk_box_pack_start(box, card, FALSE, FALSE, 0);
 
             g_free(name);

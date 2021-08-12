@@ -474,7 +474,7 @@ dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize){
 
     arr->inUse = 0;
     arr->arraySize = arraySize;
-    arr->itemSize = arraySize;
+    arr->itemSize = itemSize;
 
     arr->array = malloc(arraySize * itemSize);
     if (!arr->array){
