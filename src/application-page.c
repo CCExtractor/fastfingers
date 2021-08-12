@@ -111,6 +111,8 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
 
     if (learned_of_all < 10)
         gtk_widget_set_visible(GTK_WIDGET(quiz_button), 0);
-    if (cJSON_GetArraySize(recent) == 0)
-        gtk_widget_set_visible(GTK_WIDGET(quiz_button), 0);
+    if (cJSON_GetArraySize(recent) == 0){
+        gtk_widget_set_visible(GTK_WIDGET(recent_list), 0);
+        gtk_widget_set_visible(GTK_WIDGET(recent_title), 0);
+    }
 }

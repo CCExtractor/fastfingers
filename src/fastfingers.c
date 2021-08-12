@@ -42,7 +42,6 @@ void activate(GtkApplication *app, gpointer user_data) {
 void ff_switch_page(const char *page_name) {
   GtkWidget *page_widget =
       gtk_stack_get_child_by_name(GTK_STACK(stack), page_name);
-  gtk_widget_show_all(page_widget);
   gtk_stack_set_visible_child_name(GTK_STACK(stack), page_name);
 
   page *new_page = malloc(sizeof(page));
@@ -82,7 +81,6 @@ void ff_switch_previous(void) {
 
   page_widget =
       gtk_stack_get_child_by_name(GTK_STACK(stack), current_page->page);
-  gtk_widget_show_all(page_widget);
   gtk_stack_set_visible_child_name(GTK_STACK(stack), current_page->page);
 }
 
