@@ -47,9 +47,9 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
 
     int learned_of_all = 0;
     for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
-        // Add title
+        // Add categoryTitle
         cJSON *category = cJSON_GetArrayItem(group, i);
-        cJSON *title = cJSON_GetObjectItemCaseSensitive(category, "title");
+        cJSON *categoryTitle = cJSON_GetObjectItemCaseSensitive(category, "title");
         cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
         int learned = 0;
         for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
@@ -60,7 +60,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
         }
         char progress[8];
         sprintf(progress, "%d/%d", learned, cJSON_GetArraySize(shortcuts));
-        GtkWidget *row = ff_shortcut_list_row_new(title->valuestring, progress);
+        GtkWidget *row = ff_shortcut_list_row_new(categoryTitle->valuestring, progress);
         gtk_container_add(GTK_CONTAINER(list_topic), row);
     }
 
@@ -81,20 +81,20 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
                 const char *group_title =
                         cJSON_GetObjectItem(cJSON_GetArrayItem(group, j), "title")
                                 ->valuestring;
-                const char *recent_title = cJSON_GetArrayItem(recent, i)->valuestring;
-                if (!strcmp(group_title, recent_title)) {
+                const char *recent_title_str = cJSON_GetArrayItem(recent, i)->valuestring;
+                if (!strcmp(group_title, recent_title_str)) {
                     cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(
-                            cJSON_GetArrayItem(group, i), "shortcuts");
+                            cJSON_GetArrayItem(group, j), "shortcuts");
                     int learned = 0;
-                    for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
-                        cJSON *shortcut = cJSON_GetArrayItem(shortcuts, j);
+                    for (int k = 0; k < cJSON_GetArraySize(shortcuts); ++k) {
+                        cJSON *shortcut = cJSON_GetArrayItem(shortcuts, k);
                         cJSON *learn_stat =
                                 cJSON_GetObjectItemCaseSensitive(shortcut, "learned");
                         learned += learn_stat->valueint;
                     }
                     char progress[8];
                     sprintf(progress, "%d/%d", learned, cJSON_GetArraySize(shortcuts));
-                    GtkWidget *row = ff_shortcut_list_row_new(recent_title, progress);
+                    GtkWidget *row = ff_shortcut_list_row_new(recent_title_str, progress);
                     gtk_container_add(GTK_CONTAINER(recent_list), row);
                 }
             }
