@@ -29,7 +29,7 @@ static void init_next_shortcut() {
 
     cJSON *category = NULL;
     cJSON *shortcut = NULL;
-    for (int i = glob_data.category_idx + 1; i < cJSON_GetArraySize(group); ++i) {
+    for (int i = glob_data.category_idx; i < cJSON_GetArraySize(group); ++i) {
         cJSON *tmp_category = cJSON_GetArrayItem(group, i);
         cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
         for (int j = glob_data.shortcut_idx + 1; j < cJSON_GetArraySize(shortcuts); ++j) {
@@ -47,7 +47,7 @@ static void init_next_shortcut() {
 
     if (!category || !shortcut) {
         fprintf(stderr,
-                "FF-ERROR: Couldn't allocate space for key_container->str_arr!\n");
+                "FF-ERROR: category: %p - shortcut: %p\n", category, shortcut);
         return;
     }
 
@@ -182,7 +182,7 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.app = app;
     glob_data.box = GTK_WIDGET(key_box);
     glob_data.shortcut_description = GTK_LABEL(shortcut_description);
-    glob_data.category_idx = -1;
+    glob_data.category_idx = 0;
     glob_data.shortcut_idx = -1;
 
     init_next_shortcut();
