@@ -1,5 +1,12 @@
 #include "ff-utils.h"
 
+typedef struct dynamicArray {
+    void *array;
+    size_t inUse;
+    size_t itemSize;
+    size_t arraySize;
+} dynamicArray;
+
 void ff_init_css(void) {
   GtkCssProvider *provider = gtk_css_provider_new();
   GdkScreen *screen = gdk_screen_get_default();
@@ -451,4 +458,72 @@ void ff_container_remove_all(GtkWidget *container) {
   }
   gtk_container_foreach(GTK_CONTAINER(container), GTK_CALLBACK(remove_all_cb),
                         GTK_CONTAINER(container));
+}
+
+dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize){
+    if (arraySize < 0){
+        fprintf (stderr, "FF-ERROR: Invalid (negative) initial array size!");
+        return NULL;
+    }
+
+    dynamicArray *arr = malloc(sizeof (dynamicArray));
+    if (!arr){
+        fprintf (stderr, "FF-ERROR: Couldn't allocate enough space for dynamic array context!");
+        return NULL;
+    }
+
+    arr->inUse = 0;
+    arr->arraySize = arraySize;
+    arr->itemSize = itemSize;
+
+    arr->array = malloc(arraySize * itemSize);
+    if (!arr->array){
+        fprintf (stderr, "FF-ERROR: Couldn't allocate enough space for dynamic array!");
+        return NULL;
+    }
+
+    return arr;
+}
+
+size_t ff_dynamicArray_append(dynamicArray *arr, const void *item){
+    if (arr->arraySize == arr->inUse){
+        void *tmp = realloc(arr->array, arr->arraySize * arr->itemSize * 2);
+        if (!tmp){
+            fprintf (stderr, "FF-ERROR: Couldn't expand dynamic array's size!");
+            return 0;
+        }
+        arr->array = tmp;
+    }
+
+    memcpy(arr->array + arr->inUse * arr->itemSize, item, arr->itemSize);
+    return ++arr->inUse;
+}
+
+size_t ff_dynamicArray_prepend(dynamicArray *arr, const void *item){
+    if (arr->arraySize == arr->inUse){
+        void *tmp = realloc(arr->array, arr->arraySize * arr->itemSize * 2);
+        if (!tmp){
+            fprintf (stderr, "FF-ERROR: Couldn't expand dynamic array's size!");
+            return 0;
+        }
+        arr->array = tmp;
+    }
+
+    memmove(arr->array + arr->itemSize, arr->array, arr->itemSize);
+    memcpy(arr->array, item, arr->itemSize);
+
+    return ++arr->inUse;
+}
+
+void *ff_dynamicArray_get(dynamicArray *arr, size_t idx){
+    return arr->array + arr->itemSize * idx;
+}
+
+size_t ff_dynamicArray_size(dynamicArray *arr){
+    return arr->inUse;
+}
+
+void ff_dynamicArray_free(dynamicArray *arr){
+    free(arr->array);
+    free(arr);
 }
