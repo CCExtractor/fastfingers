@@ -3,7 +3,7 @@
 char *get_active_window(void) { return get_active_from_gnome_shell(); }
 
 int strcmpic(const char *str1, const char *str2) {
-  int len = strlen(str1);
+  size_t len = strlen(str1);
   if (len != strlen(str2))
     return 0;
 
@@ -28,6 +28,12 @@ gboolean button_press_event_cb(GtkStatusIcon *status_icon, GdkEvent *event,
 char *normalize_name(const char *name) {
   if (strcmpic(name, "firefox"))
     return "firefox";
+  if (strcmpic(name, "postman"))
+      return "postman";
+  if (strcmpic(name, "firefox"))
+      return "firefox";
+  if (g_str_has_prefix(name, "Gimp"))
+      return "gimp";
 
   return NULL;
 }
@@ -162,7 +168,7 @@ void changed_cb(GtkEditable *editable, GtkWidget *main_box) {
 
   GList *children = gtk_container_get_children(GTK_CONTAINER(vbox));
 
-  int len = g_list_length(children);
+  size_t len = g_list_length(children);
 
   if (!len)
     return;

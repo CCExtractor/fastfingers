@@ -100,7 +100,7 @@ char *get_active_from_gnome_shell(void) {
         goto out;
     }
 
-    int len = last_occurrence - first_occurrence - 1;
+    long len = last_occurrence - first_occurrence - 1;
     parsed = malloc(len + 1);
 
     if (!parsed) {
