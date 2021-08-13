@@ -1,9 +1,11 @@
 # Minimum version required of CMake
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
+file(READ ../.version VERSION)
+string(STRIP ${VERSION} VERSION)
 project(
         FastFingers
-        VERSION 0.7.18
+        VERSION ${VERSION}
         LANGUAGES C)
 # Initializing other CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)

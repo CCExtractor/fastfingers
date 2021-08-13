@@ -66,10 +66,10 @@ char *get_active_from_gnome_shell(void) {
     GError *error = NULL;
     GDBusConnection *c = NULL;
     gchar *s = NULL, *parsed = NULL;
+    GVariant *result = NULL;
 
     c = g_bus_get_sync(G_BUS_TYPE_SESSION, NULL, &error);
 
-    GVariant *result = NULL;
 
     if (!c) {
         g_printerr("Error connecting: %s\n", error->message);
