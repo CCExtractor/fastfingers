@@ -46,22 +46,12 @@ package () {
 
     cp -v \$pkgname-\$pkgver/src/build/fastfingers \${pkgdir}/usr/bin
     cp -v \$pkgname-\$pkgver/src/build/fastfingers-cheatsheet \${pkgdir}/usr/bin
-    chmod -vR u=rwx,g=rx,o=rx \${pkgdir}/usr/bin
-
     cp -v \$pkgname-\$pkgver/src/build/org.ccextractor.FastFingers.desktop \${pkgdir}/usr/share/applications/
     cp -v \$pkgname-\$pkgver/src/build/org.ccextractor.Cheatsheet.desktop \${pkgdir}/usr/share/applications/
-    chmod -vR u=rwx,g=rx,o=rx \${pkgdir}/usr/share/applications
-
     cp -vR \$pkgname-\$pkgver/data/icons/* \${pkgdir}/usr/share/icons
-    chmod -vR u=rwx,g=rx,o=rx \${pkgdir}/usr/share/icons
-
-    cp -vp \$pkgname-\$pkgver/data/applications/* \${pkgdir}/usr/share/fastfingers/applications
-    chmod -R u=rw,g=rw,o=rw \${pkgdir}/usr/share/fastfingers/applications/
-
     cp -v \$pkgname-\$pkgver/data/org.ccextractor.FastFingers.gschema.xml \${pkgdir}/usr/share/glib-2.0/schemas
-    chmod -v u=rw,g=r,o=r \${pkgdir}/usr/share/glib-2.0/schemas/org.ccextractor.FastFingers.gschema.xml
 
-    chmod -Rv u=rwx,g=rwx,o=rwx \${pkgdir}
+    install -vpm 777 \$pkgname-\$pkgver/data/applications/* \${pkgdir}/usr/share/fastfingers/applications
 }
 
 post_install () {
