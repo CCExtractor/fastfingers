@@ -1,13 +1,4 @@
 #!/bin/bash
-package="fastfingers"
-version="0.7.11"
-maintainer="Ali Eren Yogurtcu"
-architecture="all"
-description="FastFingers is an training application \
-that helps its users to remove the habit of using a mouse, \
-by helping them to memorize the shortcuts they want to \
-learn by practicing."
-
 echo "===================================="
 echo "Creating Debian Package"
 echo "===================================="
@@ -21,16 +12,17 @@ fi
 
 mkdir -p -v ${path}/packages/debian/fastfingers/DEBIAN
 
-echo "\
-Package: ${package}
-Version: ${version}
-Maintainer: ${maintainer}
-Architecture: ${architecture}
-Description: ${description}" > ${path}/packages/debian/fastfingers/DEBIAN/control
+version=`cat ${path}/.version`
 
-echo "#!/bin/bash
-gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/
-gtk-update-icon-cache -t -f /usr/share/icons/hicolor/" > ${path}/packages/debian/fastfingers/DEBIAN/postinst
+echo "\
+Package: fastfingers
+Version: ${version}
+Maintainer: Ali Eren Yogurtcu
+Architecture: all
+Description: FastFingers is an training application \
+that helps its users to remove the habit of using a mouse, \
+by helping them to memorize the shortcuts they want to \
+learn by practicing." > ${path}/packages/debian/fastfingers/DEBIAN/control
 
 mkdir -p -v ${path}/packages/debian/fastfingers/usr/bin
 cp -v ${path}/src/build/fastfingers ${path}/packages/debian/fastfingers/usr/bin

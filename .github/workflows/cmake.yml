@@ -17,10 +17,6 @@ jobs:
     # cross-platform coverage.
     # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: ubuntu-latest
-    outputs:
-      branch: v0.7
-      tag: v0.7.2
-      version: 0.7.2
 
     steps:
     - uses: actions/checkout@v2
@@ -41,7 +37,7 @@ jobs:
       # Install the app system wide
       run: sudo make --directory ${{github.workspace}}/src/build install
       
-    - name: Create Package
+    # - name: Create Package
       # Create debian package
-      run: sudo ${{github.workspace}}/package_creators/debian.sh ${{github.workspace}}
+      # run: sudo ${{github.workspace}}/package_creators/debian.sh ${{github.workspace}}
 
