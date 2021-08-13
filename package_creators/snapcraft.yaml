@@ -1,0 +1,40 @@
+name: fastfingers
+grade: stable
+version: 0.1.1
+summary: Shortcut training application
+description: FastFingers is an training application that helps its users to remove the habit of using a mouse, by helping them to memorize the shortcuts they want to learn by practicing.
+license: GPL-2.0
+
+confinement: devmode
+base: core20
+
+parts:
+  fastfingers:
+    plugin: cmake
+    source: https://github.com/CCExtractor/fastfingers.git
+    source-branch: main
+    meson-parameters: [--prefix=/snap/foliate/current/usr]
+    build-packages:
+      - libgtk-3-0
+      - libgtk-3-dev
+    organize:
+      snap/foliate/current/usr: usr
+    parse-info: [usr/share/metainfo/com.github.johnfactotum.Foliate.appdata.xml]
+
+apps:
+  fastfingers:
+    command: fastfingers
+    extensions: [ gnome-3-28 ]
+    plugs:
+      - home
+    slots:
+      - dbus-daemon
+    common-id: org.ccextractor.FastFingers
+  fastfingers-cheatsheet:
+    command: fastfingers-cheatsheet
+    extensions: [ gnome-3-28 ]
+    plugs:
+      - home
+    slots:
+      - dbus-daemon
+    common-id: org.ccextractor.Cheatsheet
