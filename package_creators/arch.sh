@@ -3,38 +3,38 @@ echo "===================================="
 echo "Creating Arch Package"
 echo "===================================="
 
-if [ ${1} != "" ]
+if [ "${1}" != "" ]
 then
     path=${1}
 else
     path=${PWD}
 fi
 
-mkdir -p -v ${path}/packages/arch
+mkdir -p -v "${path}"/packages/arch
 
-version=`cat ${path}/.version`
+version=$(cat "${path}"/.version)
 
 echo "\
 # Maintainer: Ali Eren Yogurtcu <aeren.yogurtcu@gmail.com>
 pkgname=fastfingers
 pkgver=${version}
 pkgrel=1
-pkgdesc='FastFingers is an training application \
+pkgdesc=\"FastFingers is an training application \
 that helps its users to remove the habit of using a mouse, \
 by helping them to memorize the shortcuts they want to \
-learn by practicing.'
-arch=('any')
-url='https://github.com/CCExtractor/fastfingers'
-license=('GPL')
-depends=('gtk3')
-source=('https://github.com/CCExtractor/fastfingers/archive/refs/tags/v\$pkgver.tar.gz')
+learn by practicing.\"
+arch=(\"any\")
+url=\"https://github.com/CCExtractor/fastfingers\"
+license=(\"GPL\")
+depends=(\"gtk3\")
+source=(\"https://github.com/CCExtractor/fastfingers/archive/refs/tags/v\$pkgver.tar.gz\")
 
 prepare() {
-        cmake -S '\$pkgname-\$pkgver/src' -B '\$pkgname-\$pkgver/src/build' -DCMAKE_BUILD_TYPE=Release
+        cmake -S \"\$pkgname-\$pkgver/src\" -B \"\$pkgname-\$pkgver/src/build\" -DCMAKE_BUILD_TYPE=Release
 }
 
 build() {
-        cmake --build '\$pkgname-\$pkgver/src/build' --config Release
+        cmake --build \"\$pkgname-\$pkgver/src/build\" --config Release
 }
 
 package () {
@@ -67,10 +67,10 @@ package () {
 post_install () {
     chmod -vR u=rw,g=rw,o=rw /usr/share/fastfingers/applications
 }
-" > ${path}/packages/arch/PKGBUILD
+" > "${path}"/packages/arch/PKGBUILD
 
 startLocation=${PWD}
-cd ${path}/packages/arch || exit
+cd "${path}"/packages/arch || exit
 makepkg -g >> PKGBUILD
 makepkg
-cd ${startLocation} || exit
+cd "${startLocation}" || exit
