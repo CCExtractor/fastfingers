@@ -129,6 +129,7 @@ static void update_global_recent(void) {
     int len = cJSON_GetArraySize(arr);
     int already_in_list = 0;
     char *out = NULL;
+    FILE *fp = NULL;
 
     for (int i = 0; i < len; ++i) {
         // If the app is already in the recent, make it the last element of the list
@@ -155,7 +156,6 @@ static void update_global_recent(void) {
     }
 
     const char *file_path = "/usr/share/fastfingers/applications/appdata.json";
-    FILE *fp = NULL;
     fp = fopen(file_path, "w");
 
     if (!fp) {

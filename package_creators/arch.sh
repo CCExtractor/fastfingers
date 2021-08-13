@@ -10,7 +10,7 @@ else
     path=${PWD}
 fi
 
-mkdir -p -v "${path}"/packages/arch
+mkdir -p -v "${path}"/packages/arch/temp
 
 version=$(cat "${path}"/.version)
 
@@ -67,10 +67,12 @@ package () {
 post_install () {
     chmod -vR u=rw,g=rw,o=rw /usr/share/fastfingers/applications
 }
-" > "${path}"/packages/arch/PKGBUILD
+" > "${path}"/packages/arch/temp/PKGBUILD
 
 startLocation=${PWD}
-cd "${path}"/packages/arch || exit
+cd "${path}"/packages/arch/temp || exit
 makepkg -g >> PKGBUILD
 makepkg
+mv -v fastfingers-"${version}"-1-any.pkg.tar.zst ..
 cd "${startLocation}" || exit
+rm -rfv /packages/arch/temp
