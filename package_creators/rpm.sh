@@ -3,17 +3,18 @@ echo "===================================="
 echo "Creating Debian Package"
 echo "===================================="
 
-if [ ${1} != "" ]
-then
-    path=${1}
+if [ "${1}" != "" ]; then
+  path=${1}
 else
-    path=${PWD}
+  path=${PWD}
 fi
+
+mkdir -p -v "${path}"/packages/arch/temp
+
+version=$(cat "${path}"/.version)
 
 rpmdev-wipetree
 rpmdev-setuptree
-
-version=`cat ${path}/.version`
 
 echo "\
 Name:           fastfingers
@@ -86,9 +87,12 @@ learn by practicing.
    /usr/share/icons/hicolor/48x48/apps/fastfingers-cheatsheet.png
    /usr/share/icons/hicolor/48x48/apps/fastfingers.png
    /usr/share/icons/hicolor/64x64/apps/fastfingers-cheatsheet.png
-   /usr/share/icons/hicolor/64x64/apps/fastfingers.png"> ~/rpmbuild/SPECS/fastfingers.spec
+   /usr/share/icons/hicolor/64x64/apps/fastfingers.png" >~/rpmbuild/SPECS/fastfingers.spec
 
 cp -rv ${path}/* ~/rpmbuild/SOURCES/
+
 rpmbuild -bb ~/rpmbuild/SPECS/fastfingers.spec
 
 cp -v ~/rpmbuild/RPMS/x86_64/fastfingers-${version}-1.el8.x86_64.rpm ${path}/packages/rpm/
+
+rpmdev-wipetree

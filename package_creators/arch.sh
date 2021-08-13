@@ -3,11 +3,10 @@ echo "===================================="
 echo "Creating Arch Package"
 echo "===================================="
 
-if [ "${1}" != "" ]
-then
-    path=${1}
+if [ "${1}" != "" ]; then
+  path=${1}
 else
-    path=${PWD}
+  path=${PWD}
 fi
 
 mkdir -p -v "${path}"/packages/arch/temp
@@ -57,11 +56,11 @@ package () {
 post_install () {
     chmod -vR u=rw,g=rw,o=rw /usr/share/fastfingers/applications
 }
-" > "${path}"/packages/arch/temp/PKGBUILD
+" >"${path}"/packages/arch/temp/PKGBUILD
 
 startLocation=${PWD}
 cd "${path}"/packages/arch/temp || exit
-makepkg -g >> PKGBUILD
+makepkg -g >>PKGBUILD
 makepkg
 mv -v fastfingers-"${version}"-1-any.pkg.tar.zst ..
 cd "${startLocation}" || exit
