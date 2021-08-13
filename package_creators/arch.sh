@@ -75,4 +75,4 @@ makepkg -g >> PKGBUILD
 makepkg
 mv -v fastfingers-"${version}"-1-any.pkg.tar.zst ..
 cd "${startLocation}" || exit
-rm -rfv /packages/arch/temp
+rm -rfv "${path}"/packages/arch/temp
