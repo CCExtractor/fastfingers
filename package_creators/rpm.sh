@@ -9,7 +9,7 @@ else
   path=${PWD}
 fi
 
-mkdir -p -v "${path}"/packages/arch/temp
+mkdir -pv "${path}"/packages/rpm
 
 version=$(cat "${path}"/.version)
 
@@ -63,7 +63,6 @@ learn by practicing.
    /usr/share/fastfingers/applications/appdata.json
    /usr/share/fastfingers/applications/firefox.json
    /usr/share/fastfingers/applications/gimp.json
-   /usr/share/fastfingers/applications/slack.json
    /usr/share/fastfingers/applications/postman.json
    /usr/share/glib-2.0/schemas/org.ccextractor.FastFingers.gschema.xml
    /usr/share/icons/HighContrast/16x16/apps/fastfingers-cheatsheet.png
@@ -89,10 +88,8 @@ learn by practicing.
    /usr/share/icons/hicolor/64x64/apps/fastfingers-cheatsheet.png
    /usr/share/icons/hicolor/64x64/apps/fastfingers.png" >~/rpmbuild/SPECS/fastfingers.spec
 
-cp -rv ${path}/* ~/rpmbuild/SOURCES/
+cp -rv ${path}/. ~/rpmbuild/SOURCES/
 
 rpmbuild -bb ~/rpmbuild/SPECS/fastfingers.spec
 
 cp -v ~/rpmbuild/RPMS/x86_64/fastfingers-${version}-1.el8.x86_64.rpm ${path}/packages/rpm/
-
-rpmdev-wipetree

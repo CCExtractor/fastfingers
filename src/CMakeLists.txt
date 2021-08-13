@@ -2,6 +2,7 @@
 cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 file(READ ../.version VERSION)
+string(STRIP ${VERSION} VERSION)
 project(
         FastFingers
         VERSION ${VERSION}
