@@ -1,54 +1,41 @@
-# FastFingers App
+# FastFingers &middot; [![GitHub license](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/CCExtractor/fastfingers/blob/main/LICENSE) [![Release Version](https://img.shields.io/github/v/release/CCExtractor/fastfingers)](https://github.com/CCExtractor/fastfingers/releases) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/CCExtractor/fastfingers/CMake/main) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/CCExtractor/fastfingers/blob/main/CONTRIBUTING.md)
 
-FastFingers is an open-source application that helps its users to remove the habit of using a mouse, by helping them to memorize the shortcuts they want to learn.
+FastFingers is an open-source application that helps its users to remove the habit of using a mouse, by helping them to
+memorize the shortcuts they want to learn.
 
-## Dependencies
-**GTK 3 (see: https://www.gtk.org/docs/installations/linux/)**   
-  * **Arch:** gtk3
-  * **Debian/Ubuntu:** libgtk-3-0 and libgtk-3-dev (Both are required to build from source!)
-  * **Fedora:** gtk3 and gtk3-devel (Both are required to build from source!)
+## Table of contents
+* [Installation](#installation)
+* [Documentation](#documentation)
+* [Contributing](#contributing)
+* [License](#license)
 
-**CMake**   
-  * **Arch, Debian/Ubuntu, Fedora:** CMake
+## Installation
 
-**pkg-config**
-  * **Debian/Ubuntu:** pkg-config
+FastFingers release Debian, Arch and RPM packages in every release. You can download the proper package for your Linux
+system from releases and install them with package managers. For detailed information, read the
+[Installation Page](https://github.com/CCExtractor/fastfingers/blob/main/INSTALLATION.md).
 
-A C compiler and build tool, such as GCC and GNU Make or Ninja.
+You can also build the FastFingers from the source code. For detailed information, see
+the [Building Page](https://github.com/CCExtractor/fastfingers/blob/main/BUILDING.md).
 
-## Building and Installing
+###### FastFingers is planned to be published on the Snap Store soon.
 
-Download the source code and move to the source directory
+## Documentation
 
-```bash
-git clone https://github.com/aliereny/fastfingers.git
-```
-Configure the CMake
+For users, installation and building steps are described in detail in the section above.
 
-```bash
-cmake -S fastfingers/src -B fastfingers/src/build -DCMAKE_BUILD_TYPE=Release
-```
-
-Build
-
-```bash
-cmake --build fastfingers/src/build --config Release
-```
-
-Install
-
-```bash
-sudo cmake --build fastfingers/src/build --target install
-```
-
-The apps are ready to run. The apps should be installed in the applications sections of your desktop environment where you can run them from. Also you can run them from the commands "fastfingers" and "fastfingers-cheatsheet"
-
-https://youtu.be/6ckgOJjpszU
+FastFingers is a Linux GUI application. Main libraries and tools used in the project are GTK3, GLib, CMake and cJSON.
+The application data is stored in JSON files. If you want to learn about the design, please read the
+[Contributing Page](https://github.com/CCExtractor/fastfingers/blob/main/CONTRIBUTING.md)
 
 ## Contributing
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate.
 
+For more details, see the [Contributing Page](https://github.com/CCExtractor/fastfingers/blob/main/CONTRIBUTING.md)
+
 ## License
+
 [GPL-2.0 License](https://github.com/CCExtractor/fastfingers/blob/main/LICENSE)
