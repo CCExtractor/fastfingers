@@ -115,7 +115,7 @@ levelbar block.empty {
 }
 
 
-/* Practice Page */
+/* Practice, Quiz and Quiz Result Pages */
 
 box.practice-box {
     background-image: linear-gradient(to bottom, #2e3440, #3b4252);
@@ -180,6 +180,21 @@ label.score-label {
     font-size: 30px;
     font-weight: 600;
 }
+
+label.timer {
+    margin-top: 25px;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+label.timer.green {
+    color: #5e8d52;
+}
+
+label.timer.red {
+    color: #BF616A;
+}
+
 
 /* Settings Page */
 
@@ -275,7 +290,7 @@ shortcut-list-row:selected {
     background-color: #4c566a;
 }
 
-button.quiz-button{
+button.quiz-button {
     margin-top: 30px;
     background-image: none;
     background-color: #A3BE8C;

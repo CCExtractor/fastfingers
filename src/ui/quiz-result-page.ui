@@ -40,6 +40,7 @@
                         </child>
                         <child>
                             <object class="GtkListBox" id="shortcut_listbox">
+                                <property name="margin-bottom">50</property>
                                 <style>
                                     <class name="application-list"/>
                                 </style>

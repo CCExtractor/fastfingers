@@ -102,7 +102,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     gtk_stack_add_named(stack, GTK_WIDGET(scrolled_window), title);
     gtk_widget_show_all(GTK_WIDGET(scrolled_window));
 
-    if (learned_of_all < 10)
+    if (learned_of_all < 20)
         gtk_widget_set_visible(GTK_WIDGET(quiz_button), 0);
     if (cJSON_GetArraySize(recent) == 0){
         gtk_widget_set_visible(GTK_WIDGET(recent_list), 0);
