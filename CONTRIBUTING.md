@@ -1,9 +1,10 @@
 # Contribute to FastFingers
 
-There are a number of ways you can help improve FastFingers. You can contribute to the project by reporting issues,
+There are several ways you can help improve FastFingers. You can contribute to the project by reporting issues,
 making suggestions and modifying the code.
 
 ## Table of contents
+
 * [Design](#design)
 * [How to add new applications](#how-to-add-new-applications)
     + [Creating the JSON file](#creating-the-json-file)
@@ -17,19 +18,19 @@ making suggestions and modifying the code.
 
 ## Design
 
-FastFingers is a Linux GUI application. Main libraries and tools used in the project are GTK3, GLib, CMake and cJSON.
+FastFingers is a Linux GUI application. The main libraries and tools used in the project are GTK3, GLib, CMake, and cJSON.
 
-The UI designs are stored under "src/ui" in the XML format, which are both human-readable and interpretable by
+The UI designs are stored under "src/ui" in the XML format, which is both human-readable and interpretable by
 GtkBuilder.
 
 FastFingers and Cheatsheet are two different executables. FastFingers starts from main.c and the Cheatsheet app starts
 with cheatsheet.
 
 Pages files are named "(pageName)-page", custom widget files take the widget's name. main.c, fastfingers.c and
-cheatsheet.c files controls the application flow. ff-utils.c file has the utility functions that are used in the
+cheatsheet.c files control the application flow. ff-utils.c file has the utility functions that are used in the
 project.
 
-Keyboard shortcuts are stored in the "data/applications" path. Each application has their owned JSON file with a custom
+Keyboard shortcuts are stored in the "data/applications" path. Each application has its JSON file in a custom
 format. This format is described in the section below.
 
 ## How to add new applications
@@ -41,7 +42,7 @@ described, add its logo to "src/logo", and add that logo to
 
 ### Creating the JSON file
 
-Each application has their owned JSON file with a custom format. The name of this json file should only include lower
+Each application has its JSON file in a custom format. The name of this JSON file should only include lower
 case characters and shouldn't contain any whitespace.
 
 #### Application object:
@@ -60,13 +61,11 @@ case characters and shouldn't contain any whitespace.
 * title
     * This key determines the title of the application. This is the name shown in the FastFingers for the application.
 * category
-    * This key determines the category of the application. In the home page, the applications are grouped under the
-      categories, so this information is important for the harmony.
+    * This key determines the category of the application. On the home page, the applications are grouped under categories, so this information is important for harmony.
 * recent
     * This key is used in the application run time. It should be left blank in the source.
 * group
-    * Shortcuts of the applications are stored under the categories, and the group key has an array value that holds
-      those categories.
+    * Shortcuts of the applications are stored under the categories, and the group key has an array value that holds those categories.
 
 #### Shortcut category object:
 
@@ -80,7 +79,7 @@ case characters and shouldn't contain any whitespace.
 ```
 
 * title
-    * This key determines the title of the shortcut category. This title is shown in the application screen.
+    * This key determines the title of the shortcut category. This title is shown on the application screen.
 * shortcuts
     * Shortcuts that belong to this category are stored in this array.
 
@@ -98,10 +97,9 @@ case characters and shouldn't contain any whitespace.
 ```
 
 * title
-    * Title is the both identifier and descriptor of the shortcut. In practice, quiz and quiz result screens, this title
-      is shown. Thi title should be as short as possible.
+    * Title is the both identifier and descriptor of the shortcut. In practice, quiz, and quiz result screens, this title is shown. Thi title should be as short as possible.
 * keys
-    * Keys that should be pressed is stored in this array in the same order.
+    * Keys that should be pressed are stored in this array in the same order.
 * learned
     * Learned key is meaningful for the program and this key should be 0 in the source files.
 
@@ -138,19 +136,18 @@ at "[data/applications](https://github.com/CCExtractor/fastfingers/tree/main/dat
 ### Adding the logo
 
 You should add the logo of the application to the
-
-path "[src/logo](https://github.com/CCExtractor/fastfingers/tree/main/src/logo)". Name of the file should be in the same
-format with the JSON file, it should consist of lower case characters, and it shouldn't contain whitespace.These logos
-are shown in the home, application, practice and quiz screens. The files scaled automatically in the application, so
+path "[src/logo](https://github.com/CCExtractor/fastfingers/tree/main/src/logo)". The name of the file should be in the same
+format as the JSON file, it should consist of lower case characters, and it shouldn't contain whitespace. These logos
+are shown in the home, application, practice, and quiz screens. The files are scaled automatically in the application, so
 there is no size rule.
 
 ### Adding the logo to GResource file
 
-Application holds the logos in its executable. To do this, you should define each logo in the GResource file
+The application holds the logos in its executable. To do this, you should define each logo in the GResource file
 at "[src/org.ccextractor.FastFingers.gresource.xml](https://github.com/CCExtractor/fastfingers/blob/main/src/org.ccextractor.FastFingers.gresource.xml)"
 .
 
-```xml
+```XML
     ...
 <file>logo/fileName.png</file>
 ```
