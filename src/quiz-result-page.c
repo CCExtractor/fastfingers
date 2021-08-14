@@ -30,7 +30,7 @@ void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) {
         gtk_container_add(GTK_CONTAINER(shortcut_listbox), row);
     }
 
-    char *score_str = g_strdup_printf("Score: %d/10", score);
+    char *score_str = g_strdup_printf("Score: %d/20", score);
     gtk_label_set_label(GTK_LABEL(score_label), score_str);
     g_free(score_str);
 

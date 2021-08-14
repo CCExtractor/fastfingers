@@ -27,6 +27,14 @@
           </object>
         </child>
         <child>
+          <object class="GtkLabel" id="timer_label">
+            <property name="halign">center</property>
+            <style>
+              <class name="timer" />
+            </style>
+          </object>
+        </child>
+        <child>
           <object class="GtkLabel" id="question_counter">
             <property name="halign">center</property>
             <style>

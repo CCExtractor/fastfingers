@@ -394,4 +394,5 @@ void ff_practice_page_init(GtkStack *stack, cJSON *app, const char *category) {
 
     gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "practice");
     gtk_widget_show_all(GTK_WIDGET(event_box));
+    gtk_widget_grab_focus(GTK_WIDGET(event_box));
 }
