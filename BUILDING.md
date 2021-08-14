@@ -1,7 +1,7 @@
 # Building FastFingers From Source
 
 FastFingers uses the [CMake](https://cmake.org/) and
-[GNU Make](https://www.gnu.org/software/make/) build tools. Along with these tools, some libraries needs to be installed
+[GNU Make](https://www.gnu.org/software/make/) build tools. Along with these tools, some libraries need to be installed
 to build FastFingers from the source. In the section below these dependencies are described.
 
 ## Table of contents
@@ -17,7 +17,7 @@ to build FastFingers from the source. In the section below these dependencies ar
 
 ## Dependencies
 
-To build FastFingers you need to install following libraries:
+To build FastFingers you need to install the following libraries:
 
 * GTK3
 * CMake

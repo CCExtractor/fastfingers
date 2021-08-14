@@ -4,6 +4,7 @@ FastFingers is an open-source application that helps its users to remove the hab
 memorize the shortcuts they want to learn.
 
 ## Table of contents
+
 * [Installation](#installation)
 * [Documentation](#documentation)
 * [Contributing](#contributing)
@@ -11,9 +12,9 @@ memorize the shortcuts they want to learn.
 
 ## Installation
 
-FastFingers release Debian, Arch and RPM packages in every release. You can download the proper package for your Linux
+FastFingers releases Debian, Arch, and RPM packages in every release. You can download the proper package for your Linux
 system from releases and install them with package managers. For detailed information, read the
-[Installation Page](https://github.com/CCExtractor/fastfingers/blob/main/INSTALLATION.md).
+[Install Page](https://github.com/CCExtractor/fastfingers/blob/main/INSTALL.md).
 
 You can also build the FastFingers from the source code. For detailed information, see
 the [Building Page](https://github.com/CCExtractor/fastfingers/blob/main/BUILDING.md).
@@ -24,8 +25,8 @@ the [Building Page](https://github.com/CCExtractor/fastfingers/blob/main/BUILDIN
 
 For users, installation and building steps are described in detail in the section above.
 
-FastFingers is a Linux GUI application. Main libraries and tools used in the project are GTK3, GLib, CMake and cJSON.
-The application data is stored in JSON files. If you want to learn about the design, please read the
+FastFingers is a Linux GUI application. The main libraries and tools used in the project are GTK3, GLib, CMake, and
+cJSON. The application data is stored in JSON files. If you want to learn about the design, please read the
 [Contributing Page](https://github.com/CCExtractor/fastfingers/blob/main/CONTRIBUTING.md)
 
 ## Contributing
