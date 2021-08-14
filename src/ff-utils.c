@@ -187,7 +187,6 @@ void normalize_keyval(guint *keyval) {
         *keyval = gdk_keyval_from_name("Tab");
     if (!strcmp("KP_Add", gdk_keyval_name(*keyval)))
         *keyval = gdk_keyval_from_name("plus");
-    //
     if (!strcmp("KP_Divide", gdk_keyval_name(*keyval)))
         *keyval = gdk_keyval_from_name("slash");
     if (!strcmp("KP_Multiply", gdk_keyval_name(*keyval)))
@@ -196,6 +195,26 @@ void normalize_keyval(guint *keyval) {
         *keyval = gdk_keyval_from_name("minus");
     if (!strcmp("KP_Enter", gdk_keyval_name(*keyval)))
         *keyval = gdk_keyval_from_name("Return");
+    if (!strcmp("KP_0", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("0");
+    if (!strcmp("KP_1", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("1");
+    if (!strcmp("KP_2", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("2");
+    if (!strcmp("KP_3", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("3");
+    if (!strcmp("KP_4", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("4");
+    if (!strcmp("KP_5", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("5");
+    if (!strcmp("KP_6", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("6");
+    if (!strcmp("KP_7", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("7");
+    if (!strcmp("KP_8", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("8");
+    if (!strcmp("KP_9", gdk_keyval_name(*keyval)))
+        *keyval = gdk_keyval_from_name("9");
 }
 
 int key_compare(guint keyval1, guint keyval2) {
@@ -253,6 +272,8 @@ guint get_keyval_from_name(const char *str) {
         return gdk_keyval_from_name("period");
     if (!strcmp("/", str))
         return gdk_keyval_from_name("slash");
+    if (!strcmp("\\", str))
+        return gdk_keyval_from_name("backslash");
 
     return gdk_keyval_from_name(str);
 }
@@ -363,6 +384,9 @@ char *normalize_keyval_name(const char *str) {
 
     else if (!strcmp(str, "slash"))
         ret = g_strdup("/");
+
+    else if (!strcmp(str, "backslash"))
+        ret = g_strdup("\\");
 
     else if (!strcmp(str, "ISO_Level3_Shift"))
         ret = g_strdup("AltGr");
