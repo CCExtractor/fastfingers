@@ -164,7 +164,7 @@ execute_process(
         OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-set(GSETTINGS_DIR "${_glib_prefix}/share/glib-2.0/schemas" CACHE INTERNAL "")
+set(GSETTINGS_DIR "usr/share/glib-2.0/schemas" CACHE INTERNAL "")
 
 # Getting the command to compile the schemas
 execute_process(
