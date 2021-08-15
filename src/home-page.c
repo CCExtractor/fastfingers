@@ -59,7 +59,10 @@ void ff_home_page_init(GtkStack *stack) {
 
     DIR *d;
     struct dirent *dir;
-    d = opendir("/usr/share/fastfingers/applications");
+    const char *homedir = ff_get_home_dir();
+    char path[128];
+    sprintf(path, "%s/.fastfingers/applications", homedir);
+    d = opendir(path);
     if (d) {
         while ((dir = readdir(d))) {
             if (!g_str_has_suffix(dir->d_name, ".json"))

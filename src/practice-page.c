@@ -46,7 +46,7 @@ static void init_next_shortcut(int previous_idx) {
     }
 
     if (!category) {
-        fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
+        ff_error("Couldn't match the JSON and category!\n");
         return;
     }
 
@@ -84,7 +84,7 @@ static void init_next_shortcut(int previous_idx) {
 
     glob_data.key_arr = malloc(sizeof(guint) * glob_data.size);
     if (!glob_data.key_arr) {
-        fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
+        ff_error("Couldn't match the JSON and category!\n");
         return;
     }
 
@@ -100,7 +100,7 @@ static void init_next_shortcut(int previous_idx) {
         guint keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
 
         if (keyval == GDK_KEY_VoidSymbol) {
-            fprintf(stderr, "FF-ERROR: Couldn't get keyval from name %s!\n",
+            ff_error("Couldn't get keyval from name %s!\n",
                     cJSON_GetArrayItem(keys, i)->valuestring);
             free(glob_data.key_arr);
             for (int j = 0; j < i; ++j)
@@ -155,11 +155,13 @@ static void update_global_recent(void) {
             cJSON_DeleteItemFromArray(arr, 0);
     }
 
-    const char *file_path = "/usr/share/fastfingers/applications/appdata.json";
+    const char *homedir = ff_get_home_dir();
+    char file_path[128];
+    sprintf(file_path, "%s/.fastfingers/applications/appdata.json", homedir);
     fp = fopen(file_path, "w");
 
     if (!fp) {
-        fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
+        ff_error("Couldn't open file %s: %s\n", file_path,
                 strerror(errno));
         goto end;
     }
@@ -169,7 +171,7 @@ static void update_global_recent(void) {
     int written = fprintf(fp, "%s", out);
 
     if (written < 0) {
-        fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
+        ff_error("Couldn't write to file %s: %s\n", file_path,
                 strerror(errno));
         goto end;
     }
@@ -181,36 +183,15 @@ static void update_global_recent(void) {
 }
 
 static void update_app_json_file(void) {
-    char file_path[64];
+    char file_path[128];
 
     char *name = ff_simplify_title(
             cJSON_GetObjectItem(glob_data.app, "title")->valuestring);
-    sprintf(file_path, "/usr/share/fastfingers/applications/%s.json", name);
+    const char *homedir = ff_get_home_dir();
+    sprintf(file_path, "%s/.fastfingers/applications/%s.json", homedir, name);
     free(name);
 
-    char *out = cJSON_Print(glob_data.app);
-
-    FILE *fp = NULL;
-    fp = fopen(file_path, "w");
-
-    if (!fp) {
-        fprintf(stderr, "FF-ERROR: Couldn't open file %s: %s\n", file_path,
-                strerror(errno));
-        goto end;
-    }
-
-    int written = fprintf(fp, "%s", out);
-
-    if (written < 0) {
-        fprintf(stderr, "FF-ERROR: Couldn't write to file %s: %s\n", file_path,
-                strerror(errno));
-        goto end;
-    }
-
-    end:
-    if (fp)
-        fclose(fp);
-    free(out);
+    ff_write_JSON_to_file(glob_data.app, file_path);
 }
 
 static void update_app_recent(void) {

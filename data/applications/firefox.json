@@ -1,7 +1,6 @@
 {
   "title": "Firefox",
   "category": "Utility",
-  "recent": [],
   "group": [
     {
       "title": "Navigation",
@@ -11,32 +10,28 @@
           "keys": [
             "Alt",
             "Left"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Forward",
           "keys": [
             "Alt",
             "Right"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Home",
           "keys": [
             "Alt",
             "Home"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open File",
           "keys": [
             "Control",
             "O"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Reload",
@@ -48,8 +43,7 @@
               "Control",
               "R"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Reload (override cache)",
@@ -63,15 +57,13 @@
               "Shift",
               "R"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Stop",
           "keys": [
             "Escape"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -82,16 +74,14 @@
           "title": "Focus Next Link or Input Field",
           "keys": [
             "Tab"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus Previous Link or Input Field",
           "keys": [
             "Shift",
             "Tab"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go Down a Screen",
@@ -102,8 +92,7 @@
             [
               "space"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go Up a Screen",
@@ -115,8 +104,7 @@
               "Shift",
               "space"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Bottom of Page",
@@ -128,8 +116,7 @@
               "Control",
               "Down"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Top of Page",
@@ -141,23 +128,20 @@
               "Control",
               "Up"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move to Next Frame, Pop-Up",
           "keys": [
             "F6"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move to Previous Frame, Pop-Up",
           "keys": [
             "Shift",
             "F6"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Print",
@@ -170,40 +154,35 @@
               "Alt",
               "Return"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Save Page As",
           "keys": [
             "Control",
             "s"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Zoom In",
           "keys": [
             "Control",
             "+"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Zoom Out",
           "keys": [
             "Control",
             "-"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Zoom Reset",
           "keys": [
             "Control",
             "0"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -215,93 +194,81 @@
           "keys": [
             "Control",
             "c"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Cut",
           "keys": [
             "Control",
             "x"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Delete",
           "keys": [
             "Delete"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Delete Word to the Left",
           "keys": [
             "Control",
             "BackSpace"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Delete Word to the Right",
           "keys": [
             "Control",
             "Delete"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go one Word to the Left",
           "keys": [
             "Control",
             "Left"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go one Word to the Right",
           "keys": [
             "Control",
             "Right"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Beginning of Line",
           "keys": [
             "Home"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to End of Line",
           "keys": [
             "End"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Beginning of Text",
           "keys": [
             "Control",
             "Home"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to End of Text",
           "keys": [
             "Control",
             "End"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Paste",
           "keys": [
             "Control",
             "v"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Paste (as plain text)",
@@ -309,8 +276,7 @@
             "Control",
             "Shift",
             "v"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Redo",
@@ -324,24 +290,21 @@
               "Shift",
               "z"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Select All",
           "keys": [
             "Control",
             "a"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Undo",
           "keys": [
             "Control",
             "z"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -353,8 +316,7 @@
           "keys": [
             "Control",
             "f"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Find Again",
@@ -366,8 +328,7 @@
               "Control",
               "g"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Find Previous",
@@ -381,29 +342,25 @@
               "Shift",
               "g"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Quick Find within link-text only",
           "keys": [
             "'"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Quick Find",
           "keys": [
             "/"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Close the Find or Quick Find bar",
           "keys": [
             "Escape"
           ],
-          "learned": 0,
           "note": "When the Find or Quick Find bar is focused"
         },
         {
@@ -418,7 +375,6 @@
               "Down"
             ]
           ],
-          "learned": 0,
           "note": "After you have written something in the address bar"
         },
         {
@@ -433,7 +389,6 @@
               "j"
             ]
           ],
-          "learned": 0,
           "note": "If search bar is not shown"
         },
         {
@@ -448,7 +403,6 @@
               "j"
             ]
           ],
-          "learned": 0,
           "note": "If search bar is shown"
         },
         {
@@ -463,7 +417,6 @@
               "Down"
             ]
           ],
-          "learned": 0,
           "note": "In the Search bar or the Search field of the New Tab page"
         },
         {
@@ -481,7 +434,6 @@
               "F4"
             ]
           ],
-          "learned": 0,
           "note": "When the Search bar is focused"
         }
       ]
@@ -501,7 +453,6 @@
               "F4"
             ]
           ],
-          "learned": 0,
           "note": "Except for Pinned Tabs"
         },
         {
@@ -515,8 +466,7 @@
             [
               ""
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Cycle through Tabs in Recently Used Order",
@@ -524,7 +474,6 @@
             "Control",
             "Tab"
           ],
-          "learned": 0,
           "note": "If enabled in Preferences"
         },
         {
@@ -532,40 +481,35 @@
           "keys": [
             "Control",
             "Q"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go one Tab to the Left",
           "keys": [
             "Control",
             "Page_Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go one Tab to the Right",
           "keys": [
             "Control",
             "Page_Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Tab 1 to 8",
           "keys": [
             "Control",
             "Page_Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Go to Last Tab",
           "keys": [
             "Alt",
             "9"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move Tab Left",
@@ -573,8 +517,7 @@
             "Control",
             "Shift",
             "Page_Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move Tab Right",
@@ -582,8 +525,7 @@
             "Control",
             "Shift",
             "Page_Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move Tab to start",
@@ -592,7 +534,6 @@
             "Shift",
             "Home"
           ],
-          "learned": 0,
           "note": "Requires the currently selected tab to be \"in focus\" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar."
         },
         {
@@ -602,7 +543,6 @@
             "Shift",
             "End"
           ],
-          "learned": 0,
           "note": "Requires the currently selected tab to be \"in focus\" for instance, by hitting Alt + D to focus the address bar, and then Shift + Tab until you reach the browser tab bar."
         },
         {
@@ -610,24 +550,21 @@
           "keys": [
             "Control",
             "M"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "New Tab",
           "keys": [
             "Control",
             "T"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "New Window",
           "keys": [
             "Control",
             "N"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "New Private Window",
@@ -635,8 +572,7 @@
             "Control",
             "Shift",
             "P"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open Address or Search in New Background Tab",
@@ -645,7 +581,6 @@
             "Shift",
             "Return"
           ],
-          "learned": 0,
           "note": "From address bar"
         },
         {
@@ -654,7 +589,6 @@
             "Alt",
             "Return"
           ],
-          "learned": 0,
           "note": "From address bar or Search bar"
         },
         {
@@ -663,7 +597,6 @@
             "Shift",
             "Return"
           ],
-          "learned": 0,
           "note": "From address bar or the Search field on the New Tab page "
         },
         {
@@ -672,7 +605,6 @@
             "Control",
             "Return"
           ],
-          "learned": 0,
           "note": "From the Search field on the New Tab page.\nNote: The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
         },
         {
@@ -682,23 +614,20 @@
             "Shift",
             "Return"
           ],
-          "learned": 0,
           "note": "From the Search field on the New Tab page.\nNote: The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
         },
         {
           "title": "Open Focused Bookmark or Link in Current Tab",
           "keys": [
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open Focused Bookmark in New Foreground Tab",
           "keys": [
             "Control",
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open Focused Bookmark in New Background Tab",
@@ -706,8 +635,7 @@
             "Control",
             "Shift",
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open Focused Link in New Background Tab",
@@ -715,7 +643,6 @@
             "Control",
             "Return"
           ],
-          "learned": 0,
           "note": "The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
         },
         {
@@ -725,7 +652,6 @@
             "Shift",
             "Return"
           ],
-          "learned": 0,
           "note": "The Foreground and Background Tab shortcuts are switched if the setting When you open a link in a new tab, switch to it immediately is enabled in Preferences"
         },
         {
@@ -733,8 +659,7 @@
           "keys": [
             "Shift",
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Show All Tabs",
@@ -743,7 +668,6 @@
             "Shift",
             "Tab"
           ],
-          "learned": 0,
           "note": "If the setting Control+Tab cycles through tabs in recently used order is enabled in Preferences"
         },
         {
@@ -752,8 +676,7 @@
             "Control",
             "Shift",
             "T"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Undo Close Window",
@@ -761,8 +684,7 @@
             "Control",
             "Shift",
             "N"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Moves the URL left or right (if cursor is in the address bar)",
@@ -770,8 +692,7 @@
             "Control",
             "Shift",
             "X"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -783,8 +704,7 @@
           "keys": [
             "Control",
             "H"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Library window (History)",
@@ -792,8 +712,7 @@
             "Control",
             "Shift",
             "H"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Clear Recent History",
@@ -801,8 +720,7 @@
             "Control",
             "Shift",
             "Delete"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -814,16 +732,14 @@
           "keys": [
             "Control",
             "D"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Bookmarks sidebar",
           "keys": [
             "Control",
             "B"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Show/hide the Bookmarks toolbar",
@@ -831,8 +747,7 @@
             "Control",
             "Shift",
             "B"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Show All Bookmarks (Library Window)",
@@ -840,15 +755,13 @@
             "Control",
             "Shift",
             "O"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Show List of All Bookmarks",
           "keys": [
             "space"
           ],
-          "learned": 0,
           "note": "In Empty Search Field in Bookmarks Library Window or Sidebar"
         }
       ]
@@ -862,8 +775,7 @@
             "Control",
             "Shift",
             "Y"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Add-ons",
@@ -871,8 +783,7 @@
             "Control",
             "Shift",
             "A"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Toggle Developer Tools",
@@ -885,8 +796,7 @@
               "Shift",
               "I"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Web Console",
@@ -894,8 +804,7 @@
             "Control",
             "Shift",
             "K"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Inspector",
@@ -903,8 +812,7 @@
             "Control",
             "Shift",
             "C"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Take a screenshot",
@@ -912,24 +820,21 @@
             "Control",
             "Shift",
             "S"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Style Editor",
           "keys": [
             "Shift",
             "F7"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Profiler",
           "keys": [
             "Shift",
             "F5"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Network",
@@ -937,8 +842,7 @@
             "Control",
             "Shift",
             "E"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Responsive Design View",
@@ -946,24 +850,21 @@
             "Control",
             "Shift",
             "M"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Scratchpad",
           "keys": [
             "Shift",
             "F4"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Page Source",
           "keys": [
             "Control",
             "U"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Browser Console",
@@ -971,16 +872,14 @@
             "Control",
             "Shift",
             "J"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Page Info",
           "keys": [
             "Control",
             "I"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -999,8 +898,7 @@
             [
               "Right"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Previous page",
@@ -1014,47 +912,41 @@
             [
               "Left"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Zoom in",
           "keys": [
             "Control",
             "+"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Zoom out",
           "keys": [
             "Control",
             "-"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Automatic Zoom",
           "keys": [
             "Control",
             "0"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Rotate the document clockwise",
           "keys": [
             "R"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Rotate counterclockwise",
           "keys": [
             "Shift",
             "R"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Switch to Presentation Mode",
@@ -1062,22 +954,19 @@
             "Control",
             "Alt",
             "P"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Choose Text Selection Tool",
           "keys": [
             "S"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Choose Hand Tool",
           "keys": [
             "H"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus the Page Number input box",
@@ -1085,8 +974,7 @@
             "Control",
             "Alt",
             "G"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -1098,23 +986,20 @@
           "keys": [
             "Control",
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Delete Selected Autocomplete Entry",
           "keys": [
             "Shift",
             "Delete"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Toggle Full Screen",
           "keys": [
             "F11"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Toggle Menu Bar activation (showing it temporarily when hidden)",
@@ -1125,8 +1010,7 @@
             [
               "F10"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Toggle Reader Mode",
@@ -1134,15 +1018,13 @@
             "Control",
             "Alt",
             "R"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Caret Browsing",
           "keys": [
             "F7"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus Address Bar",
@@ -1158,8 +1040,7 @@
               "Control",
               "L"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus Search Field in Library",
@@ -1171,29 +1052,25 @@
               "Control",
               "F"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Stop Autoscroll Mode",
           "keys": [
             "Esc"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Cancel Drag-and-Drop Operation",
           "keys": [
             "Esc"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Clear Search Field in Library or Sidebar",
           "keys": [
             "Esc"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Close a Menu",
@@ -1207,16 +1084,14 @@
             [
               "F10"
             ]
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Toggle Context Menu",
           "keys": [
             "Shift",
             "F10"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -1227,82 +1102,71 @@
           "title": "Toggle Play / Pause",
           "keys": [
             "space"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Decrease volume",
           "keys": [
             "Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Increase volume",
           "keys": [
             "Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Mute audio",
           "keys": [
             "Control",
             "Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Unmute audio",
           "keys": [
             "Control",
             "Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek back 15 seconds",
           "keys": [
             "Left"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek back 10 %",
           "keys": [
             "Control",
             "Left"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek forward 15 seconds",
           "keys": [
             "Right"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek forward 10 %",
           "keys": [
             "Control",
             "Right"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek to the beginning",
           "keys": [
             "Home"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Seek to the end",
           "keys": [
             "End"
-          ],
-          "learned": 0
+          ]
         }
       ]
     }

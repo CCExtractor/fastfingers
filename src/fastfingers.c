@@ -21,6 +21,7 @@ void activate(GtkApplication *app, gpointer user_data) {
     ff_init_css();
     ff_init_custom_widgets();
 
+    ff_prepare_appdata();
     GtkBuilder *ffb_app = gtk_builder_new_from_resource(
             "/org/ccextractor/FastFingers/ui/fastfingers.ui");
 
@@ -42,7 +43,7 @@ void ff_switch_page(const char *page_name) {
 
     page *new_page = malloc(sizeof(page));
     if (!new_page) {
-        fprintf(stderr, "FF-Utils - Error: Couldn't allocate enough memory space!");
+        ff_error(" - Error: Couldn't allocate enough memory space!");
         return;
     }
 

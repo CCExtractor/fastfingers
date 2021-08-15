@@ -34,7 +34,7 @@ static void updateTimerLabel(void) {
     } else {
         char *tmp = g_strdup_printf("%d", glob_data.timer_counter);
         if (!tmp) {
-            fprintf(stderr, "FF-ERROR: Couldn't allocate memory for timer label!\n");
+            ff_error("Couldn't allocate memory for timer label!\n");
             return;
         }
         gtk_label_set_label(glob_data.timer_label, tmp);
@@ -121,8 +121,7 @@ static void init_next_shortcut(void) {
     end:
 
     if (!category || !shortcut) {
-        fprintf(stderr,
-                "FF-ERROR: Couldn't find shortcut or category!\n");
+        ff_error("Couldn't find shortcut or category!\n");
         return;
     }
 
@@ -147,14 +146,13 @@ static void init_next_shortcut(void) {
 
     glob_data.key_arr = malloc(sizeof(int) * glob_data.size);
     if (!glob_data.key_arr) {
-        fprintf(stderr, "FF-ERROR: Couldn't match the JSON and category!\n");
+        ff_error("Couldn't match the JSON and category!\n");
         return;
     }
 
     glob_data.str_arr = malloc(sizeof(char *) * glob_data.size);
     if (!glob_data.key_arr) {
-        fprintf(stderr,
-                "FF-ERROR: Couldn't allocate space for key_container->str_arr!\n");
+        ff_error("Couldn't allocate space for key_container->str_arr!\n");
         free(glob_data.key_arr);
         return;
     }
@@ -163,8 +161,8 @@ static void init_next_shortcut(void) {
         guint keyval = get_keyval_from_name(cJSON_GetArrayItem(keys, i)->valuestring);
 
         if (keyval == GDK_KEY_VoidSymbol) {
-            fprintf(stderr, "FF-ERROR: Couldn't get keyval from name %s!\n",
-                    cJSON_GetArrayItem(keys, i)->valuestring);
+            ff_error("Couldn't get keyval from name %s!\n",
+                     cJSON_GetArrayItem(keys, i)->valuestring);
             free(glob_data.key_arr);
             for (int j = 0; j < i; ++j)
                 free(glob_data.str_arr[j]);
@@ -219,7 +217,6 @@ key_press_event_cb(
     gdk_event_get_keyval((const GdkEvent *) event, &keyval);
     GtkWidget *key;
     key = ff_box_nth_child(glob_data.box, glob_data.idx);
-    fprintf(stderr, "%d\n", glob_data.idx);
     if (key_compare(glob_data.key_arr[glob_data.idx], keyval)) {
         ff_key_set_style(key, "success");
     } else {

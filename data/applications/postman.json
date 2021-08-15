@@ -1,7 +1,6 @@
 {
   "title": "Postman",
   "category": "Utility",
-  "recent": [],
   "group": [
     {
       "title": "Navigation",
@@ -12,8 +11,7 @@
             "Control",
             "Alt",
             "1"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus Builder",
@@ -21,8 +19,7 @@
             "Control",
             "Alt",
             "2"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Focus on 5!th tab",
@@ -30,8 +27,7 @@
             "Control",
             "Alt",
             "5"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Switch between tabs",
@@ -39,67 +35,58 @@
             "Control",
             "Shift",
             "/"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move to the next item",
           "keys": [
             "Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Move to the previous item",
           "keys": [
             "Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Expand collection/folder",
           "keys": [
             "Right"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Collapse collection/folder",
           "keys": [
             "Left"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Select current AND next item",
           "keys": [
             "Shift",
             "Down"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Select current AND previous item",
           "keys": [
             "Shift",
             "Up"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Search sidebar",
           "keys": [
             "Control",
             "F"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open request in a tab",
           "keys": [
             "Return"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -111,39 +98,34 @@
           "keys": [
             "Control",
             "C"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Paste",
           "keys": [
             "Control",
             "V"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Delete",
           "keys": [
             "Delete"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Duplicate",
           "keys": [
             "Control",
             "D"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Edit/Rename",
           "keys": [
             "Control",
             "E"
-          ],
-          "learned": 0
+          ]
         }
       ]
     },
@@ -155,8 +137,7 @@
           "keys": [
             "Control",
             "S"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Save As",
@@ -164,24 +145,21 @@
             "Control",
             "Shift",
             "S"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Send Request",
           "keys": [
             "Control",
             "Return"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Jump to URL",
           "keys": [
             "Control",
             "L"
-          ],
-          "learned": 0
+          ]
         },
         {
           "title": "Open Console",
@@ -189,8 +167,7 @@
             "Control",
             "Alt",
             "C"
-          ],
-          "learned": 0
+          ]
         }
       ]
     }
