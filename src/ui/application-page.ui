@@ -42,6 +42,14 @@
                             </object>
                         </child>
                         <child>
+                            <object class="GtkLabel" id="quiz_placeholder">
+                                <property name="halign">center</property>
+                                <style>
+                                    <class name="quiz-placeholder"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
                             <object class="GtkLabel" id="recent_title">
                                 <property name="label">Recent</property>
                                 <property name="halign">center</property>
