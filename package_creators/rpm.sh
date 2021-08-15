@@ -60,7 +60,6 @@ learn by practicing.
    /usr/bin/fastfingers-cheatsheet
    /usr/share/applications/org.ccextractor.Cheatsheet.desktop
    /usr/share/applications/org.ccextractor.FastFingers.desktop
-   /usr/share/fastfingers/applications/appdata.json
    /usr/share/fastfingers/applications/firefox.json
    /usr/share/fastfingers/applications/gimp.json
    /usr/share/fastfingers/applications/postman.json
