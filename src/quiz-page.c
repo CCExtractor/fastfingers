@@ -20,9 +20,12 @@ static struct {
     GHashTable *hash_table;
 
     GtkWidget *box;
+    GtkWidget *correct_box;
+
     GtkLabel *question_counter;
     GtkLabel *shortcut_description;
     GtkLabel *timer_label;
+    GtkLabel *correct_label;
 } glob_data;
 
 static void updateTimerLabel(void) {
@@ -180,6 +183,8 @@ static void init_next_shortcut(void) {
         gtk_box_pack_start(GTK_BOX(glob_data.box), key, FALSE, TRUE, 0);
     }
     gtk_widget_show_all(glob_data.box);
+    gtk_widget_set_visible(glob_data.correct_box, 0);
+    gtk_widget_set_visible(GTK_WIDGET(glob_data.correct_label), 0);
 }
 
 static gboolean next_quiz_page(gpointer user_data) {
@@ -229,7 +234,18 @@ key_press_event_cb(
         ++glob_data.idx;
     else {
         glob_data.idle = 1;
-        g_timeout_add_seconds(1, G_SOURCE_FUNC(next_quiz_page), NULL);
+        if (glob_data.success) {
+            g_timeout_add_seconds(1, G_SOURCE_FUNC(next_quiz_page), NULL);
+        } else {
+            ff_container_remove_all(glob_data.correct_box);
+            for (int i = 0; i < glob_data.size; ++i) {
+                GtkWidget *correctKey = ff_key_new(glob_data.str_arr[i], 1);
+                gtk_box_pack_start(GTK_BOX(glob_data.correct_box), correctKey, FALSE, TRUE, 0);
+            }
+            gtk_widget_show_all(glob_data.correct_box);
+            gtk_widget_show(GTK_WIDGET(glob_data.correct_label));
+            g_timeout_add_seconds(3, G_SOURCE_FUNC(next_quiz_page), NULL);
+        }
     }
     return 0;
 }
@@ -252,6 +268,8 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
             gtk_builder_get_object(quiz_page_builder, "shortcut_description");
     GObject *question_counter = gtk_builder_get_object(quiz_page_builder, "question_counter");
     GObject *timer_label = gtk_builder_get_object(quiz_page_builder, "timer_label");
+    GObject *correct_label = gtk_builder_get_object(quiz_page_builder, "correct_label");
+    GObject *correct_box = gtk_builder_get_object(quiz_page_builder, "correct_box");
 
     char *title = g_strdup(cJSON_GetObjectItem(app, "title")->valuestring);
     char button_label[64];
@@ -271,6 +289,8 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.category_idx = 0;
     glob_data.shortcut_idx = -1;
     glob_data.box = GTK_WIDGET(key_box);
+    glob_data.correct_box = GTK_WIDGET(correct_box);
+    glob_data.correct_label = GTK_LABEL(correct_label);
     glob_data.shortcut_description = GTK_LABEL(shortcut_description);
     glob_data.question_counter = GTK_LABEL(question_counter);
     glob_data.timer_label = GTK_LABEL(timer_label);
@@ -286,6 +306,10 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     gtk_stack_add_named(GTK_STACK(stack), GTK_WIDGET(event_box), "quiz");
     gtk_widget_show_all(GTK_WIDGET(event_box));
     gtk_widget_grab_focus(GTK_WIDGET(event_box));
+
+
+    gtk_widget_set_visible(GTK_WIDGET(glob_data.correct_box), 0);
+    gtk_widget_set_visible(GTK_WIDGET(glob_data.correct_label), 0);
 
     g_timeout_add_seconds(1, G_SOURCE_FUNC(timer_controller), NULL);
 }
