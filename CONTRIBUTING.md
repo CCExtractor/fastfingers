@@ -45,7 +45,7 @@ described, add its logo to "src/logo", and add that logo to
 Each application has its JSON file in a custom format. The name of this JSON file should only include lower
 case characters and shouldn't contain any whitespace.
 
-#### Application object:
+#### Application object
 
 ```json
 {
@@ -67,7 +67,7 @@ case characters and shouldn't contain any whitespace.
 * group
     * Shortcuts of the applications are stored under the categories, and the group key has an array value that holds those categories.
 
-#### Shortcut category object:
+#### Shortcut category object
 
 ```json
 {
@@ -83,7 +83,7 @@ case characters and shouldn't contain any whitespace.
 * shortcuts
     * Shortcuts that belong to this category are stored in this array.
 
-#### Shortcut object:
+#### Shortcut object
 
 ```json
   {
