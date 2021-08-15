@@ -220,7 +220,7 @@ void ff_fetch_application_data(const char *name) {
     model = ff_read_json(usr_share_path);
 
     if (!model) {
-        sprintf(home_path, "%s/.fastfingers/models/%s.json", homedir, name);
+        sprintf(home_path, "%s/.fastfingers/model/%s.json", homedir, name);
         model = ff_read_json(home_path);
     }
 
@@ -230,16 +230,17 @@ void ff_fetch_application_data(const char *name) {
         return;
     }
 
-    int ID = 0;
+    int categoryID = 1;
+    int shortcutID = 1;
     cJSON_AddArrayToObject(model, "recent");
     cJSON *group = cJSON_GetObjectItemCaseSensitive(model, "group");
     for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
         cJSON *category = cJSON_GetArrayItem(group, i);
+        cJSON_AddNumberToObject(category, "id", categoryID++);
         cJSON *categoryShortcutArray = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
         for (int j = 0; j < cJSON_GetArraySize(categoryShortcutArray); ++j) {
             cJSON *shortcut = cJSON_GetArrayItem(categoryShortcutArray, j);
-            ++ID;
-            cJSON_AddNumberToObject(shortcut, "id", ID);
+            cJSON_AddNumberToObject(shortcut, "id", shortcutID++);
             cJSON_AddNumberToObject(shortcut, "learned", 0);
         }
     }
