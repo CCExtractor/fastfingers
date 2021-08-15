@@ -195,7 +195,7 @@ static gboolean next_quiz_page(gpointer user_data) {
                         success);
 
     glob_data.idle = 0;
-    if (glob_data.question_idx < 20) {
+    if (glob_data.question_idx < 1) {
         init_next_shortcut();
         ++glob_data.question_idx;
     } else {
