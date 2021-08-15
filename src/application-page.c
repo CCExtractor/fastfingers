@@ -106,7 +106,7 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
 
     if (learned_of_all < 20) {
         gtk_widget_set_visible(GTK_WIDGET(quiz_button), 0);
-        char *placeHolder = g_strdup_printf("You need to learn %d more questions to enable quiz mode", 20 - learned_of_all);
+        char *placeHolder = g_strdup_printf("You need to learn %d more shortcuts to enable quiz mode", 20 - learned_of_all);
         gtk_label_set_label(GTK_LABEL(quiz_placeholder), placeHolder);
         g_free(placeHolder);
     } else {
