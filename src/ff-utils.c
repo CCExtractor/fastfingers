@@ -20,7 +20,7 @@ void ff_init_css(void) {
     g_object_unref(provider);
 }
 
-cJSON *ff_find_shortcut_by_id(cJSON *app, int id){
+cJSON *ff_find_shortcut_by_id(cJSON *app, int id) {
     cJSON *group = cJSON_GetObjectItemCaseSensitive(app, "group");
     for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
         cJSON *category = cJSON_GetArrayItem(group, i);
@@ -86,7 +86,8 @@ cJSON *ff_read_json(const char *path) {
 
     file = fopen(path, "rb");
     if (!file) {
-        ff_error("Couldn't open file %s: %s\n", path,
+        ff_error("Couldn't read file %s: %s\n"
+                 "Trying to fetch...\n", path,
                  strerror(errno));
 
         return NULL;
@@ -166,10 +167,9 @@ void ff_prepare_appdata(void) {
     if (stat(path, &st) == -1) {
         mkdir(path, 0777);
     }
-
-    cJSON *appdata = ff_get_application("appdata");
-    if (!appdata) {
-        appdata = cJSON_CreateObject();
+    sprintf(path, "%s/.fastfingers/applications/appdata.json", homedir);
+    if (stat(path, &st) == -1) {
+        cJSON *appdata = cJSON_CreateObject();
         cJSON_AddArrayToObject(appdata, "recent");
 
         sprintf(path, "%s/.fastfingers/applications/appdata.json", homedir);
@@ -192,6 +192,21 @@ void ff_prepare_appdata(void) {
                 ff_fetch_application_data(name);
             }
         }
+        closedir(d);
+    }
+    sprintf(path, "/usr/share/fastfingers/applications");
+    d = opendir(path);
+    if (d) {
+        while ((dir = readdir(d))) {
+            if (!g_str_has_suffix(dir->d_name, ".json"))
+                continue;
+            char *name = g_strndup(dir->d_name, strlen(dir->d_name) - 5);
+            sprintf(path, "%s/.fastfingers/applications/%s.json", homedir, name);
+            if (stat(path, &st) == -1) {
+                ff_fetch_application_data(name);
+            }
+        }
+        closedir(d);
     }
 }
 

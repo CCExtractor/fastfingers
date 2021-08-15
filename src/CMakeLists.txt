@@ -119,7 +119,7 @@ install(
         WORLD_READ WORLD_EXECUTE)
 
 install(
-        FILESCheatsheet
+        FILES
         ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
         ${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop
         DESTINATION

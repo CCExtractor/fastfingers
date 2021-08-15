@@ -139,7 +139,6 @@ static void card_click_cb(FFCard *card, GdkEvent *event, gpointer user_data) {
   GList *children = gtk_container_get_children(GTK_CONTAINER(card->box));
   GtkWidget *title = (GtkWidget *)(g_list_nth(children, 1)->data);
   const char *title_str = gtk_label_get_text(GTK_LABEL(title));
-  ff_error("(Info) App card %s choosed\n", title_str);
 
   GtkWidget *stack = ff_get_stack();
 
