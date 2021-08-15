@@ -59,8 +59,30 @@ cmake -S fastfingers/src -B fastfingers/src/build -DCMAKE_BUILD_TYPE=Release
 cmake --build fastfingers/src/build --config Release
 ```
 
-### Install System-wide
+### *Install System-wide _(Optional)_
+
+If you want to install the application system-wide, you can run the following command. This step requires root
+permission to install binaries, desktop files and icons.
 
 ```bash
 sudo cmake --build fastfingers/src/build --target install
 ```
+
+## Run the FastFingers and Cheatsheet
+
+### Run from the build directory
+
+**Run FastFingers**
+
+```bash
+fastfingers/src/build/fastfingers
+```
+
+**Run Cheatsheet**
+
+```bash
+fastfingers/src/build/fastfingers-cheatsheet
+```
+
+**NOTE** You can add "{installation path}/fastfingers/src/build" to your PATH environment variable so that you can start
+FastFingers and Cheatsheet from any directory.

@@ -102,7 +102,7 @@ file(
 add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
 
 file(
-        COPY ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
+        COPY ${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop
         DESTINATION "$ENV{HOME}/.fastfingers/model"
         FILE_PERMISSIONS
         OWNER_READ OWNER_WRITE
@@ -119,7 +119,7 @@ install(
         WORLD_READ WORLD_EXECUTE)
 
 install(
-        FILES
+        FILESCheatsheet
         ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
         ${CMAKE_BINARY_DIR}/org.ccextractor.Cheatsheet.desktop
         DESTINATION

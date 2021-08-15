@@ -1,3 +1,18 @@
+Version 0.1.2
+~~~~~~~~~~~~~
+Released: 2021-8-15
+
+* Information text added when the quiz button is invisible
+* Quiz page timer fixed (it wasn't working in the last question)
+* Correct keys are shown when user makes wrong combo in quiz screen
+* After quiz ends, users can retry to solve failed questions
+* System-wide installation made optional, users don't have to grant root permission
+* Application files are moved to /home/user/.fastfingers path
+* Run-time related properties in the application files are removed
+* IDs are generated for questions and categories
+* Documentation updated
+* Error messages have the file and line number
+
 Version 0.1.1
 ~~~~~~~~~~~~~
 Released: 2021-8-14
