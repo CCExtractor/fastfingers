@@ -27,11 +27,11 @@ void ff_home_page_init(GtkStack *stack) {
             gtk_builder_get_object(home_builder, "home_scrolled_window");
     GObject *container = gtk_builder_get_object(home_builder, "home_container");
 
-    dynamicArray *categoryArray = ff_dynamicArray_new(10, sizeof(char *));
+    dynamicArray *categoryArray = ff_dynamicArray_new(sizeof(char *));
     if (!categoryArray)
         return;
 
-    dynamicArray *hboxArray = ff_dynamicArray_new(10, sizeof(GtkWidget *));
+    dynamicArray *hboxArray = ff_dynamicArray_new(sizeof(GtkWidget *));
     if (!hboxArray)
         return;
 

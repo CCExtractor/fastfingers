@@ -70,7 +70,9 @@ void remove_style_class(GtkWidget *widget, const char *class);
 
 void ff_container_remove_all(GtkWidget *container);
 
-dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize);
+cJSON *ff_find_shortcut_by_id(cJSON *app, int id);
+
+dynamicArray *ff_dynamicArray_new(size_t itemSize);
 
 size_t ff_dynamicArray_append(dynamicArray *arr, const void *item);
 

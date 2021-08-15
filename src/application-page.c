@@ -14,7 +14,7 @@ void
 quizButton_clicked_cb(GtkButton *button,
                       cJSON *app) {
     GtkWidget *stack = ff_get_stack();
-    ff_quiz_page_init(GTK_STACK(stack), app);
+    ff_quiz_page_init(GTK_STACK(stack), app, NULL);
     ff_switch_page("quiz");
 }
 

@@ -20,6 +20,20 @@ void ff_init_css(void) {
     g_object_unref(provider);
 }
 
+cJSON *ff_find_shortcut_by_id(cJSON *app, int id){
+    cJSON *group = cJSON_GetObjectItemCaseSensitive(app, "group");
+    for (int i = 0; i < cJSON_GetArraySize(group); ++i) {
+        cJSON *category = cJSON_GetArrayItem(group, i);
+        cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(category, "shortcuts");
+        for (int j = 0; j < cJSON_GetArraySize(shortcuts); ++j) {
+            cJSON *shortcut = cJSON_GetArrayItem(shortcuts, j);
+            if (cJSON_GetObjectItemCaseSensitive(shortcut, "id")->valueint == id)
+                return shortcut;
+        }
+    }
+    return NULL;
+}
+
 char *ff_simplify_title(const char *title) {
     char *simplified = malloc(sizeof(title));
     if (!simplified) {
@@ -63,34 +77,6 @@ struct _resizable_container {
     GtkWidget *image;
     GdkPixbuf *pixbuf;
 };
-
-gboolean ff_resize_image(GtkWidget *widget, GdkRectangle *allocation,
-                         gpointer user_data) {
-    int x, y, w, h;
-    GdkPixbuf *pxbscaled;
-    FFResizableContainer *container = (FFResizableContainer *) user_data;
-    GtkWidget *image = (GtkWidget *) container->image;
-    GdkPixbuf *pixbuf = (GdkPixbuf *) container->pixbuf;
-
-    x = 0;
-    y = 0;
-
-    h = allocation->height;
-    w = (gdk_pixbuf_get_width(pixbuf) * h) / gdk_pixbuf_get_height(pixbuf);
-
-    pxbscaled = gdk_pixbuf_scale_simple(pixbuf, w, h, GDK_INTERP_BILINEAR);
-
-    if (w < allocation->width) {
-        x = (allocation->width - w) / 2;
-        gtk_layout_move(GTK_LAYOUT(widget), image, x, y);
-    }
-
-    gtk_image_set_from_pixbuf(GTK_IMAGE(image), pxbscaled);
-
-    g_object_unref(pxbscaled);
-
-    return FALSE;
-}
 
 cJSON *ff_read_json(const char *path) {
     FILE *file = NULL;
@@ -409,7 +395,7 @@ guint get_keyval_from_name(const char *str) {
 }
 
 char *normalize_keyval_name(const char *str) {
-    int len = strlen(str);
+    size_t len = strlen(str);
 
     char *ret = NULL;
 
@@ -482,9 +468,6 @@ char *normalize_keyval_name(const char *str) {
     else if (!strcmp(str, "exclam"))
         ret = g_strdup("?");
 
-    else if (!strcmp(str, "quotedbl"))
-        ret = g_strdup("\"");
-
     else if (!strcmp(str, "dollar"))
         ret = g_strdup("$");
 
@@ -494,10 +477,7 @@ char *normalize_keyval_name(const char *str) {
     else if (!strcmp(str, "ampersand"))
         ret = g_strdup("&");
 
-    else if (!strcmp(str, "apostrophe"))
-        ret = g_strdup("'");
-
-    else if (!strcmp(str, "quoteright"))
+    else if (!strcmp(str, "apostrophe") || !strcmp(str, "quoteright"))
         ret = g_strdup("'");
 
     else if (!strcmp(str, "parenleft"))
@@ -505,9 +485,6 @@ char *normalize_keyval_name(const char *str) {
 
     else if (!strcmp(str, "parenright"))
         ret = g_strdup(")");
-
-    else if (!strcmp(str, "asterisk"))
-        ret = g_strdup("*");
 
     else if (!strcmp(str, "plus"))
         ret = g_strdup("+");
@@ -527,15 +504,6 @@ char *normalize_keyval_name(const char *str) {
     else if (!strcmp(str, "Insert"))
         ret = g_strdup("Ins");
 
-    else if (!strcmp(str, "ISO_Level3_Shift"))
-        ret = g_strdup("AltGr");
-
-    else if (!strcmp(str, "ISO_Level3_Shift"))
-        ret = g_strdup("AltGr");
-
-    else if (!strcmp(str, "ISO_Level3_Shift"))
-        ret = g_strdup("AltGr");
-
     else if (!strcmp(str, "Page_Up"))
         ret = g_strdup("Pg Up");
 
@@ -544,9 +512,6 @@ char *normalize_keyval_name(const char *str) {
 
     else if (!strcmp(str, "Scroll_Lock"))
         ret = g_strdup("⤓");
-
-    else if (!strcmp(str, "Page_Down"))
-        ret = g_strdup("Pg Dn");
 
     else if (!strcmp(str, "Num_Lock"))
         ret = g_strdup("⇭");
@@ -615,11 +580,7 @@ void ff_container_remove_all(GtkWidget *container) {
                           GTK_CONTAINER(container));
 }
 
-dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize) {
-    if (arraySize < 0) {
-        ff_error("Invalid (negative) initial array size!");
-        return NULL;
-    }
+dynamicArray *ff_dynamicArray_new(size_t itemSize) {
 
     dynamicArray *arr = malloc(sizeof(dynamicArray));
     if (!arr) {
@@ -628,10 +589,10 @@ dynamicArray *ff_dynamicArray_new(size_t arraySize, size_t itemSize) {
     }
 
     arr->inUse = 0;
-    arr->arraySize = arraySize;
+    arr->arraySize = 1;
     arr->itemSize = itemSize;
 
-    arr->array = malloc(arraySize * itemSize);
+    arr->array = malloc(arr->arraySize * itemSize);
     if (!arr->array) {
         ff_error("Couldn't allocate enough space for dynamic array!");
         return NULL;

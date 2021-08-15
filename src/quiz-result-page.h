@@ -10,7 +10,7 @@
 
 G_BEGIN_DECLS
 
-void ff_quiz_result_page_init(const char *app_title, GHashTable *hashTable) ;
+void ff_quiz_result_page_init(cJSON *app, GHashTable *hashTable) ;
 
 G_END_DECLS
 

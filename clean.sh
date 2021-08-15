@@ -39,3 +39,7 @@ done
 gtk-update-icon-cache -t -f /usr/share/icons/HighContrast/
 echo "5#END - Removing icons"
 echo "===================================="
+echo "6#START - Removing local application data"
+rm -rfv ${HOME}/.fastfingers
+echo "6#END - Removing local application data"
+echo "===================================="

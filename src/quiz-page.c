@@ -8,8 +8,12 @@ static struct {
     int success;
     int idle;
     int *key_arr;
+    int shortcutID;
     int question_idx;
+    int question_size;
     int timer_counter;
+
+    dynamicArray *darray;
 
     char **str_arr;
 
@@ -62,7 +66,7 @@ static void reset_globdata(void) {
 static gboolean next_quiz_page(gpointer user_data);
 
 static gboolean timer_controller(gpointer user_data) {
-    if (glob_data.question_idx > 20)
+    if (glob_data.question_idx == glob_data.question_size)
         return 0;
     if (!g_str_equal("quiz", gtk_stack_get_visible_child_name(GTK_STACK(ff_get_stack()))))
         return 0;
@@ -100,36 +104,43 @@ static gboolean timer_controller(gpointer user_data) {
 static void init_next_shortcut(void) {
     reset_globdata();
 
-    cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
-
-    cJSON *category = NULL;
     cJSON *shortcut = NULL;
-    for (int i = glob_data.category_idx; i < cJSON_GetArraySize(group); ++i, glob_data.shortcut_idx = -1) {
-        cJSON *tmp_category = cJSON_GetArrayItem(group, i);
-        cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(tmp_category, "shortcuts");
-        for (int j = glob_data.shortcut_idx + 1; j < cJSON_GetArraySize(shortcuts); ++j) {
-            cJSON *tmp_shortcut = cJSON_GetArrayItem(shortcuts, j);
-            if (cJSON_GetObjectItemCaseSensitive(tmp_shortcut, "learned")->valueint == 1) {
-                category = tmp_category;
-                shortcut = tmp_shortcut;
-                glob_data.category_idx = i;
-                glob_data.shortcut_idx = j;
-                goto end;
+    if (glob_data.darray){
+        shortcut = *(cJSON **)ff_dynamicArray_get(glob_data.darray, glob_data.question_idx);
+    }
+    else {
+        cJSON *group = cJSON_GetObjectItem(glob_data.app, "group");
+
+        cJSON *category = NULL;
+        for (int i = glob_data.category_idx; i < cJSON_GetArraySize(group); ++i, glob_data.shortcut_idx = -1) {
+            cJSON *tmp_category = cJSON_GetArrayItem(group, i);
+            cJSON *shortcuts = cJSON_GetObjectItemCaseSensitive(tmp_category, "shortcuts");
+            for (int j = glob_data.shortcut_idx + 1; j < cJSON_GetArraySize(shortcuts); ++j) {
+                cJSON *tmp_shortcut = cJSON_GetArrayItem(shortcuts, j);
+                if (cJSON_GetObjectItemCaseSensitive(tmp_shortcut, "learned")->valueint == 1) {
+                    category = tmp_category;
+                    shortcut = tmp_shortcut;
+                    glob_data.category_idx = i;
+                    glob_data.shortcut_idx = j;
+                    goto end;
+                }
             }
         }
-    }
-    end:
+        end:
 
-    if (!category || !shortcut) {
-        ff_error("Couldn't find shortcut or category!\n");
-        return;
+        if (!category || !shortcut) {
+            ff_error("Couldn't find shortcut or category!\n");
+            return;
+        }
     }
 
+
+    glob_data.shortcutID = cJSON_GetObjectItemCaseSensitive(shortcut, "id")->valueint;
     gtk_label_set_text(
             glob_data.shortcut_description,
             cJSON_GetObjectItemCaseSensitive(shortcut, "title")->valuestring);
 
-    char *question_info = g_strdup_printf("Question %d/20", glob_data.question_idx);
+    char *question_info = g_strdup_printf("Question %d/%d", glob_data.question_idx + 1, glob_data.question_size);
     gtk_label_set_text(
             glob_data.question_counter,
             question_info);
@@ -188,17 +199,19 @@ static void init_next_shortcut(void) {
 static gboolean next_quiz_page(gpointer user_data) {
     int *success = malloc(sizeof(int));
     *success = glob_data.success;
-    g_hash_table_insert(glob_data.hash_table,
-                        g_strdup(gtk_label_get_text(glob_data.shortcut_description)),
-                        success);
+    int *shortcutID = malloc(sizeof(int));
+    *shortcutID = glob_data.shortcutID;
+    g_hash_table_insert(glob_data.hash_table, shortcutID, success);
 
     glob_data.idle = 0;
-    if (glob_data.question_idx < 1) {
-        init_next_shortcut();
+    if (glob_data.question_idx + 1 < glob_data.question_size) {
         ++glob_data.question_idx;
+        init_next_shortcut();
     } else {
-        ff_quiz_result_page_init(glob_data.app_title, glob_data.hash_table);
-        ff_switch_page("quiz-result");
+        if (!glob_data.idle){
+            ff_quiz_result_page_init(glob_data.app, glob_data.hash_table);
+            ff_switch_page("quiz-result");
+        }
     }
 
     return 0;
@@ -247,7 +260,7 @@ key_press_event_cb(
     return 0;
 }
 
-void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
+void ff_quiz_page_init(GtkStack *stack, cJSON *app, dynamicArray *darray) {
     GtkWidget *temp = gtk_stack_get_child_by_name(stack, "quiz");
     if (temp)
         gtk_container_remove(GTK_CONTAINER(stack), temp);
@@ -277,7 +290,7 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     set_scaled_image(GTK_IMAGE(image), title, 100);
     g_free(title);
 
-    GHashTable *hash_table = g_hash_table_new(g_str_hash, g_str_equal);
+    GHashTable *hash_table = g_hash_table_new(g_int_hash, g_str_equal);
 
 
     add_style_class(GTK_WIDGET(timer_label), "green");
@@ -291,7 +304,9 @@ void ff_quiz_page_init(GtkStack *stack, cJSON *app) {
     glob_data.shortcut_description = GTK_LABEL(shortcut_description);
     glob_data.question_counter = GTK_LABEL(question_counter);
     glob_data.timer_label = GTK_LABEL(timer_label);
-    glob_data.question_idx = 1;
+    glob_data.question_idx = 0;
+    glob_data.question_size = darray ? ff_dynamicArray_size(darray) : 5;
+    glob_data.darray = darray;
     glob_data.hash_table = hash_table;
     glob_data.app_title = cJSON_GetObjectItem(app, "title")->valuestring;
 
