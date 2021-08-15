@@ -1,5 +1,7 @@
 # FastFingers &middot; [![GitHub license](https://img.shields.io/badge/license-GPL-blue.svg)](https://github.com/CCExtractor/fastfingers/blob/main/LICENSE) [![Release Version](https://img.shields.io/github/v/release/CCExtractor/fastfingers)](https://github.com/CCExtractor/fastfingers/releases) ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/CCExtractor/fastfingers/CMake/main) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/CCExtractor/fastfingers/blob/main/CONTRIBUTING.md)
 
+<img src="https://raw.githubusercontent.com/CCExtractor/fastfingers/main/src/logo/fastfingers.png">
+
 FastFingers is an open-source application that helps its users to remove the habit of using a mouse, by helping them to
 memorize the shortcuts they want to learn.
 
