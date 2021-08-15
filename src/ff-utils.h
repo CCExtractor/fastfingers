@@ -18,6 +18,10 @@
 
 G_BEGIN_DECLS
 
+#ifndef VERSION
+    #define VERSION @VERSION@
+#endif
+
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 #define ff_error(...) do { \

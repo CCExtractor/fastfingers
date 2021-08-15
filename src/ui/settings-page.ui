@@ -85,9 +85,8 @@
 									</object>
 								</child>
 								<child>
-									<object class="GtkLabel">
+									<object class="GtkLabel" id ="version_label">
 										<property name="halign">end</property>
-										<property name="label" translatable="yes">0.8.6</property>
 									</object>
 								</child>
 							</object>

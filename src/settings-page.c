@@ -120,6 +120,7 @@ void ff_settings_page_init(GtkStack *stack) {
     GObject *autostart_label =
             gtk_builder_get_object(settings_page_builder, "autostart_label");
     GObject *list = gtk_builder_get_object(settings_page_builder, "list");
+    GObject *version_label = gtk_builder_get_object(settings_page_builder, "version_label");
 
     gboolean current_state = g_settings_get_boolean(settings, "autostart");
     gtk_label_set_text(GTK_LABEL(autostart_label),
@@ -129,6 +130,7 @@ void ff_settings_page_init(GtkStack *stack) {
     g_signal_connect(GTK_WIDGET(list), "row-activated",
                      G_CALLBACK(settings_row_activated_cb), settings);
 
+    gtk_label_set_label(GTK_LABEL(version_label), VERSION);
     gtk_stack_add_named(stack, GTK_WIDGET(main_box), "settings");
     gtk_widget_show_all(GTK_WIDGET(main_box));
 }
