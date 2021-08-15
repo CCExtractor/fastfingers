@@ -59,7 +59,7 @@ static void reset_globdata(void) {
 static gboolean next_quiz_page(gpointer user_data);
 
 static gboolean timer_controller(gpointer user_data) {
-    if (glob_data.question_idx >= 20)
+    if (glob_data.question_idx > 20)
         return 0;
     if (!g_str_equal("quiz", gtk_stack_get_visible_child_name(GTK_STACK(ff_get_stack()))))
         return 0;
