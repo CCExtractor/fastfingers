@@ -37,6 +37,8 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
             gtk_builder_get_object(application_page_builder, "recent_title");
     GObject *quiz_button =
             gtk_builder_get_object(application_page_builder, "quiz_button");
+    GObject *quiz_placeholder =
+            gtk_builder_get_object(application_page_builder, "quiz_placeholder");
 
     set_scaled_image(GTK_IMAGE(image), title, 100);
 
@@ -102,9 +104,15 @@ void ff_application_page_init(GtkStack *stack, const char *title) {
     gtk_stack_add_named(stack, GTK_WIDGET(scrolled_window), title);
     gtk_widget_show_all(GTK_WIDGET(scrolled_window));
 
-    if (learned_of_all < 20)
+    if (learned_of_all < 20) {
         gtk_widget_set_visible(GTK_WIDGET(quiz_button), 0);
-    if (cJSON_GetArraySize(recent) == 0){
+        char *placeHolder = g_strdup_printf("You need to learn %d more questions to enable quiz mode", 20 - learned_of_all);
+        gtk_label_set_label(GTK_LABEL(quiz_placeholder), placeHolder);
+        g_free(placeHolder);
+    } else {
+        gtk_widget_set_visible(GTK_WIDGET(quiz_placeholder), 0);
+    }
+    if (cJSON_GetArraySize(recent) == 0) {
         gtk_widget_set_visible(GTK_WIDGET(recent_list), 0);
         gtk_widget_set_visible(GTK_WIDGET(recent_title), 0);
     }
