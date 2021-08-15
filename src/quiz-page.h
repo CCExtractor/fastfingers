@@ -9,7 +9,7 @@
 
 G_BEGIN_DECLS
 
-void ff_quiz_page_init(GtkStack *stack, cJSON *app);
+void ff_quiz_page_init(GtkStack *stack, cJSON *app, dynamicArray *darray);
 
 G_END_DECLS
 

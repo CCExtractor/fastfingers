@@ -37,8 +37,8 @@ button.back-button {
     background-image: none;
     background-color: #3b4252;
     border: none;
-    border-radius: 0px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     color: #eceff4;
     font-weight: 400;
     font-size: 25px;
@@ -52,7 +52,7 @@ button.back-button:hover {
 button.settings-button:active,
 button.back-button:active {
     background-color: #4c566a;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 
 
@@ -79,7 +79,7 @@ box.home-main-box {
 card {
     background-color: #3b4252;
     background-image: none;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     padding: 10px;
 }
 
@@ -124,7 +124,7 @@ box.practice-box {
 image.practice-image {
     background-color: #3b4252;
     background-image: none;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     padding: 10px;
 }
 
@@ -133,12 +133,12 @@ key {
     background-color: #D8DEE9;
     color: #000;
     border-style: solid;
-    border-width: 0px 0px 5px 0px;
+    border-width: 0 0 5px 0;
     border-color: #9599a0;
     border-radius: 8px;
     font-size: 22px;
     font-weight: 700;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     padding: 10px;
 }
 
@@ -175,8 +175,8 @@ label.question-counter {
 }
 
 label.score-label {
+    margin-top: 25px;
     color: #A3BE8C;
-    margin: 25px 0;
     font-size: 30px;
     font-weight: 600;
 }
@@ -195,6 +195,11 @@ label.timer.red {
     color: #BF616A;
 }
 
+label.correct_label{
+    margin: 30px 0;
+    font-size: 26px;
+    font-weight: 500;
+}
 
 /* Settings Page */
 
@@ -205,24 +210,24 @@ box.settings-box {
 image.settings-logo {
     background-color: #3b4252;
     background-image: none;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     padding: 10px;
 }
 
 label.settings-key {
     background-color: #2E3440;
-    margin: 0px 5px 0px 5px;
-    padding: 0px 7px 0px 7px;
+    margin: 0 5px 0 5px;
+    padding: 0 7px 0 7px;
     border-style: solid;
-    border-width: 0px 0px 5px 0px;
+    border-width: 0 0 5px 0;
     border-color: #000;
     border-radius: 8px;
 }
 
 list.settings-list {
     background-color: #3b4252;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    margin: 0px 300px 100px 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0 300px 100px 300px;
 }
 
 list.settings-list row {
@@ -254,7 +259,7 @@ viewport.application-viewport {
 image.application-logo {
     background-color: #3b4252;
     background-image: none;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     padding: 10px;
 }
 
@@ -267,8 +272,8 @@ box.application-box label.application-title {
 
 list.application-list {
     background-color: #3b4252;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    margin: 10px 300px 0px 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 10px 300px 0 300px;
 }
 
 list.application-list label {
@@ -295,8 +300,8 @@ button.quiz-button {
     background-image: none;
     background-color: #A3BE8C;
     border: none;
-    border-radius: 0px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     color: #eceff4;
     font-weight: 400;
     font-size: 25px;
@@ -308,13 +313,35 @@ button.quiz-button:hover {
 
 button.quiz-button:active {
     background-color: #7a9b5c;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
+}
+
+
+button.retry-button {
+    margin: 25px 0;
+    background-image: none;
+    background-color: #d08770;
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    color: #eceff4;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+button.retry-button:hover {
+    background-color: #b46c55;
+}
+
+button.retry-button:active {
+    background-color: #a6583e;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 
 label.quiz-placeholder{
     font-size: 20px;
     color: #5e81ac;
-    margin-top: 20px;
+    margin-top: 25px;
     font-style: italic;
 }
 
@@ -340,8 +367,8 @@ label.credits-title {
 
 list.credits-list {
     background-color: #3b4252;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    margin: 0px 300px 100px 300px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin: 0 300px 100px 300px;
 }
 
 list.credits-list row {
@@ -370,7 +397,7 @@ box.reset-progress-box {
 }
 
 box.reset-progress-container {
-    margin: 0px 300px 0px 300px;
+    margin: 0 300px 0 300px;
     padding: 20px;
     background-color: #3b4252;
 }
@@ -394,15 +421,15 @@ label.reset-progress-info {
 }
 
 box.reset-progress-buttonbox {
-    margin: 0px 300px 0px 300px;
+    margin: 0 300px 0 300px;
 }
 
 button.reset-progress-cancel {
     background-image: none;
     background-color: #D08770;
     border: none;
-    border-radius: 0px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     color: #eceff4;
     font-weight: 600;
     font-size: 25px;
@@ -414,15 +441,15 @@ button.reset-progress-cancel:hover {
 
 button.reset-progress-cancel:active {
     background-color: #f7bdab;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 
 button.reset-progress-proceed {
     background-image: none;
     background-color: #BF616A;
     border: none;
-    border-radius: 0px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     color: #eceff4;
     font-weight: 600;
     font-size: 25px;
@@ -434,7 +461,7 @@ button.reset-progress-proceed:hover {
 
 button.reset-progress-proceed:active {
     background-color: #f299a0;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.16);
 }
 
 
@@ -476,9 +503,9 @@ label.shortcut-key {
 label.shortcut-key {
     background-color: #2E3440;
     color: white;
-    padding: 0px 7px 0px 7px;
+    padding: 0 7px 0 7px;
     border-style: solid;
-    border-width: 0px 0px 5px 0px;
+    border-width: 0 0 5px 0;
     border-color: #000;
     border-radius: 8px;
 }
@@ -500,7 +527,7 @@ entry {
     border-color: transparent;
     border-radius: 10px;
     padding: 5px;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
     font-size: 16px;
     color: #000;
 }

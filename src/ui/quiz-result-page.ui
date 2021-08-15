@@ -39,6 +39,17 @@
                             </object>
                         </child>
                         <child>
+                            <object class="GtkButton" id="retry_button">
+                                <property name="label" translatable="yes">Retry failed shortcuts</property>
+                                <property name="receives-default">True</property>
+                                <property name="halign">center</property>
+                                <property name="can-focus">False</property>
+                                <style>
+                                    <class name="retry-button"/>
+                                </style>
+                            </object>
+                        </child>
+                        <child>
                             <object class="GtkListBox" id="shortcut_listbox">
                                 <property name="margin-bottom">50</property>
                                 <style>

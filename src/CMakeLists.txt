@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.5 FATAL_ERROR)
 # Declaration of the project
 file(READ ../.version VERSION)
 string(STRIP ${VERSION} VERSION)
+add_definitions( -DVERSION="${VERSION}" )
 project(
         FastFingers
         VERSION ${VERSION}
@@ -88,6 +89,27 @@ set(CMAKE_C_FLAGS
 set_target_properties(cheatsheet PROPERTIES OUTPUT_NAME
         "fastfingers-cheatsheet")
 
+file(
+        COPY ${CMAKE_SOURCE_DIR}/../data/applications/
+        DESTINATION "$ENV{HOME}/.fastfingers/model"
+        FILE_PERMISSIONS
+        OWNER_READ OWNER_WRITE
+        GROUP_READ GROUP_WRITE
+        WORLD_READ WORLD_WRITE
+        )
+
+# Creating desktop files
+add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
+
+file(
+        COPY ${CMAKE_BINARY_DIR}/org.ccextractor.FastFingers.desktop
+        DESTINATION "$ENV{HOME}/.fastfingers/model"
+        FILE_PERMISSIONS
+        OWNER_READ OWNER_WRITE
+        GROUP_READ
+        WORLD_READ
+)
+
 install(
         TARGETS fastfingers cheatsheet
         DESTINATION bin
@@ -95,18 +117,6 @@ install(
         OWNER_READ OWNER_WRITE OWNER_EXECUTE
         GROUP_READ GROUP_EXECUTE
         WORLD_READ WORLD_EXECUTE)
-
-install(
-        DIRECTORY ${CMAKE_SOURCE_DIR}/../data/applications/
-        DESTINATION "/usr/share/fastfingers/applications"
-        FILE_PERMISSIONS
-        OWNER_READ OWNER_WRITE
-        GROUP_READ GROUP_WRITE
-        WORLD_READ WORLD_WRITE
-)
-
-# Creating desktop files
-add_desktop(fastfingers ${CMAKE_PROJECT_VERSION})
 
 install(
         FILES

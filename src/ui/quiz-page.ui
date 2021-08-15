@@ -57,6 +57,22 @@
             <property name="spacing">15</property>
           </object>
         </child>
+        <child>
+          <object class="GtkLabel" id="correct_label">
+            <property name="halign">center</property>
+            <property name="label">Correct keys were:</property>
+            <style>
+              <class name="correct_label" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkBox" id="correct_box">
+            <property name="orientation">horizontal</property>
+            <property name="halign">center</property>
+            <property name="spacing">15</property>
+          </object>
+        </child>
       </object>
     </child>
   </object>

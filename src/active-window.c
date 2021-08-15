@@ -6,12 +6,12 @@
 
 int check_status(int status, unsigned long window) {
     if (status == BadWindow) {
-        fprintf(stderr, "FF-ERROR: window id # 0x%lx does not exists!\n", window);
+        ff_error("window id # 0x%lx does not exists!\n", window);
         return 1;
     }
 
     if (status != Success) {
-        fprintf(stderr, "FF-ERROR :XGetWindowProperty failed!\n");
+        ff_error("XGetWindowProperty failed!\n");
         return 2;
     }
 
@@ -27,7 +27,7 @@ char *get_active_from_xorg(void) {
 
     display = XOpenDisplay(NULL);
     if (!display) {
-        fprintf(stderr, "FF-ERROR: Unable to open display '%s'\n",
+        ff_error("Unable to open display '%s'\n",
                 XDisplayName(NULL));
         return NULL;
     }

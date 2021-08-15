@@ -27,11 +27,11 @@ void ff_home_page_init(GtkStack *stack) {
             gtk_builder_get_object(home_builder, "home_scrolled_window");
     GObject *container = gtk_builder_get_object(home_builder, "home_container");
 
-    dynamicArray *categoryArray = ff_dynamicArray_new(10, sizeof(char *));
+    dynamicArray *categoryArray = ff_dynamicArray_new(sizeof(char *));
     if (!categoryArray)
         return;
 
-    dynamicArray *hboxArray = ff_dynamicArray_new(10, sizeof(GtkWidget *));
+    dynamicArray *hboxArray = ff_dynamicArray_new(sizeof(GtkWidget *));
     if (!hboxArray)
         return;
 
@@ -59,7 +59,10 @@ void ff_home_page_init(GtkStack *stack) {
 
     DIR *d;
     struct dirent *dir;
-    d = opendir("/usr/share/fastfingers/applications");
+    const char *homedir = ff_get_home_dir();
+    char path[128];
+    sprintf(path, "%s/.fastfingers/applications", homedir);
+    d = opendir(path);
     if (d) {
         while ((dir = readdir(d))) {
             if (!g_str_has_suffix(dir->d_name, ".json"))
