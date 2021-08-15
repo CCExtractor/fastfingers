@@ -51,7 +51,6 @@ case characters and shouldn't contain any whitespace.
 {
   "title": "Firefox",
   "category": "Utility",
-  "recent": [],
   "group": [
     ...
   ]
@@ -62,8 +61,6 @@ case characters and shouldn't contain any whitespace.
     * This key determines the title of the application. This is the name shown in the FastFingers for the application.
 * category
     * This key determines the category of the application. On the home page, the applications are grouped under categories, so this information is important for harmony.
-* recent
-    * This key is used in the application run time. It should be left blank in the source.
 * group
     * Shortcuts of the applications are stored under the categories, and the group key has an array value that holds those categories.
 
@@ -91,8 +88,7 @@ case characters and shouldn't contain any whitespace.
   "keys": [
     "Alt",
     "Left"
-  ],
-  "learned": 0
+  ]
 }
 ```
 
@@ -100,8 +96,6 @@ case characters and shouldn't contain any whitespace.
     * Title is the both identifier and descriptor of the shortcut. In practice, quiz, and quiz result screens, this title is shown. Thi title should be as short as possible.
 * keys
     * Keys that should be pressed are stored in this array in the same order.
-* learned
-    * Learned key is meaningful for the program and this key should be 0 in the source files.
 
 #### Finalizing
 
@@ -111,7 +105,6 @@ After following the steps above, you should have a JSON structure like this:
 {
   "title": "Firefox",
   "category": "Utility",
-  "recent": [],
   "group": [
     {
       "title": "Navigation",
@@ -121,8 +114,7 @@ After following the steps above, you should have a JSON structure like this:
           "keys": [
             "Alt",
             "Left"
-          ],
-          "learned": 0
+          ]
         }
       ]
     }
